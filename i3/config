@@ -230,9 +230,9 @@ bar {
 }
 
 exec_always "cd ~/dotfiles/i3 && chmod +x screen.sh && ./screen.sh"
-exec_always $redshift
-exec_always "spotify"
-exec_always "feh --bg-scale ~/dotfiles/backgrounds/greg-rakozy-53292-unsplash.jpg"
+exec $redshift
+exec "spotify"
+exec "feh --bg-scale ~/dotfiles/backgrounds/greg-rakozy-53292-unsplash.jpg"
 
 exec --no-startup-id betterlockscreen -w dim
 exec --no-startup-id source ~/.fehbg
