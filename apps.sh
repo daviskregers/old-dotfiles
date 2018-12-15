@@ -1,4 +1,4 @@
-pacman -S redshift thunar zip unzip lxappearance termite xdg-utils playerctl
+pacman -S redshift thunar zip unzip lxappearance termite xdg-utils playerctl openssh
 yaourt -S spotify playerctl code betterlockscreen feh snapd
 systemctl enable --now apparmor.service
 systemctl enable --now snapd.apparmor.service
