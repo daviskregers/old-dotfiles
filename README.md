@@ -15,7 +15,7 @@ most things taken from [https://github.com/bookercodes/setupi3](https://github.c
 - [x] F.lux / Redshift
 - [x] Keyboard bind enable/disable redshift
 - [x] Lock screen
-- [ ] new terminal
+- [x] new terminal
 - [ ] compton
 - [ ] rofi
 - [ ] zsh
