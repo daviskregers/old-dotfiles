@@ -151,6 +151,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 # BIND APPS TO WORKSPACES, run xprop, get WM_CLASS
 for_window [class="Spotify"] move window to workspace $ws10
 for_window [class="code-oss"] move window to workspace $ws1
+for_window [class="GitKraken"] move window to workspace $ws3
 
 # CUSTOM KEYBINDS
 
