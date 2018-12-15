@@ -1,2 +1,9 @@
 pacman -S redshift thunar zip unzip lxappearance termite
-yaourt -S spotify playerctl code betterlockscreen feh
+yaourt -S spotify playerctl code betterlockscreen feh snapd
+systemctl enable --now apparmor.service
+systemctl enable --now snapd.apparmor.service
+systemctl restart snapd
+sudo snap install gitkraken
+
+sudo chmod +x /etc/profile.d/snapd.sh 
+cd /etc/profile.d/ && ./snapd.sh
