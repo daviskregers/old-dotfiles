@@ -18,4 +18,11 @@ most things taken from [https://github.com/bookercodes/setupi3](https://github.c
 - [x] new terminal
 - [ ] compton
 - [ ] rofi
-- [ ] zsh
+- [ ] zsh + fonts-powerline
+- [ ] wine + heidisql
+- [ ] docker + docker-compose
+- [ ] postman
+- [ ] slack
+- [ ] discord
+- [ ] telegram
+- [ ] shutter
