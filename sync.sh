@@ -1,7 +1,5 @@
 # /bin/bash
 
-sudo pacman -Sy playerctl
-
 ln -sv ~/dotfiles/.bash_profile ~
 ln -sv ~/dotfiles/i3 ~/.config
 ln -sv ~/dotfiles/.xinitrc ~
