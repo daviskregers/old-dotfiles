@@ -32,8 +32,9 @@ most things taken from [https://github.com/bookercodes/setupi3](https://github.c
 - [x] telegram
 - [x] shutter
 - [x] Latvian keyboard layout
+- [x] Move workspaces between screens / monitors
 
 Issues:
 
-- Wine floating apps (heidisql), when focus out - cannot click.
-
+- [ ] Wine floating apps (heidisql), when focus out - cannot click.
+- [x] Fix ugly termite fonts

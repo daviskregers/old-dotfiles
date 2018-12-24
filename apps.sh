@@ -1,39 +1,44 @@
-#pacman -Sy redshift thunar zip unzip lxappearance termite xdg-utils playerctl openssh zsh pambase # docker
-sudo pacman -Sy --noconfirm redshift
-sudo pacman -Sy --noconfirm thunar
-sudo pacman -Sy --noconfirm zip unzip
-sudo pacman -Sy --noconfirm lxappearance
-sudo pacman -Sy --noconfirm termite
-sudo pacman -Sy --noconfirm xdg-utils
-sudo pacman -Sy --noconfirm playerctl
-sudo pacman -Sy --noconfirm openssh
-sudo pacman -Sy --noconfirm zsh
-sudo pacman -Sy --noconfirm pambase
-sudo pacman -Sy --noconfirm xclip
+sudo pacman -Syu
+sudo pacman -S --noconfirm ttf-dejavu
+sudo pacman -S --noconfirm redshift
+sudo pacman -S --noconfirm thunar
+sudo pacman -S --noconfirm zip unzip
+sudo pacman -S --noconfirm lxappearance
+sudo pacman -S --noconfirm termite
+sudo pacman -S --noconfirm xdg-utils
+sudo pacman -S --noconfirm playerctl
+sudo pacman -S --noconfirm openssh
+
+sudo pacman -S --noconfirm zsh
+usermod --shell /bin/zsh davis
+grep davis /etc/passwd
+
+sudo pacman -S --noconfirm pambase
+sudo pacman -S --noconfirm xclip
+sudo pacman -S --noconfirm wine
+sudo pacman -S --noconfirm docker
 
 curl -L http://install.ohmyz.sh | sh
-#sudo groupadd docker
-#sudo usermod -aG docker $USER
 gpg --recv-keys 0FC3042E345AD05D
 gpg --recv-keys A2C794A986419D8A
 
-#yaourt -Sy spotify playerctl betterlockscreen feh snapd discord slack-desktop telegram-desktop postman shutter perl-goo-canvas wine heidisql xkb-switch powerline-fonts
-yaourt -Sy spotify
-yaourt -Sy playerctl
-yaourt -Sy betterlockscreen
-yaourt -Sy feh
-yaourt -Sy snapd
-yaourt -Sy discord
-yaourt -Sy slack-desktop
-yaourt -Sy telegram-desktop
-yaourt -Sy postman
-yaourt -Sy shutter
-yaourt -Sy perl-goo-canvas
-yaourt -Sy wine
-yaourt -Sy heidisql
-yaourt -Sy xkb-switch
-yaourt -Sy powerline-fonts
-yaourt -Sy google-chrome
+yaourt -Syu
+yaourt -S spotify
+yaourt -S playerctl
+yaourt -S betterlockscreen
+yaourt -S feh
+yaourt -S snapd
+yaourt -S discord
+yaourt -S slack-desktop
+yaourt -S telegram-desktop
+yaourt -S postman-bin
+yaourt -S shutter
+yaourt -S perl-goo-canvas
+yaourt -S wine
+yaourt -S heidisql
+yaourt -S xkb-switch
+yaourt -S powerline-fonts
+yaourt -S google-chrome
 
 sudo systemctl enable --now apparmor.service
 sudo systemctl enable --now snapd.apparmor.service
