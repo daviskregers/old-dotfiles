@@ -2,6 +2,13 @@
 
 most things taken from [https://github.com/bookercodes/setupi3](https://github.com/bookercodes/setupi3)
 
+# Screenshots
+
+![](screenshots/01_tiling.png)
+![](screenshots/02_desktop.png)
+
+# TODO:
+
 - [x] Sound
 - [x] i3
 - [x] i3 bar
@@ -29,3 +36,4 @@ most things taken from [https://github.com/bookercodes/setupi3](https://github.c
 Issues:
 
 - Wine floating apps (heidisql), when focus out - cannot click.
+
