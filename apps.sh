@@ -8,6 +8,7 @@ sudo pacman -S --noconfirm termite
 sudo pacman -S --noconfirm xdg-utils
 sudo pacman -S --noconfirm playerctl
 sudo pacman -S --noconfirm openssh
+sudo pacman -S --noconfirm gedit
 
 sudo pacman -S --noconfirm zsh
 usermod --shell /bin/zsh davis
@@ -17,6 +18,10 @@ sudo pacman -S --noconfirm pambase
 sudo pacman -S --noconfirm xclip
 sudo pacman -S --noconfirm wine
 sudo pacman -S --noconfirm docker
+sudo pacman -S --noconfirm docker-compose
+
+sudo systemctl enable docker
+sudo systemctl restart docker
 
 curl -L http://install.ohmyz.sh | sh
 gpg --recv-keys 0FC3042E345AD05D
@@ -39,12 +44,12 @@ yaourt -S heidisql
 yaourt -S xkb-switch
 yaourt -S powerline-fonts
 yaourt -S google-chrome
+yaourt -S gitkraken
 
 sudo systemctl enable --now apparmor.service
 sudo systemctl enable --now snapd.apparmor.service
 sudo systemctl enable --now snapd
 sudo systemctl restart snapd
-sudo snap install gitkraken
 
 sudo chmod +x /etc/profile.d/snapd.sh 
 cd /etc/profile.d/ && ./snapd.sh
