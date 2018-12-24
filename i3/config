@@ -152,6 +152,10 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 for_window [class="Spotify"] move window to workspace $ws10
 for_window [class="code-oss"] move window to workspace $ws1
 for_window [class="GitKraken"] move window to workspace $ws3
+for_window [class="discord"] move window to workspace $ws9
+for_window [class="Slack"] move window to workspace $ws9
+for_window [class="TelegramDesktop"] move window to workspace $ws9
+for_window [class="Wine"] move window to workspace $ws3
 
 # CUSTOM KEYBINDS
 
@@ -173,6 +177,7 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioNext exec playerctl next
 bindsym $mod+F11  exec $redshift
 bindsym $mod+F12 exec redshift -x
+bindsym Print exec shutter -s
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -229,9 +234,18 @@ bar {
 	
 }
 
+# Startup stuff
+
+exec chsh -s /bin/zsh
 exec_always "cd ~/dotfiles/i3 && chmod +x screen.sh && ./screen.sh"
+exec "setxkbmap lv -variant apostrophe"
 exec $redshift
 exec "spotify"
+exec "slack"
+exec "discord"
+#exec "telegram-dekstop"
+exec "gitkraken"
+exec "slack-desktop"
 exec "feh --bg-scale ~/dotfiles/backgrounds/greg-rakozy-53292-unsplash.jpg"
 
 exec --no-startup-id betterlockscreen -w dim

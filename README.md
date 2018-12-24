@@ -16,13 +16,16 @@ most things taken from [https://github.com/bookercodes/setupi3](https://github.c
 - [x] Keyboard bind enable/disable redshift
 - [x] Lock screen
 - [x] new terminal
-- [ ] compton
-- [ ] rofi
-- [ ] zsh + fonts-powerline
-- [ ] wine + heidisql
+- [x] zsh + fonts-powerline
+- [x] wine + heidisql
 - [ ] docker + docker-compose
-- [ ] postman
-- [ ] slack
-- [ ] discord
-- [ ] telegram
-- [ ] shutter
+- [x] postman
+- [x] slack
+- [x] discord
+- [x] telegram
+- [x] shutter
+- [x] Latvian keyboard layout
+
+Issues:
+
+- Wine floating apps (heidisql), when focus out - cannot click.

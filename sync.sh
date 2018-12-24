@@ -7,5 +7,5 @@ ln -sv ~/dotfiles/.gtkrc-2.0 ~
 ln -sv ~/dotfiles/gtk-2.0 ~/.config/gtk-2.0
 ln -sv ~/dotfiles/gtk-3.0 ~/.config/gtk-3.0
 ln -sv ~/dotfiles/fonts ~/.fonts
-
-sudo chmod +x i3/blocks/rofi-calendar/rofi-calendar
+ln -sv ~/dotfiles/.zshrc ~
+ln -sv ~/dotfiles/.oh-my-zsh ~
