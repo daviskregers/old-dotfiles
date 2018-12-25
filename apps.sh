@@ -28,6 +28,7 @@ gpg --recv-keys 0FC3042E345AD05D
 gpg --recv-keys A2C794A986419D8A
 
 yaourt -Syu
+yaourt -S ttf-ms-fonts
 yaourt -S spotify
 yaourt -S playerctl
 yaourt -S betterlockscreen
