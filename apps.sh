@@ -9,6 +9,7 @@ sudo pacman -S --noconfirm xdg-utils
 sudo pacman -S --noconfirm playerctl
 sudo pacman -S --noconfirm openssh
 sudo pacman -S --noconfirm gedit
+sudo pacman -S --noconfirm xarchiver
 
 sudo pacman -S --noconfirm zsh
 usermod --shell /bin/zsh davis
