@@ -11,6 +11,8 @@ sudo pacman -S --noconfirm openssh
 sudo pacman -S --noconfirm gedit
 sudo pacman -S --noconfirm xarchiver
 sudo pacman -S --noconfirm ntp
+sudo pacman -S --noconfirm conky
+sudo pacman -S --noconfirm conky-manager
 
 sudo systemctl enable ntpd.service
 sudo systemctl start ntpd.service

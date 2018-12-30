@@ -251,6 +251,6 @@ exec "discord"
 exec "gitkraken"
 exec "slack-desktop"
 exec "feh --bg-scale ~/dotfiles/backgrounds/greg-rakozy-53292-unsplash.jpg"
-
+exec "cd ~/.config/i3/ && ./conky.sh"
 exec --no-startup-id betterlockscreen -w dim
 exec --no-startup-id source ~/.fehbg

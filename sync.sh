@@ -10,3 +10,5 @@ ln -sv ~/dotfiles/fonts ~/.fonts
 ln -sv ~/dotfiles/.zshrc ~
 ln -sv ~/dotfiles/.oh-my-zsh ~
 ln -sv ~/dotfiles/.yaourtrc ~
+
+sudo chmod +x ~/.config/i3/conky.sh 
