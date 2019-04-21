@@ -5,3 +5,4 @@
 !.config/termite
 !.config/.conkyrc
 !.config/albert
+.config/albert/core.db
