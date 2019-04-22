@@ -204,6 +204,8 @@ let g:netrw_winsize=25
 " 	autocmd VimEnter * :Vexplore
 " augroup END
 
+map <F4> :Lexplore<CR>
+
 " Reload vimrc
 map <F9> :source ~/.vimrc<CR>
 
