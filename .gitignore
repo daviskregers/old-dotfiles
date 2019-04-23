@@ -6,3 +6,4 @@
 !.config/.conkyrc
 !.config/albert
 .config/albert/core.db
+.vim/view/*

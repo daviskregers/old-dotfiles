@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/davis/projects/edurio/edurio_api'
+let g:netrw_dirhist_2='/home/davis/projects/edurio/edurio_api/app'
+let g:netrw_dirhist_3='/home/davis/projects/edurio/edurio_api/app/Models'
+let g:netrw_dirhist_4='/home/davis/projects/edurio/edurio_api'
+let g:netrw_dirhist_5='/home/davis/projects/edurio/edurio_api/app'
+let g:netrw_dirhist_6='/home/davis/projects/edurio/edurio_api/app/Models'
+let g:netrw_dirhist_7='/home/davis/projects/edurio/edurio_api'
+let g:netrw_dirhist_8='/home/davis/projects/edurio/edurio_api/app'
+let g:netrw_dirhist_9='/home/davis/projects/edurio/edurio_api/app/Overrides'

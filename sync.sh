@@ -10,3 +10,4 @@ ln -sv ~/.dotfiles/.oh-my-zsh ~
 ln -sv ~/.dotfiles/.zshrc ~
 ln -sv ~/.dotfiles/fonts ~/.fonts
 ln -sv ~/.dotfiles/.vimrc ~
+ln -sv ~/.dotfiles/.vim ~

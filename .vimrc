@@ -32,16 +32,11 @@
 "
 "   use V for selection and then use `<` and `>`
 "
-" TODO:
-"   - plugins
-"       - definitions
-"       - linters
-"       - autocomplete
-"       - toggle comments
-"   - https://medium.com/@schtoeffel/you-don-t-need-more-than-one-cursor-in-vim-2c44117d51db
 "
 
 set nocompatible
+
+call plug#begin()
 
 " Helps forcing plugins to load correctly when it is turned back on below
 filetype off
@@ -312,20 +307,6 @@ function! StatuslineGit()
   return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
-set statusline= 
-set statusline+=%#PmenuSel#
-set statusline+=%{StatuslineGit()}
-set statusline+=%#LineNr#
-set statusline+=\ %f
-set statusline+=%m\
-set statusline+=%=
-set statusline+=%#CursorColumn#
-set statusline+=\ %y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
-set statusline+=\
 
 " Colorscheme
 colo pablo
@@ -412,3 +393,127 @@ nnoremap <A-Left> :tabprevious<CR>
 nnoremap <A-Right> :tabnext<CR>
 nnoremap <A-Up> :tabfirst<CR>
 nnoremap <A-Down> :tablast<CR>
+
+"" PLUGINS
+
+
+" Elixir
+Plug 'elixir-lang/vim-elixir'
+
+" Comments
+" https://vimawesome.com/plugin/the-nerd-commenter
+Plug 'scrooloose/nerdcommenter'
+
+    " Add spaces after comment delimiters by default
+    let g:NERDSpaceDelims = 1
+
+    " Use compact syntax for prettified multi-line comments
+    let g:NERDCompactSexyComs = 1
+
+    " Align line-wise comment delimiters flush left instead of following code indentation
+    let g:NERDDefaultAlign = 'left'
+
+    " Set a language to use its alternate delimiters by default
+    let g:NERDAltDelims_java = 1
+
+    " Add your own custom formats or override the defaults
+    let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+    " Allow commenting and inverting empty lines (useful when commenting a region)
+    let g:NERDCommentEmptyLines = 1
+
+    " Enable trimming of trailing whitespace when uncommenting
+    let g:NERDTrimTrailingWhitespace = 1
+
+    " Enable NERDCommenterToggle to check all selected lines is commented or not 
+    let g:NERDToggleCheckAllLines = 1
+
+    " Default mappings
+    "
+    " <leader> - by default is `\` key.
+    "
+    " - [count]<leader>cc |NERDComComment|
+    "
+    " Comment out the current line or text selected in visual mode.
+    "
+    " - [count]<leader>cn |NERDComNestedComment|
+    "
+    " Same as cc but forces nesting.
+    "
+    " - [count]<leader>c<space> |NERDComToggleComment|
+    "
+    " Toggles the comment state of the selected line(s). If the topmost selected line is commented, all selected lines are uncommented and vice versa.
+    "
+    " - [count]<leader>cm |NERDComMinimalComment|
+    "
+    " Comments the given lines using only one set of multipart delimiters.
+    "
+    " - [count]<leader>ci |NERDComInvertComment|
+    "
+    " Toggles the comment state of the selected line(s) individually.
+    "
+    " - [count]<leader>cs |NERDComSexyComment|
+    "
+    " Comments out the selected lines with a pretty block formatted layout.
+    "
+    " - [count]<leader>cy |NERDComYankComment|
+    "
+    " Same as cc except that the commented line(s) are yanked first.
+    "
+    " - <leader>c$ |NERDComEOLComment|
+    "
+    " Comments the current line from the cursor to the end of line.
+    "
+    " - <leader>cA |NERDComAppendComment|
+    "
+    " Adds comment delimiters to the end of line and goes into insert mode between them.
+    "
+    " |NERDComInsertComment|
+    "
+    " Adds comment delimiters at the current cursor position and inserts between. Disabled by default.
+    "
+    " - <leader>ca |NERDComAltDelim|
+    "
+    " Switches to the alternative set of delimiters.
+    "
+    " - [count]<leader>cl
+    " [count]<leader>cb |NERDComAlignedComment|
+    "
+    " Same as |NERDComComment| except that the delimiters are aligned down the left side (<leader>cl) or both sides (<leader>cb).
+    "
+    " - [count]<leader>cu |NERDComUncommentLine|
+    "
+    " Uncomments the selected line(s).V
+
+" Tagbar
+Plug 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
+
+" Emmet
+" Call by using <c-y>,
+" ctrl+y+,
+Plug 'mattn/emmet-vim'
+
+" Blame
+Plug 'zivyangll/git-blame.vim'
+nnoremap <F7> :<C-u>call gitblame#echo()<CR>
+
+
+" STATUSLINE
+
+set statusline= 
+set statusline+=%#PmenuSel#
+set statusline+=%{StatuslineGit()}
+set statusline+=%#LineNr#
+set statusline+=\ %f
+set statusline+=%m\
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+set statusline+=%m\
+
+call plug#end()
