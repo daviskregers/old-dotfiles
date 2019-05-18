@@ -7,3 +7,5 @@
 !.config/albert
 .config/albert/core.db
 .vim/view/*
+.vim/.netrwhist
+
