@@ -21,7 +21,7 @@ gpg --recv-keys A2C794A986419D8A
 yaourt -Syu
 yaourt -S --noconfirm --needed google-chrome ttf-ms-fonts spotify playerctl \
 betterlockscreen feh discord slack-desktop postman-bin shutter perl-goo-canvas \
-heidisql xkb-switch powerline-fonts albert nixnote2-git yad paswitch
+heidisql xkb-switch powerline-fonts albert nixnote2-git yad paswitch speedcrunch
 
 yaourt -S --needed vi-vim-symlink
 
