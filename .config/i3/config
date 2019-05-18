@@ -161,6 +161,7 @@ for_window [class="Slack"] move window to workspace $ws9
 for_window [class="TelegramDesktop"] move window to workspace $ws9
 #for_window [class="Wine"] floating enable move window to workspace $ws3
 for_window [instance="heidisql.exe"] floating enable move window to workspace $ws4
+for_window [class="Yad"] floating enable
 
 # CUSTOM KEYBINDS
 
