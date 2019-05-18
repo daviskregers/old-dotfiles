@@ -27,8 +27,7 @@ set $base0D #97bbf7
 set $base0E #c0b7f9
 set $base0F #fcc09e
 
-# redshift -l 56.946285:24.105078 -P -O 2000"
-set $redshift "redshift -l 56.946285:24.105078 -P"
+set $redshift "redshift -l 56.946285:24.105078 -P -t 6500:2500"
 set $terminal termite -e /bin/zsh
 
 
