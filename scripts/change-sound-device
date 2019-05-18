@@ -1,0 +1,11 @@
+#!/bin/bash
+
+DMENU=${DMENU:-dmenu}
+
+prompt="DEVICE"
+cmd_list="$(pactl list | grep "Name: alsa_output." | grep --invert-match "monitor" | sed 's/Name: //g' | sed 's/alsa_output.//g' | sed 's/.analog-stereo//g')"
+cmd="$(echo $cmd_list | sed 's/ /\n/g' | ${DMENU} -p "$prompt")"
+
+[[ -z $cmd ]] && exit 1
+
+paswitch "alsa_output.${cmd}.analog-stereo"

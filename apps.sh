@@ -4,7 +4,7 @@ sudo pacman -Syu
 sudo pacman -S --noconfirm --needed ttf-dejavu redshift thunar zip unzip \
 lxappearance termite xdg-utils playerctl openssh gedit xarchiver ntp conky \
 conky-manager zsh pambase xclip wine docker docker-compose muparser numlockx \
-filezilla the_silver_searcher ranger xdotool
+filezilla the_silver_searcher ranger xdotool pulseaudio lib32-libpulse lib32-alsa-plugins pulseaudio-alsa pavucontrol
 
 sudo systemctl enable ntpd.service
 sudo systemctl start ntpd.service
@@ -21,6 +21,9 @@ gpg --recv-keys A2C794A986419D8A
 yaourt -Syu
 yaourt -S --noconfirm --needed google-chrome ttf-ms-fonts spotify playerctl \
 betterlockscreen feh discord slack-desktop postman-bin shutter perl-goo-canvas \
-heidisql xkb-switch powerline-fonts albert nixnote2-git yad
+heidisql xkb-switch powerline-fonts albert nixnote2-git yad paswitch
 
 yaourt -S --needed vi-vim-symlink
+
+systemctl --user enable pulseaudio
+chmod +x ~/.dotfiles/scripts/*
