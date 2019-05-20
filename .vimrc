@@ -498,6 +498,9 @@ Plug 'mattn/emmet-vim'
 Plug 'zivyangll/git-blame.vim'
 nnoremap <F7> :<C-u>call gitblame#echo()<CR>
 
+" Autocomplete
+Plug 'valloric/youcompleteme'
+
 
 " STATUSLINE
 
