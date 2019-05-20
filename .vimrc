@@ -501,6 +501,51 @@ nnoremap <F7> :<C-u>call gitblame#echo()<CR>
 " Autocomplete
 Plug 'valloric/youcompleteme'
 
+" Ctags
+Plug 'craigemery/vim-autotag'
+let g:autotagTagsFile=".tags"
+
+" PHP namespaces
+Plug 'arnaud-lb/vim-php-namespace'
+
+    set tags+=tags,tags.vendors
+
+    " To keep updates fast, AutoTags won't operate if the tags file exceeds 7MB. To avoid exceeding this limit on projects with many dependencies, use a separate tags file for dependencies:
+    "
+    " # dependencies tags file (index only the vendor directory, and save tags in ./tags.vendors)
+    " ctags -R --PHP-kinds=cfi -f tags.vendors vendor
+    "
+    " # project tags file (index only src, and save tags in ./tags; AutoTags will update this one)
+    " ctags -R --PHP-kinds=cfi src
+
+    " Automatically adds the corresponding use statement for the name under the cursor.
+    " Then, hitting \u in normal or insert mode will import the class or function under the cursor.
+
+    function! IPhpInsertUse()
+        call PhpInsertUse()
+        call feedkeys('a',  'n')
+    endfunction
+    autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+    autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+
+    " Expands the name under the cursor to its fully qualified name.
+    " Then, hitting \e in normal or insert mode will expand the name to a fully qualified name.
+
+    function! IPhpExpandClass()
+        call PhpExpandClass()
+        call feedkeys('a', 'n')
+    endfunction
+    autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
+    autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
+
+    " On top of that, you may want to have the dependencies sorted every
+    " time you insert one. To enable this feature, use the dedicated global
+    " option:
+    autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
+    autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
+
+    let g:php_namespace_sort_after_insert = 1
+
 
 " STATUSLINE
 
