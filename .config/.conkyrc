@@ -5,13 +5,13 @@ conky.config = {
     background = false,
     font = 'Mono Sans:size=8',
     use_xft = true,
-    xftalpha = 0.9,
+    xftalpha = 1.0,
     update_interval = 1.2,
     total_run_times = 0,
     own_window = true,
     own_window_type = 'override',
     own_window_argb_visual = true,
-    own_window_transparent = true,
+    own_window_transparent = false,
     own_window_class = 'conky',
     own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
     own_window_colour = '151F20',
@@ -101,3 +101,5 @@ Total ${totaldown docker0} ${alignr}Total ${totalup docker0}
 #${downspeedgraph wlan0 15,107} ${alignr}${upspeedgraph wlan0 15,107}
 #Total ${totaldown wlan0} ${alignr}Total ${totalup wlan0}
 ]]
+
+

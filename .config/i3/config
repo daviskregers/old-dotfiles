@@ -256,3 +256,4 @@ exec "cd ~/.config/i3/ && ./conky.sh"
 exec --no-startup-id betterlockscreen -w dim -u ~/.dotfiles/backgrounds/greg-rakozy-53292-unsplash.jpg
 exec --no-startup-id source ~/.fehbg
 exec_always albert
+exec "xcompmgr -c -f -n" # --config ~/.dotfiles/.config/compton.conf"
