@@ -5,7 +5,7 @@ sudo pacman -S --noconfirm --needed ttf-dejavu redshift thunar zip unzip \
 lxappearance termite xdg-utils playerctl openssh gedit xarchiver ntp conky \
 conky-manager zsh pambase xclip wine docker docker-compose muparser numlockx \
 filezilla the_silver_searcher ranger xdotool pulseaudio lib32-libpulse lib32-alsa-plugins \
-pulseaudio-alsa pavucontrol ctags xcompmgr libreoffice aws-cli wireshark-qt
+pulseaudio-alsa pavucontrol ctags xcompmgr libreoffice aws-cli wireshark-qt jdk-openjdk
 
 sudo systemctl enable ntpd.service
 sudo systemctl start ntpd.service
