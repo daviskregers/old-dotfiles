@@ -1,0 +1,20 @@
+pkgbase = evernote
+	pkgdesc = Evernote 6, installs with wine
+	pkgver = 6.19.2.8555
+	pkgrel = 1
+	url = http://evernote.com
+	arch = x86_64
+	license = unknown
+	depends = wine
+	depends = wine_gecko
+	depends = gnutls
+	depends = lib32-gnutls
+	optdepends = xembedsniproxy: for tray icon under KDE Plasma
+	noextract = Setup.exe
+	source = evernote
+	source = Setup.exe::http://cdn1.evernote.com/win6/public/Evernote_6.19.2.8555.exe
+	sha256sums = f0633acb9b984aa7c998e3b01f4a3bc4d62d81888e81eb11a46f59b2c6231ba8
+	sha256sums = c38f178399cbd50d39b5941a1300d3737da2224d77f349eb6dbc4912aaef1115
+
+pkgname = evernote
+
