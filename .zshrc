@@ -93,4 +93,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 . ~/.edurioalias
+export QT_QPA_PLATFORMTHEME=gtk3
 

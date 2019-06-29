@@ -12,3 +12,4 @@ ln -sv ~/.dotfiles/fonts ~/.fonts
 ln -sv ~/.dotfiles/.vimrc ~
 ln -sv ~/.dotfiles/.vim ~
 ln -sv ~/.dotfiles/.albertignore ~
+ln -sv ~/.dotfiles/.gtkrc-2.0 ~
