@@ -27,7 +27,11 @@ set $base0D #97bbf7
 set $base0E #c0b7f9
 set $base0F #fcc09e
 
-set $redshift "redshift -l 56.946285:24.105078 -P -t 6500:2500"
+
+set $redshift_manual "redshift -O 2000 " 
+set $redshift_gradual "redshift -l 56.946285:24.105078 -P -t 6500:2500"
+set $redshift_kill "redshift -x && pkill redshift"
+
 set $terminal termite -e /bin/zsh
 
 
@@ -181,8 +185,9 @@ bindsym XF86AudioMute exec /usr/bin/amixer -D pulse sset Master 0
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioNext exec playerctl next
-bindsym $mod+F11  exec $redshift
-bindsym $mod+F12 exec redshift -x
+bindsym $mod+F10 exec $redshift_manual
+bindsym $mod+F11  exec $redshift_gradual
+bindsym $mod+F12 exec $redshift_kill
 bindsym Print exec shutter -s
 bindsym $mod+F8 exec "/home/davis/.dotfiles/scripts/change-sound-device"
 
