@@ -5,6 +5,7 @@
 !.config/termite
 !.config/.conkyrc
 !.config/albert
+!.config/polybar
 .config/albert/core.db
 .vim/view/*
 .vim/.netrwhist
