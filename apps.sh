@@ -1,5 +1,7 @@
 #! /bin/bash
 
+#sudo pacman -Sc
+#sudo pip3.7 uninstall markupsafe Jinja2
 sudo pacman -Syu
 sudo pacman -S --noconfirm --needed ttf-dejavu redshift thunar zip unzip \
 lxappearance termite xdg-utils playerctl openssh gedit xarchiver ntp conky \
@@ -26,7 +28,8 @@ yaourt -Syu
 yaourt -S --noconfirm --needed google-chrome ttf-ms-fonts spotify playerctl \
 betterlockscreen feh discord slack-desktop postman-bin shutter perl-goo-canvas \
 heidisql xkb-switch powerline-fonts albert nixnote2-git yad paswitch speedcrunch \
-vim-youcompleteme-git compton-conf shantz-xwinwrap-bzr pgadmin3 stacer
+vim-youcompleteme-git compton-conf shantz-xwinwrap-bzr pgadmin3 stacer visual-studio-code-bin \
+polybar
 
 yaourt -S --needed vi-vim-symlink
 
