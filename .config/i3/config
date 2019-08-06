@@ -32,8 +32,9 @@ set $redshift_manual "redshift -O 2000 "
 set $redshift_gradual "redshift -l 56.946285:24.105078 -P -t 6500:2500"
 set $redshift_kill "redshift -x && pkill redshift"
 
-set $terminal termite -e /bin/zsh
-
+#set $terminal termite -e /bin/zsh
+#set $terminal st -e /bin/zsh
+set $terminal terminator -e /bin/zsh
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.

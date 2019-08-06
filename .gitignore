@@ -3,6 +3,7 @@
 !.config/gtk-2.0
 !.config/gtk-3.0
 !.config/termite
+!.config/terminator
 !.config/.conkyrc
 !.config/albert
 !.config/polybar
