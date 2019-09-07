@@ -126,7 +126,7 @@ set $ws1 "1. Code"
 set $ws2 "2. Browser"
 set $ws3 "3. Repo"
 set $ws4 "4. Database"
-set $ws5 "5"
+set $ws5 "5. Todo"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
@@ -167,6 +167,9 @@ for_window [class="TelegramDesktop"] move window to workspace $ws9
 #for_window [class="Wine"] floating enable move window to workspace $ws3
 for_window [instance="heidisql.exe"] floating enable move window to workspace $ws4
 for_window [class="Yad"] floating enable
+
+for_window [class="google-calendar-nativefier-e22938"] move to workspace $ws5
+for_window [class="Todoist"] move to workspace $ws5
 
 # CUSTOM KEYBINDS
 
@@ -264,4 +267,5 @@ exec --no-startup-id source ~/.fehbg
 exec_always albert
 exec "xcompmgr -c -f -n" # --config ~/.dotfiles/.config/compton.conf"
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
+exec "todoist"
+exec "google-calendar"
