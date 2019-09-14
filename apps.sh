@@ -28,7 +28,7 @@ yaourt -S --noconfirm --needed google-chrome ttf-ms-fonts spotify playerctl \
 betterlockscreen feh discord slack-desktop postman-bin shutter perl-goo-canvas \
 heidisql xkb-switch powerline-fonts albert yad paswitch speedcrunch \
 vim-youcompleteme-git compton-conf shantz-xwinwrap-bzr pgadmin3 stacer visual-studio-code-bin \
-polybar todoist-electron vi-vim-symlink google-calendar-nativefier
+polybar todoist-electron vi-vim-symlink google-calendar-nativefier rescuetime2
 
 systemctl --user enable pulseaudio
 chmod +x ~/.dotfiles/scripts/*
