@@ -269,3 +269,4 @@ exec "xcompmgr -c -f -n" # --config ~/.dotfiles/.config/compton.conf"
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec "todoist"
 exec "google-calendar"
+exec "rescuetime"
