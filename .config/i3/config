@@ -258,7 +258,7 @@ bindsym $mod+r mode "resize"
 exec chsh -s /bin/zsh
 exec_always "cd ~/.dotfiles/ && chmod +x monitor-layout.sh && ./monitor-layout.sh"
 exec "setxkbmap lv -variant apostrophe"
-exec $redshift
+exec $redshift_gradual
 exec "spotify"
 exec "feh --bg-scale ~/.dotfiles/backgrounds/greg-rakozy-53292-unsplash.jpg"
 exec "cd ~/.config/i3/ && ./conky.sh"
@@ -270,3 +270,4 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec "todoist"
 exec "google-calendar"
 exec "rescuetime"
+exec "dunst"
