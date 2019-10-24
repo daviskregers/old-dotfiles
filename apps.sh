@@ -9,7 +9,8 @@ lxappearance xdg-utils playerctl openssh gedit xarchiver ntp conky \
 conky-manager zsh pambase xclip wine docker docker-compose muparser numlockx \
 filezilla the_silver_searcher ranger xdotool pulseaudio lib32-libpulse lib32-alsa-plugins \
 pulseaudio-alsa pavucontrol ctags xcompmgr libreoffice aws-cli wireshark-qt jdk-openjdk gnutls \
-lib32-gnutls jupyter-notebook terminator tmux libjsoncpp-dev dunst libnotify
+lib32-gnutls jupyter-notebook terminator tmux libjsoncpp-dev dunst libnotify terminator \
+nvidia bbswitch wifi-radar bluez bluez-utils 
 
 sudo systemctl enable ntpd.service
 sudo systemctl start ntpd.service
@@ -27,11 +28,13 @@ yaourt -Syu
 yaourt -S --noconfirm --needed google-chrome ttf-ms-fonts spotify playerctl \
 betterlockscreen feh discord slack-desktop postman-bin shutter perl-goo-canvas \
 heidisql xkb-switch powerline-fonts albert yad paswitch speedcrunch \
-vim-youcompleteme-git compton-conf shantz-xwinwrap-bzr pgadmin3 stacer visual-studio-code-bin \
+compton-conf shantz-xwinwrap-bzr pgadmin3 stacer visual-studio-code-bin \
 polybar todoist-electron vi-vim-symlink google-calendar-nativefier rescuetime2 \
-google-keep-nativefier
+google-keep-nativefier pulseaudio nvidia-xrun
+
+# vim-youcompleteme-git 
 
 systemctl --user enable pulseaudio
 chmod +x ~/.dotfiles/scripts/*
 
-sudo usermod -aG wireshark $USER
+# sudo usermod -aG wireshark $USER

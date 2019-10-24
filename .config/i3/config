@@ -34,6 +34,7 @@ set $redshift_kill "redshift -x && pkill redshift"
 
 #set $terminal termite -e /bin/zsh
 #set $terminal st -e /bin/zsh
+#set $terminal i3-sensible-terminal
 set $terminal terminator -e /bin/zsh
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -194,6 +195,10 @@ bindsym $mod+F12 exec $redshift_kill
 bindsym Print exec shutter -s
 bindsym $mod+F8 exec "/home/davis/.dotfiles/scripts/change-sound-device"
 
+# Brightness control (without any fuzz)
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo /home/davis/.dotfiles/scripts/brightness_controll +10000
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo /home/davis/.dotfiles/scripts/brightness_controll -10000
+
 bindsym $mod+Shift+greater move workspace to output right
 bindsym $mod+Shift+less move workspace to output left
 
@@ -268,6 +273,7 @@ exec "xcompmgr -c -f -n" # --config ~/.dotfiles/.config/compton.conf"
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec "todoist"
 exec "google-calendar"
-exec "google-keep"
+#exec "google-keep"
 exec "rescuetime"
 exec "dunst"
+exec "slack"
