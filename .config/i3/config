@@ -28,8 +28,8 @@ set $base0E #c0b7f9
 set $base0F #fcc09e
 
 
-set $redshift_manual "redshift -O 2000 " 
-set $redshift_gradual "redshift -l 56.946285:24.105078 -P -t 6500:2500"
+set $redshift_manual "redshift -O 2000 -b 1.0:0.5"
+set $redshift_gradual "redshift -l 56.946285:24.105078 -P -t 6500:2500 -b 1.0:0.5"
 set $redshift_kill "redshift -x && pkill redshift"
 
 #set $terminal termite -e /bin/zsh
