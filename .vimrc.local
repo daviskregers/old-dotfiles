@@ -1,0 +1,98 @@
+" Reload vimrc
+map <F9> :source ~/.vimrc<CR>
+
+let NERDTreeShowHidden=1
+
+noremap <Leader>g :GoTo<CR>
+noremap <Leader>d :GetDoc<CR>
+noremap <Leader>f :FixIt<CR>
+
+let g:alchemist_tag_map = '<Leader>g'
+let g:alchemist_tag_stack_map = '<Leader>d'
+let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
+let g:alchemist_compile_basepath = '/app/'
+
+set tags=tags;,./tags;
+
+let g:tagbar_type_elixir = {
+    \ 'ctagstype' : 'elixir',
+    \ 'kinds' : [
+        \ 'p:protocols',
+        \ 'm:modules',
+        \ 'e:exceptions',
+        \ 'y:types',
+        \ 'd:delegates',
+        \ 'f:functions',
+        \ 'c:callbacks',
+        \ 'a:macros',
+        \ 't:tests',
+        \ 'i:implementations',
+        \ 'o:operators',
+        \ 'r:records'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 'p' : 'protocol',
+        \ 'm' : 'module'
+    \ },
+    \ 'scope2kind' : {
+        \ 'protocol' : 'p',
+        \ 'module' : 'm'
+    \ },
+    \ 'sort' : 0
+\ }
+
+let g:tagbar_type_css = {
+\ 'ctagstype' : 'Css',
+    \ 'kinds'     : [
+        \ 'c:classes',
+        \ 's:selectors',
+        \ 'i:identities'
+    \ ]
+\ }
+
+
+" BLAME
+nnoremap <Leader>s :Gblame<CR>
+
+" Lint
+nnoremap <F1> :SyntasticCheck<CR>
+
+" Find / Ag
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git --ignore "*tags" --ignore "*-chunk.js" -g ""'
+nnoremap <silent> <F2> :Ag<CR>
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint', 'phpcs', 'elixir']
+let g:syntastic_enable_elixir_checker = 1
+
+autocmd FileType markdown nmap <silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+" there are some defaults for image directory and image name, you can change them
+let g:mdip_imgdir = '.images'
+" let g:mdip_imgname = 'image'
+
+filetype plugin on
+  "Uncomment to override defaults:
+  "let g:instant_markdown_slow = 1
+let g:instant_markdown_autostart = 1
+let g:instant_markdown_open_to_the_world = 1
+let g:instant_markdown_allow_unsafe_content = 1
+let g:instant_markdown_allow_external_content = 1
+let g:instant_markdown_mathjax = 1
+let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+let g:instant_markdown_autoscroll = 1
+  "let g:instant_markdown_port = 8888
+  "let g:instant_markdown_python = 1
+let g:instant_markdown_browser = "google-chrome-stable --new-window"
+
+let g:vim_markdown_folding_disabled = 1
+
+nmap <F8>   :InstantMarkdownPreview<CR>
+vmap <F8>   :InstantMarkdownStop<CR>
