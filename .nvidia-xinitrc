@@ -1,0 +1,9 @@
+#! /bin/bash
+if [ $# -gt 0 ]; then
+        $*
+else
+    intel-virtual-output
+    numlockx &
+    exec i3
+    #exec /home/davis/.dotfiles/monitor-layout.sh
+fi

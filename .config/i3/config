@@ -34,7 +34,9 @@ set $redshift_kill "redshift -x && pkill redshift"
 
 #set $terminal termite -e /bin/zsh
 #set $terminal st -e /bin/zsh
-set $terminal terminator -e /bin/zsh
+#set $terminal i3-sensible-terminal
+set $terminal terminator -e tmux
+set $terminal_wo_tmux terminator -e /usr/bin/zsh
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -56,6 +58,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec $terminal
+bindsym $mod+Shift+Return exec $terminal_wo_tmux
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -129,7 +132,7 @@ set $ws4 "4. Repo"
 set $ws5 "5. Database"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8"
+set $ws8 "8. Mail"
 set $ws9 "9. Comms"
 set $ws10 "10. Music"
 
@@ -164,11 +167,12 @@ for_window [class="Slack"] move window to workspace $ws9
 for_window [class="TelegramDesktop"] move window to workspace $ws9
 #for_window [class="Wine"] floating enable move window to workspace $ws3
 for_window [instance="heidisql.exe"] floating enable move window to workspace $ws5
+for_window [instance="DBeaver"] floating enable move window to workspace $ws5
 for_window [class="Yad"] floating enable
 
 for_window [class="google-calendar-nativefier-e22938"] move to workspace $ws1
 for_window [class="Todoist"] move to workspace $ws1
-for_window [class="google-keep-nativefier-d04d04"] move to workspace $ws1
+for_window [class="Mailspring"] move to workspace $ws8
 
 # CUSTOM KEYBINDS
 
@@ -193,6 +197,10 @@ bindsym $mod+F11  exec $redshift_gradual
 bindsym $mod+F12 exec $redshift_kill
 bindsym Print exec shutter -s
 bindsym $mod+F8 exec "/home/davis/.dotfiles/scripts/change-sound-device"
+
+# Brightness control (without any fuzz)
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo /home/davis/.dotfiles/scripts/brightness_controll +10000
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo /home/davis/.dotfiles/scripts/brightness_controll -10000
 
 bindsym $mod+Shift+greater move workspace to output right
 bindsym $mod+Shift+less move workspace to output left
@@ -268,6 +276,7 @@ exec "xcompmgr -c -f -n" # --config ~/.dotfiles/.config/compton.conf"
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec "todoist"
 exec "google-calendar"
-exec "google-keep"
 exec "rescuetime"
 exec "dunst"
+exec "slack"
+exec "source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh && mailspring"

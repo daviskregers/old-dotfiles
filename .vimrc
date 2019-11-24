@@ -1,568 +1,589 @@
-" Sources: 
-" - https://www.linode.com/docs/tools-reference/tools/introduction-to-vim-customization/
-" - https://shapeshed.com/vim-netrw/
-" - https://vim.fandom.com/wiki/Find_in_files_within_Vim
-" - https://thoughtbot.com/blog/faster-grepping-in-vim
-" - https://shapeshed.com/vim-statuslines/
-" - https://alvinalexander.com/linux/vi-vim-editor-color-scheme-colorscheme
-" - https://vim.fandom.com/wiki/Script_for_choosing_vim_background_color
-" - https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim
-" - https://jonasjacek.github.io/colors/
-" - https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally
-"
-" Searching:
-"
-"   To search in current directory:
-"   :lvim /regex/gj *.txt
-"
-"   To recursive search:
-"   :vimgrep /dostuff()/j ../**/*.php
-"
-"   :Ag keywork directory
-"
-" Switching tabs:
-"
-"   gt          - next tab
-"   Ctrl+PgDown
-"   gT          - prev tab
-"   Ctrl+PgUp
-"   <n>gt       - to specific tab
-"
-" Indenting:
-"
-"   use V for selection and then use `<` and `>`
-"
-"
+" vim-bootstrap 
 
-set nocompatible
+"*****************************************************************************
+"" Vim-PLug core
+"*****************************************************************************
+let vimplug_exists=expand('~/.vim/autoload/plug.vim')
+
+let g:vim_bootstrap_langs = "elixir,erlang,html,javascript,php,python,rust,typescript"
+let g:vim_bootstrap_editor = "vim"				" nvim or vim
+
+if !filereadable(vimplug_exists)
+  if !executable("curl")
+    echoerr "You have to install curl or first install vim-plug yourself!"
+    execute "q!"
+  endif
+  echo "Installing Vim-Plug..."
+  echo ""
+  silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  let g:not_finish_vimplug = "yes"
+
+  autocmd VimEnter * PlugInstall
+endif
+
+" Required:
+call plug#begin(expand('~/.vim/plugged'))
+
+"*****************************************************************************
+"" Plug install packages
+"*****************************************************************************
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-scripts/grep.vim'
+Plug 'vim-scripts/CSApprox'
+Plug 'Raimondi/delimitMate'
+Plug 'majutsushi/tagbar'
+Plug 'w0rp/ale'
+Plug 'Yggdroot/indentLine'
+Plug 'avelino/vim-bootstrap-updater'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
+
+if isdirectory('/usr/local/opt/fzf')
+  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+else
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+  Plug 'junegunn/fzf.vim'
+endif
+let g:make = 'gmake'
+if exists('make')
+        let g:make = 'make'
+endif
+Plug 'Shougo/vimproc.vim', {'do': g:make}
+
+"" Vim-Session
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+
+"" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+"" Color
+Plug 'tomasr/molokai'
+
+"*****************************************************************************
+"" Custom bundles
+"*****************************************************************************
+
+" elixir
+Plug 'elixir-lang/vim-elixir'
+Plug 'carlosgaldino/elixir-snippets'
+
+
+" erlang
+Plug 'jimenezrick/vimerl'
+
+
+" html
+"" HTML Bundle
+Plug 'hail2u/vim-css3-syntax'
+Plug 'gorodinskiy/vim-coloresque'
+Plug 'tpope/vim-haml'
+Plug 'mattn/emmet-vim'
+
+
+" javascript
+"" Javascript Bundle
+Plug 'jelera/vim-javascript-syntax'
+
+
+" php
+"" PHP Bundle
+Plug 'arnaud-lb/vim-php-namespace'
+
+
+" python
+"" Python Bundle
+Plug 'davidhalter/jedi-vim'
+Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+
+
+" rust
+" Vim racer
+Plug 'racer-rust/vim-racer'
+
+" Rust.vim
+Plug 'rust-lang/rust.vim'
+
+
+" typescript
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
+
+
+"*****************************************************************************
+"*****************************************************************************
+
+"" Include user's extra bundle
+if filereadable(expand("~/.vimrc.local.bundles"))
+  source ~/.vimrc.local.bundles
+endif
+
+call plug#end()
+
+" Required:
+filetype plugin indent on
+
+
+"*****************************************************************************
+"" Basic Setup
+"*****************************************************************************"
+"" Encoding
 set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+set ttyfast
 
-call plug#begin()
-
-" Helps forcing plugins to load correctly when it is turned back on below
-filetype off
-
-" syntax highlighting
-syntax on
-set synmaxcol=128
-syntax sync minlines=256
-
-" For plugins to load correctly
-filetype indent plugin on
-
-" Number lines
-set number
-
-" Show partial command in status line
-set showcmd
-
-" Show matching brackets
-set showmatch
-
-" Enable mouse usage
-set mouse=a
-set ttymouse=sgr
-" the ^[ must be typed as <C-v><Esc> while in insert mode
-map OA <up>
-map OB <down>
-map OC <right>
-map OD <left>
-map OAOAOAOAOAOAOA <Up>
-map OBOBOBOBOBOBOB <Down>
-
-"map <ScrollWheelUp> <C-Y>
-"map <ScrollWheelDown> <C-E>
-
-set lazyredraw
-
-" automatically save before commands like :next and :make
-set autowrite
-
-" Hide buffers when they are abandoned
-set hidden
-
-
-" Turn off mode lines
-set modelines=0
-
-" Automatically wrap text that extends beyond the screen length
-set wrap
-
-" Vim auto indentation feature does not work properly with text copied from
-" outside of Vim.
-nnoremap <F2> :set invpaste paste?<CR>
-imap <F2> <C-O>:set invpaste paste?<CR>
-set pastetoggle=<F2>
-
-" Tabs & stuff
-"set textwidth=79
-set formatoptions=tcqrn1
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set noshiftround
-
-" Display 5 lines above / below the cursor when scrolling with a mouse
-set scrolloff=5
-
-" Fixes common backspace problems
+"" Fix backspace indent
 set backspace=indent,eol,start
 
-" Status bar
-set laststatus=2
+"" Tabs. May be overridden by autocmd rules
+set tabstop=4
+set softtabstop=0
+set shiftwidth=4
+set expandtab
 
-" Display options
-set showmode
-set showcmd
+"" Map leader to ,
+let mapleader=','
 
-" Highlight matching pairs of brackets. Use the `%` character to jump between
-" them.
-set matchpairs+=<:>
+"" Enable hidden buffers
+set hidden
 
-" Display different types of white spaces.
-set list
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
-
-" Encoding
-set encoding=utf-8
-
-" Highlight matching search patterns
-set hlsearch 
-" Enable incremental search
+"" Searching
+set hlsearch
 set incsearch
-" Ignore matching uppercase words with lowercase search term
 set ignorecase
-" Include only uppercase words with uppercase search term
 set smartcase
 
-" Store info from no more than 100 files at a time, 9999 lines of text, 100kb
-" of data.Useful for copying large amounts of data between files.
-set viminfo='100,<9999,s100
+set fileformats=unix,dos,mac
 
-" Map the <Space> key to toggle a selected fold opened/closed.
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-vnoremap <Space> zf
+if exists('$SHELL')
+    set shell=$SHELL
+else
+    set shell=/bin/sh
+endif
 
-" Automatically save and load folds
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* loadview
+" session management
+let g:session_directory = "~/.vim/session"
+let g:session_autoload = "no"
+let g:session_autosave = "no"
+let g:session_command_aliases = 1
 
-" File manager stuff -
-" :Explore - open `netrw` in the current window
-" :Sexplore - open `netrw` in horizontal split
-" :Vexplore - open `netrw` in vertical split
-"
-" The directory listing view can be bodified to show more or less information
-" on files and directories, change the sorting order and hiding certain files.
-"
-" With the directory browser open hit `i` to cycle through view types. There
-" are 4 different view types - thin, long, wide and tree. A preferred view
-" type can be made permanent by setting it in .vimrc.
+"*****************************************************************************
+"" Visual Settings
+"*****************************************************************************
+syntax on
+set ruler
+set number
 
-let g:netrw_liststyle=3
+let no_buffers_menu=1
+silent! colorscheme molokai
 
-" Hide the banner
-" To toggle in vim, use `I`.
+set mousemodel=popup
+set t_Co=256
+set guioptions=egmrti
+set gfn=Monospace\ 10
 
-let g:netrw_banner=0
+if has("gui_running")
+  if has("gui_mac") || has("gui_macvim")
+    set guifont=Menlo:h12
+    set transparency=7
+  endif
+else
+  let g:CSApprox_loaded = 1
 
-" Changing how files are opened
-"
-" By default files will be opened in the same window as the netrw directory
-" browser. To change this behaviour the `netrw_browse_split` option mat be
-" set. Thew options are as follows:
-"
-" - 1 - open files in a new horizontal split
-" - 2 - open files in a new vertical split
-" - 3 - open files in a new tab
-" - 4 - open in previous window
-let g:netrw_browse_split=3
+  " IndentLine
+  let g:indentLine_enabled = 1
+  let g:indentLine_concealcursor = 0
+  let g:indentLine_char = '┆'
+  let g:indentLine_faster = 1
 
-" Set the width of the directory explorer
-"
-" The width of the directory explorer can be fixed with the
-" `netrw_browse_split` option. The following sets the width to 25% of the page
-let g:netrw_winsize=25
+  
+  if $COLORTERM == 'gnome-terminal'
+    set term=gnome-256color
+  else
+    if $TERM == 'xterm'
+      set term=xterm-256color
+    endif
+  endif
+  
+endif
 
-" NERDtree like setup
-" 
-" If NERDtree is your thing netrw can give you a similar experience with the
-" following settings:
-"
-" let g:netrw_banner=0
-" let g:netrw_liststyle=3
-" let g:netrw_browse_split=4
-" let g:netrw_altv=1
-" let g:netrw_winsize=25
-" augroup ProjectDrawer
-" 	autocmd!
-" 	autocmd VimEnter * :Vexplore
-" augroup END
 
-map <F4> :Lexplore<CR>
+if &term =~ '256color'
+  set t_ut=
+endif
 
-" Reload vimrc
-map <F9> :source ~/.vimrc<CR>
 
-" wildignore - exclude patterns with vimgrep
-set wildignore+=objd/**,obj/**,*.tmp,vendor/**,node_modules/**,*.pyc
+"" Disable the blinking cursor.
+set gcr=a:blinkon0
+set scrolloff=3
+
+"" Status bar
+set laststatus=2
+
+"" Use modeline overrides
+set modeline
+set modelines=10
+
+set title
+set titleold="Terminal"
+set titlestring=%F
+
+set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
+
+" Search mappings: These will make it so that going to the next one in a
+" search will center on the line it's found in.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+if exists("*fugitive#statusline")
+  set statusline+=%{fugitive#statusline()}
+endif
+
+" vim-airline
+let g:airline_theme = 'powerlineish'
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline_skip_empty_sections = 1
+
+"*****************************************************************************
+"" Abbreviations
+"*****************************************************************************
+"" no one is really happy until you have this shortcuts
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qall! qall!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Qall qall
+
+"" NERDTree configuration
+let g:NERDTreeChDirMode=2
+let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowBookmarks=1
+let g:nerdtree_tabs_focus_on_files=1
+let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
+let g:NERDTreeWinSize = 50
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+nnoremap <silent> <F2> :NERDTreeFind<CR>
+nnoremap <silent> <F3> :NERDTreeToggle<CR>
+
+" grep.vim
+nnoremap <silent> <leader>f :Rgrep<CR>
+let Grep_Default_Options = '-IR'
+let Grep_Skip_Files = '*.log *.db'
+let Grep_Skip_Dirs = '.git node_modules'
+
+" terminal emulation
+nnoremap <silent> <leader>sh :terminal<CR>
+
+
+"*****************************************************************************
+"" Commands
+"*****************************************************************************
+" remove trailing whitespaces
+command! FixWhitespace :%s/\s\+$//e
+
+"*****************************************************************************
+"" Functions
+"*****************************************************************************
+if !exists('*s:setupWrapping')
+  function s:setupWrapping()
+    set wrap
+    set wm=2
+    set textwidth=79
+  endfunction
+endif
+
+"*****************************************************************************
+"" Autocmd Rules
+"*****************************************************************************
+"" The PC is fast enough, do syntax highlight syncing from start unless 200 lines
+augroup vimrc-sync-fromstart
+  autocmd!
+  autocmd BufEnter * :syntax sync maxlines=200
+augroup END
+
+"" Remember cursor position
+augroup vimrc-remember-cursor-position
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
+"" txt
+augroup vimrc-wrapping
+  autocmd!
+  autocmd BufRead,BufNewFile *.txt call s:setupWrapping()
+augroup END
+
+"" make/cmake
+augroup vimrc-make-cmake
+  autocmd!
+  autocmd FileType make setlocal noexpandtab
+  autocmd BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
+augroup END
+
+set autoread
+
+"*****************************************************************************
+"" Mappings
+"*****************************************************************************
+
+"" Split
+noremap <Leader>h :<C-u>split<CR>
+noremap <Leader>v :<C-u>vsplit<CR>
+
+"" Git
+noremap <Leader>ga :Gwrite<CR>
+noremap <Leader>gc :Gcommit<CR>
+noremap <Leader>gsh :Gpush<CR>
+noremap <Leader>gll :Gpull<CR>
+noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gb :Gblame<CR>
+noremap <Leader>gd :Gvdiff<CR>
+noremap <Leader>gr :Gremove<CR>
+
+" session management
+nnoremap <leader>so :OpenSession<Space>
+nnoremap <leader>ss :SaveSession<Space>
+nnoremap <leader>sd :DeleteSession<CR>
+nnoremap <leader>sc :CloseSession<CR>
+
+"" Tabs
+nnoremap <Tab> gt
+nnoremap <S-Tab> gT
+nnoremap <silent> <S-t> :tabnew<CR>
+
+"" Set working directory
+nnoremap <leader>. :lcd %:p:h<CR>
+
+"" Opens an edit command with the path of the currently edited file filled in
+noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+
+"" Opens a tab edit command with the path of the currently edited file filled
+noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
+
+"" fzf.vim
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
+let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 
 " The Silver Searcher
 if executable('ag')
-  " Use ag over grep
+  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
 endif
 
-" Search the word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" ripgrep
+if executable('rg')
+  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+  set grepprg=rg\ --vimgrep
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+endif
 
-" Open up with quickfix window
-" bind \ to grep shortcut
-"
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap \ :Ag<SPACE>
+cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>e :FZF -m<CR>
+"Recovery commands from history through FZF
+nmap <leader>y :History:<CR>
 
-" Statusline
-"
-" The statusline can be shown regardless of whether you have more than one
-" buffer open with the following setting int your .vimrc
-" 
-" set laststatus=2
-"
-" You can disable it by using
-"
-" set laststatus=0
+" snippets
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsEditSplit="vertical"
 
-set laststatus=2
-
-" A very basic statusline can be achieved by adding the following to the vimrc
-"
-" set statusline=helloWorld
-"
-" A useful pattern to use when building a statusline is to concatenate the
-" line and build the statusline over multiple lines in your vimrc.
-"
-" set statusline = 
-" set statusline += hello
-" set statusline += world
-"
-" - Vimscrip functions
-"
-"   Statuslines can use Vim functions and it is possible to show anything that
-"   can be programmed in Vimscript in the statusline. This might be the
-"   weather, the proce of ETH or more commonly the git branch that you are on.
-"   The following returns the current branch and an empty string if there is
-"   no git repository.
-"
-"   function! StatuslineGit()
-"       let l:branchname = GitBranch()
-"       return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-"   endfunction
-"
-"   set statusline= 
-"   set statusline+=%{StatuslineGit()}
-"
-" - Showing data
-"
-"   Vim has a number of variables that may be used in statuslines. The `f`
-"   character for example shows the path to the file in the buffer and the vim
-"   documentation outlines clearly the data that can be shown.
-"
-"   http://vimdoc.sourceforge.net/htmldoc/options.html#'statusline'
-"
-"   set statusline= 
-"   set statusline+=\ %f
-"
-" - Color
-"
-"   Color is perhaps the hardest part to configure in statuslines. The
-"   documentation (http://docs.huihoo.com/vim/7.2/syntax.html7) is harder 
-"   to decipher here but offers the highlight color names that may be used to 
-"   change the color of the statusline. 
-"
-"   These colors are named highlights so it is difficult to understand what the color will
-"   be without playing around with them. The syntax using these colors is as
-"   follows:
-"
-"   set statusline= 
-"   set statusline+=%#LineNr#
-"   set statusline+=\ %f
-"
-" - A few lines over a plugin reading the documentation and understanding how
-"   statuslines work it is easy to construct a statusline that works.
-"
-
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
-
-function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
-
-
-" Colorscheme
-colo pablo
-set t_Co=256
-highlight Normal ctermfg=254 ctermbg=234
-
-" Panes:
-"
-"   You can create a vertical split using `:vsp` and horizontal with `:sp`.
-"
-"   ```
-"   :vsp ~/.vimrc
-"   ```
-"
-"   You can specify the new split height by prefixing with a number:
-"
-"   ```
-"   :10sp ~/.zshrc
-"   ```
-"
-"   Close the split like you would close vim:
-"
-"   ```
-"   :q
-"   ```
-"
-" Easier split navigations:
-"
-"   We can use different key mappings for easy navigation between splits to
-"   save a keystroke. So instead of `ctrl-w` then `j`, it's just `ctrl-j`.
-"
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-nnoremap <C-Down> <C-W><C-J>
-nnoremap <C-Up> <C-W><C-K>
-nnoremap <C-Right> <C-W><C-L>
-nnoremap <C-Left> <C-W><C-H>
-
-" More natural split opening
-"
-"   Open new plit panes to right and bottom, which feels more natural than
-"   Vim's default.
-"
-set splitbelow
-set splitright
-
-" Resizing splits
-"
-"   Vims defaults are useful for changing split shapes:
-"
-"       Max out the height of the current split
-"       ctrl + w _
-"
-"       Max out the width of the current split
-"       ctrl + w |
-"
-"       Normalize all split sizes, which is very handy when resizing terminal
-"       ctrl + w =
-"
-" More split manipulation
-"
-"   Swap top/bottom or left/right split
-"   ctrl + W R
-"
-"   Break out current window into a new tab
-"   Ctrl + W T
-"
-"   Close every window in the current tab but the current one
-"   Ctrl + W o
-"
-" More help on splits:
-"   :help splits
-set encoding=utf-8
-set title
-
-" Switching tabs
-"
-" Use ALT+Arrows to switch between tabs
-
-nnoremap <A-Left> :tabprevious<CR>
-nnoremap <A-Right> :tabnext<CR>
-nnoremap <A-Up> :tabfirst<CR>
-nnoremap <A-Down> :tablast<CR>
-
-"" PLUGINS
-
-
-" Elixir
-Plug 'elixir-lang/vim-elixir'
-
-" Comments
-" https://vimawesome.com/plugin/the-nerd-commenter
-Plug 'scrooloose/nerdcommenter'
-
-    " Add spaces after comment delimiters by default
-    let g:NERDSpaceDelims = 1
-
-    " Use compact syntax for prettified multi-line comments
-    let g:NERDCompactSexyComs = 1
-
-    " Align line-wise comment delimiters flush left instead of following code indentation
-    let g:NERDDefaultAlign = 'left'
-
-    " Set a language to use its alternate delimiters by default
-    let g:NERDAltDelims_java = 1
-
-    " Add your own custom formats or override the defaults
-    let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-
-    " Allow commenting and inverting empty lines (useful when commenting a region)
-    let g:NERDCommentEmptyLines = 1
-
-    " Enable trimming of trailing whitespace when uncommenting
-    let g:NERDTrimTrailingWhitespace = 1
-
-    " Enable NERDCommenterToggle to check all selected lines is commented or not 
-    let g:NERDToggleCheckAllLines = 1
-
-    " Default mappings
-    "
-    " <leader> - by default is `\` key.
-    "
-    " - [count]<leader>cc |NERDComComment|
-    "
-    " Comment out the current line or text selected in visual mode.
-    "
-    " - [count]<leader>cn |NERDComNestedComment|
-    "
-    " Same as cc but forces nesting.
-    "
-    " - [count]<leader>c<space> |NERDComToggleComment|
-    "
-    " Toggles the comment state of the selected line(s). If the topmost selected line is commented, all selected lines are uncommented and vice versa.
-    "
-    " - [count]<leader>cm |NERDComMinimalComment|
-    "
-    " Comments the given lines using only one set of multipart delimiters.
-    "
-    " - [count]<leader>ci |NERDComInvertComment|
-    "
-    " Toggles the comment state of the selected line(s) individually.
-    "
-    " - [count]<leader>cs |NERDComSexyComment|
-    "
-    " Comments out the selected lines with a pretty block formatted layout.
-    "
-    " - [count]<leader>cy |NERDComYankComment|
-    "
-    " Same as cc except that the commented line(s) are yanked first.
-    "
-    " - <leader>c$ |NERDComEOLComment|
-    "
-    " Comments the current line from the cursor to the end of line.
-    "
-    " - <leader>cA |NERDComAppendComment|
-    "
-    " Adds comment delimiters to the end of line and goes into insert mode between them.
-    "
-    " |NERDComInsertComment|
-    "
-    " Adds comment delimiters at the current cursor position and inserts between. Disabled by default.
-    "
-    " - <leader>ca |NERDComAltDelim|
-    "
-    " Switches to the alternative set of delimiters.
-    "
-    " - [count]<leader>cl
-    " [count]<leader>cb |NERDComAlignedComment|
-    "
-    " Same as |NERDComComment| except that the delimiters are aligned down the left side (<leader>cl) or both sides (<leader>cb).
-    "
-    " - [count]<leader>cu |NERDComUncommentLine|
-    "
-    " Uncomments the selected line(s).V
+" ale
+let g:ale_linters = {}
 
 " Tagbar
-Plug 'majutsushi/tagbar'
-nmap <F8> :TagbarToggle<CR>
+nmap <silent> <F4> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
 
-" Emmet
-" Call by using <c-y>,
-" ctrl+y+,
-Plug 'mattn/emmet-vim'
+" Disable visualbell
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+  autocmd GUIEnter * set visualbell t_vb=
+endif
 
-" Blame
-Plug 'zivyangll/git-blame.vim'
-nnoremap <F7> :<C-u>call gitblame#echo()<CR>
+"" Copy/Paste/Cut
+if has('unnamedplus')
+  set clipboard=unnamed,unnamedplus
+endif
 
-" Autocomplete
-Plug 'valloric/youcompleteme'
+noremap YY "+y<CR>
+noremap <leader>p "+gP<CR>
+noremap XX "+x<CR>
 
-" Ctags
-Plug 'craigemery/vim-autotag'
-let g:autotagTagsFile=".tags"
+if has('macunix')
+  " pbcopy for OSX copy/paste
+  vmap <C-x> :!pbcopy<CR>
+  vmap <C-c> :w !pbcopy<CR><CR>
+endif
 
-" PHP namespaces
-Plug 'arnaud-lb/vim-php-namespace'
+"" Buffer nav
+noremap <leader>z :bp<CR>
+noremap <leader>q :bp<CR>
+noremap <leader>x :bn<CR>
+noremap <leader>w :bn<CR>
 
-    set tags+=tags,tags.vendors
+"" Close buffer
+noremap <leader>c :bd<CR>
 
-    " To keep updates fast, AutoTags won't operate if the tags file exceeds 7MB. To avoid exceeding this limit on projects with many dependencies, use a separate tags file for dependencies:
-    "
-    " # dependencies tags file (index only the vendor directory, and save tags in ./tags.vendors)
-    " ctags -R --PHP-kinds=cfi -f tags.vendors vendor
-    "
-    " # project tags file (index only src, and save tags in ./tags; AutoTags will update this one)
-    " ctags -R --PHP-kinds=cfi src
+"" Clean search (highlight)
+nnoremap <silent> <leader><space> :noh<cr>
 
-    " Automatically adds the corresponding use statement for the name under the cursor.
-    " Then, hitting \u in normal or insert mode will import the class or function under the cursor.
+"" Switching windows
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+noremap <C-h> <C-w>h
 
-    function! IPhpInsertUse()
-        call PhpInsertUse()
-        call feedkeys('a',  'n')
-    endfunction
-    autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
-    autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+"" Vmap for maintain Visual Mode after shifting > and <
+vmap < <gv
+vmap > >gv
 
-    " Expands the name under the cursor to its fully qualified name.
-    " Then, hitting \e in normal or insert mode will expand the name to a fully qualified name.
+"" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
-    function! IPhpExpandClass()
-        call PhpExpandClass()
-        call feedkeys('a', 'n')
-    endfunction
-    autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
-    autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
+"" Open current line on GitHub
+nnoremap <Leader>o :.Gbrowse<CR>
 
-    " On top of that, you may want to have the dependencies sorted every
-    " time you insert one. To enable this feature, use the dedicated global
-    " option:
-    autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
-    autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
+"*****************************************************************************
+"" Custom configs
+"*****************************************************************************
 
-    let g:php_namespace_sort_after_insert = 1
+" elixir
 
 
-" STATUSLINE
+" erlang
+let erlang_folding = 1
+let erlang_show_errors = 1
 
-set statusline= 
-set statusline+=%#PmenuSel#
-set statusline+=%{StatuslineGit()}
-set statusline+=%#LineNr#
-set statusline+=\ %f
-set statusline+=%m\
-set statusline+=%=
-set statusline+=%#CursorColumn#
-set statusline+=\ %y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
-set statusline+=%m\
 
-call plug#end()
+" html
+" for html files, 2 spaces
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
+
+
+" javascript
+let g:javascript_enable_domhtmlcss = 1
+
+" vim-javascript
+augroup vimrc-javascript
+  autocmd!
+  autocmd FileType javascript setl tabstop=4|setl shiftwidth=4|setl expandtab softtabstop=4
+augroup END
+
+
+" php
+
+
+" python
+" vim-python
+augroup vimrc-python
+  autocmd!
+  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
+      \ formatoptions+=croq softtabstop=4
+      \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+augroup END
+
+" jedi-vim
+let g:jedi#popup_on_dot = 0
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = "<leader>d"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#show_call_signatures = "0"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#smart_auto_mappings = 0
+
+" ale
+:call extend(g:ale_linters, {
+    \'python': ['flake8'], })
+
+" vim-airline
+let g:airline#extensions#virtualenv#enabled = 1
+
+" Syntax highlight
+" Default highlight is better than polyglot
+let g:polyglot_disabled = ['python']
+let python_highlight_all = 1
+
+
+" rust
+" Vim racer
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+
+" typescript
+let g:yats_host_keyword = 1
+
+
+
+"*****************************************************************************
+"*****************************************************************************
+
+"" Include user's local vim config
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
+
+"*****************************************************************************
+"" Convenience variables
+"*****************************************************************************
+
+" vim-airline
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+if !exists('g:airline_powerline_fonts')
+  let g:airline#extensions#tabline#left_sep = ' '
+  let g:airline#extensions#tabline#left_alt_sep = '|'
+  let g:airline_left_sep          = '▶'
+  let g:airline_left_alt_sep      = '»'
+  let g:airline_right_sep         = '◀'
+  let g:airline_right_alt_sep     = '«'
+  let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
+  let g:airline#extensions#readonly#symbol   = '⊘'
+  let g:airline#extensions#linecolumn#prefix = '¶'
+  let g:airline#extensions#paste#symbol      = 'ρ'
+  let g:airline_symbols.linenr    = '␊'
+  let g:airline_symbols.branch    = '⎇'
+  let g:airline_symbols.paste     = 'ρ'
+  let g:airline_symbols.paste     = 'Þ'
+  let g:airline_symbols.paste     = '∥'
+  let g:airline_symbols.whitespace = 'Ξ'
+else
+  let g:airline#extensions#tabline#left_sep = ''
+  let g:airline#extensions#tabline#left_alt_sep = ''
+
+  " powerline symbols
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = ''
+endif

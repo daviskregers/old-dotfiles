@@ -1,0 +1,1 @@
+for i in */.git; do ( echo $i; cd $i/..; git pull; git switch -C $1 ); done

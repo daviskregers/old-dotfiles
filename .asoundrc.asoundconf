@@ -4,8 +4,8 @@
 #
 # Manual changes to the ALSA library configuration should be implemented
 # by editing the ~/.asoundrc file, not by editing this file.
-!defaults.pcm.card AIMO
-defaults.ctl.card AIMO
+!defaults.pcm.card PCH
+defaults.ctl.card PCH
 defaults.pcm.device 0
 defaults.pcm.subdevice -1
 defaults.pcm.nonblock 1
@@ -60,3 +60,4 @@ defaults.timer.subdevice 0
 defaults.namehint.showall off
 defaults.namehint.basic on
 defaults.namehint.extended off
+defaults.pcm.dmix.channels 2
