@@ -24,7 +24,7 @@ pulseaudio-alsa pavucontrol ctags xcompmgr libreoffice aws-cli jdk-openjdk gnutl
 lib32-gnutls terminator tmux dunst libnotify terminator \
 nvidia bbswitch wifi-radar bluez bluez-utils tmux cmake \
 libsecret gnome-keyring git ctags ncurses curl \
-elixir nodejs npm
+elixir nodejs npm gvim
 
 echo "[APPS] Install packages from AUR"
 yay -S --noconfirm --needed google-chrome ttf-ms-fonts spotify playerctl \

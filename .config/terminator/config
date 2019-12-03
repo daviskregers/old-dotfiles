@@ -1,5 +1,6 @@
 [global_config]
 [keybindings]
+  help = <Primary>F1
 [layouts]
   [[default]]
     [[[child1]]]

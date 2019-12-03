@@ -56,7 +56,7 @@ let g:tagbar_type_css = {
 nnoremap <Leader>s :Gblame<CR>
 
 " Lint
-nnoremap <F1> :SyntasticCheck<CR>
+nnoremap <F5> :SyntasticCheck<CR>
 
 " Find / Ag
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git --ignore "*tags" --ignore "*-chunk.js" -g ""'
@@ -69,9 +69,12 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint', 'phpcs', 'elixir']
+let g:syntastic_check_on_wq = 1
+let g:syntastic_aggregate_errors = 1
 let g:syntastic_enable_elixir_checker = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_php_checkers = ['phpcs']
+let g:syntastic_elixir_checkers = ['elixir']
 
 autocmd FileType markdown nmap <silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
 " there are some defaults for image directory and image name, you can change them
@@ -96,3 +99,29 @@ let g:vim_markdown_folding_disabled = 1
 
 nmap <F8>   :InstantMarkdownPreview<CR>
 vmap <F8>   :InstantMarkdownStop<CR>
+
+let g:pdv_cfg_Author = 'Dāvis Krēgers <davis.kregers@edurio.com>'
+let g:pdv_cfg_ClassTags = ["package","author"]
+
+au BufRead,BufNewFile *.php inoremap <buffer> <C-P> :call PhpDoc()<CR>
+au BufRead,BufNewFile *.php nnoremap <buffer> <C-P> :call PhpDoc()<CR>
+au BufRead,BufNewFile *.php vnoremap <buffer> <C-P> :call PhpDocRange()<CR>
+
+" Mouse
+:set mouse=a
+
+" List occurrences for search
+let g:searchtasks_list=["TODO", "FIXME", "XXX"]
+
+nnoremap <F6> :cexpr system('git grep --line-number -e FIXME -e TODO -e DEIVS')<CR>:copen<CR>
+nnoremap <F7> :cexpr system('git grep --line-number -e DEIVS')<CR>:copen<CR>
+
+" Paste
+nnoremap <F10> :set invpaste paste?<CR>
+set pastetoggle=<F10>
+set showmode
+
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+noremap <Leader>Y "+y
+noremap <Leader>P "+p
