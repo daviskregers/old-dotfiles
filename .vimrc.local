@@ -125,3 +125,7 @@ noremap <Leader>y "*y
 noremap <Leader>p "*p
 noremap <Leader>Y "+y
 noremap <Leader>P "+p
+
+" Docblock
+nnoremap <leader>pd :PHPDocBlocks<cr>
+let g:phpdocblocks_move_cursor = 1

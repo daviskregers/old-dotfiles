@@ -33,7 +33,7 @@ heidisql xkb-switch albert yad paswitch deepin-calculator \
 compton-conf shantz-xwinwrap-bzr stacer visual-studio-code-bin rescuetime2 \
 polybar todoist-electron vi-vim-symlink google-calendar-nativefier \
 nvidia-xrun mailspring the_silver_searcher powerline-fonts-git \
-php-codesniffer
+php-codesniffer arc-gtk-theme arc-icon-theme-full-git
 
 echo "[APPS] Install python modules for vim"
 pip install flake8 jedi --user
