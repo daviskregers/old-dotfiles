@@ -7,3 +7,6 @@ Plug 'eslint/eslint'
 Plug 'plasticboy/vim-markdown'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'ferrine/md-img-paste.vim'
+Plug 'sumpygump/php-documentor-vim'
+Plug 'brett-griffin/phpdocblocks.vim'
+

@@ -24,7 +24,7 @@ pulseaudio-alsa pavucontrol ctags xcompmgr libreoffice aws-cli jdk-openjdk gnutl
 lib32-gnutls terminator tmux dunst libnotify terminator \
 wifi-radar bluez bluez-utils tmux cmake \
 libsecret gnome-keyring git ctags ncurses curl \
-elixir nodejs npm # nvidia bbswitch
+elixir nodejs npm gvim python-pip # nvidia bbswitch
 
 echo "[APPS] Install packages from AUR"
 yay -S --noconfirm --needed google-chrome ttf-ms-fonts spotify playerctl \
@@ -33,12 +33,12 @@ heidisql xkb-switch albert yad paswitch deepin-calculator \
 compton-conf shantz-xwinwrap-bzr stacer visual-studio-code-bin rescuetime2 \
 polybar todoist-electron vi-vim-symlink google-calendar-nativefier \
 mailspring the_silver_searcher powerline-fonts-git \
-php-codesniffer pv # nvidia-xrun
+php-codesniffer arc-gtk-theme arc-icon-theme-full-git #nvidia-xrun
 
 echo "[APPS] Install python modules for vim"
-pip install flake8 jedi --user
-pip3 install flake8 jedi --user
-pip3.8 install flake8 jedi --user
+pip install flake8 jedi pylint --user
+pip3 install flake8 jedi pylint --user
+pip3.8 install flake8 jedi pylint --user
 if [ -f $HOME/.vim/plugged/youcompleteme/.is-installed ]
 then
     echo "[APPS] youcompleteme is already installed, skipping..."
@@ -51,7 +51,16 @@ echo "[APPS] Clean unneeded dependencies"
 yay -Yc --noconfirm
 
 echo "[APPS] Upgrade NPM"
-sudo npm install -g npm eslint instant-markdown-d
+sudo npm install -g npm eslint instant-markdown-d vue-language-server intelephense
+
+if [ -f $HOME/.elixir-ls] ; then
+    echo "[APPS] elixir-ls already installed."
+else
+    git clone https://github.com/elixir-lsp/elixir-ls.git $HOME/.elixir-ls
+    cd $HOME/.elixir-ls
+    mix deps.get && mix compile && mix elixir_ls.release -o release
+fi
+
 
 echo "[APPS] Setup tmux plugins"
 if [ -f $HOME/.tmux/plugins/tpm ]
