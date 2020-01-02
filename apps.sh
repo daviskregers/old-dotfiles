@@ -24,7 +24,7 @@ pulseaudio-alsa pavucontrol ctags xcompmgr libreoffice aws-cli jdk-openjdk gnutl
 lib32-gnutls terminator tmux dunst libnotify terminator \
 wifi-radar bluez bluez-utils tmux cmake \
 libsecret gnome-keyring git ctags ncurses curl \
-elixir nodejs npm gvim python-pip # nvidia bbswitch
+elixir nodejs npm gvim python-pip go go-tools # nvidia bbswitch
 
 echo "[APPS] Install packages from AUR"
 yay -S --noconfirm --needed google-chrome ttf-ms-fonts spotify playerctl \
@@ -33,7 +33,15 @@ heidisql xkb-switch albert yad paswitch deepin-calculator \
 compton-conf shantz-xwinwrap-bzr stacer visual-studio-code-bin rescuetime2 \
 polybar todoist-electron vi-vim-symlink google-calendar-nativefier \
 mailspring the_silver_searcher powerline-fonts-git \
-php-codesniffer arc-gtk-theme arc-icon-theme-full-git #nvidia-xrun
+php-codesniffer arc-gtk-theme arc-icon-theme-full-git nixnote2-git \
+google-drive-ocamlfuse
+
+
+#nvidia-xrun 
+
+echo "[APPS] Install evernote6"
+cd $HOME/.dotfiles/evernote6
+makepkg -si --noconfirm
 
 echo "[APPS] Install python modules for vim"
 pip install flake8 jedi pylint --user
