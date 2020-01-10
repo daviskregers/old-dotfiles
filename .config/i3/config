@@ -60,6 +60,9 @@ floating_modifier $mod
 bindsym $mod+Return exec $terminal
 bindsym $mod+Shift+Return exec $terminal_wo_tmux
 
+# start file manager
+bindsym $mod+Shift+d exec "xdg-open ~"
+
 # kill focused window
 bindsym $mod+Shift+q kill
 

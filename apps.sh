@@ -1,7 +1,7 @@
 #! /bin/bash
 
 echo "[APPS] Update pacman"
-sudo pacman -Syu
+sudo pacman -Syu --noconfirm
 
 if ! [ -x "$(command -v yay)" ]; then
     echo 'Warning: yay not installed, downloading it...' >&2
@@ -24,18 +24,18 @@ pulseaudio-alsa pavucontrol ctags xcompmgr libreoffice aws-cli jdk-openjdk gnutl
 lib32-gnutls terminator tmux dunst libnotify terminator \
 wifi-radar bluez bluez-utils tmux cmake \
 libsecret gnome-keyring git ctags ncurses curl \
-elixir nodejs npm gvim python-pip go go-tools # nvidia bbswitch
+elixir nodejs npm gvim python-pip go go-tools
+# nvidia bbswitch
 
 echo "[APPS] Install packages from AUR"
 yay -S --noconfirm --needed google-chrome ttf-ms-fonts spotify playerctl \
 betterlockscreen feh discord slack-desktop postman-bin shutter perl-goo-canvas \
 heidisql xkb-switch albert yad paswitch deepin-calculator \
 compton-conf shantz-xwinwrap-bzr stacer visual-studio-code-bin rescuetime2 \
-polybar todoist-electron vi-vim-symlink google-calendar-nativefier \
+polybar todoist-electron google-calendar-nativefier \
 mailspring the_silver_searcher powerline-fonts-git \
-php-codesniffer arc-gtk-theme arc-icon-theme-full-git nixnote2-git \
-google-drive-ocamlfuse
-
+php-codesniffer arc-gtk-theme arc-icon-theme \
+google-drive-ocamlfuse dbeaver
 
 #nvidia-xrun 
 
@@ -55,8 +55,8 @@ else
     $HOME/.vim/plugged/youcompleteme/.is-installed
 fi
 
-echo "[APPS] Clean unneeded dependencies"
-yay -Yc --noconfirm
+#echo "[APPS] Clean unneeded dependencies"
+#yay -Yc --noconfirm
 
 echo "[APPS] Upgrade NPM"
 sudo npm install -g npm eslint instant-markdown-d vue-language-server intelephense
@@ -86,6 +86,10 @@ else
     usermod --shell /bin/zsh $USER
 fi
 
+echo "[APPS] link vi vim and nvim"
+cd $HOME/.dotfiles/vi-vim-nvim-symlink
+makepkg -si --noconfirm
+
 echo "[APPS] Enable services"
 sudo systemctl enable ntpd.service
 sudo systemctl start ntpd.service
@@ -96,3 +100,6 @@ systemctl --user enable pulseaudio
 echo "[APPS] Setup permissions"
 sudo chmod +x ~/.dotfiles/scripts/*
 sudo usermod -a -G rfkill $USER
+
+echo "[APPS] Set defaults"
+xdg-mime default thunar.desktop inode/directory

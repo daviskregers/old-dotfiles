@@ -11,4 +11,5 @@
 .config/albert/core.db
 .vim/view/*
 .vim/.netrwhist
-
+vi-vim-nvim-symlink/*
+!vi-vim-nvim-symlink/PKGBUILD
