@@ -1,0 +1,16 @@
+" TODO:
+
+======================================================
+
+Given (File):
+  <?php
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  <?php
+  
+  /**
+   * 
+   */

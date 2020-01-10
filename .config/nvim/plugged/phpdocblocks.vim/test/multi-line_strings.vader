@@ -1,0 +1,349 @@
+" TODO:
+
+======================================================
+
+Given (Function - multi-line strings - double quotes):
+  public function test()
+  {
+    $test = " 
+    multi
+    line}";
+    return "string";
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return string
+   */
+  public function test()
+  {
+    $test = " 
+    multi
+    line}";
+    return "string";
+  }
+
+======================================================
+
+Given (Function - multi-line strings - single quotes):
+  public function test()
+  {
+    $test = ' 
+    multi
+    line}';
+    return "string";
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return string
+   */
+  public function test()
+  {
+    $test = ' 
+    multi
+    line}';
+    return "string";
+  }
+
+======================================================
+
+Given (Function - multi-line string with both quotes on opening line - double quotes):
+  public function test()
+  {
+    $test = "' 
+    multi
+    line";
+    return "string";
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return string
+   */
+  public function test()
+  {
+    $test = "' 
+    multi
+    line";
+    return "string";
+  }
+
+======================================================
+
+Given (Function - multi-line string with both quotes on opening line - single quotes):
+  public function test()
+  {
+    $test = '" 
+    multi
+    line';
+    return "string";
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return string
+   */
+  public function test()
+  {
+    $test = '" 
+    multi
+    line';
+    return "string";
+  }
+
+======================================================
+
+Given (Function - multi-line string with another multi-line string at the end - mixed quotes):
+  public function test()
+  {
+    $test = " 
+    multi
+    line"; $sameLine = ' 
+    test}';
+    return "string";
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return string
+   */
+  public function test()
+  {
+    $test = " 
+    multi
+    line"; $sameLine = ' 
+    test}';
+    return "string";
+  }
+
+======================================================
+
+Given (Function - multi-line string with another multi-line string at the end - mixed quotes - reversed):
+  public function test()
+  {
+    $test = ' 
+    multi
+    line'; $sameLine = " 
+    test}";
+    return "string";
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return string
+   */
+  public function test()
+  {
+    $test = ' 
+    multi
+    line'; $sameLine = " 
+    test}";
+    return "string";
+  }
+
+======================================================
+
+Given (Function - multi-line string with another multi-line string at the end - mixed quotes - original quote in second string on same line):
+  public function test()
+  {
+    $test = " 
+    multi
+    line"; $sameLine = ' "
+    test}';
+    return "string";
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return string
+   */
+  public function test()
+  {
+    $test = " 
+    multi
+    line"; $sameLine = ' "
+    test}';
+    return "string";
+  }
+
+======================================================
+
+Given (Function - multi-line string with another multi-line string at the end - mixed quotes - original quote in second string on same line - reversed):
+  public function test()
+  {
+    $test = ' 
+    multi
+    line'; $sameLine = " '
+    test}";
+    return "string";
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return string
+   */
+  public function test()
+  {
+    $test = ' 
+    multi
+    line'; $sameLine = " '
+    test}";
+    return "string";
+  }
+
+======================================================
+
+Given (Function - multi-line string with another multi-line string at the end - double quotes):
+  public function test()
+  {
+    $test = " 
+    multi
+    line"; $sameLine = " 
+    test}";
+    return "string";
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return string
+   */
+  public function test()
+  {
+    $test = " 
+    multi
+    line"; $sameLine = " 
+    test}";
+    return "string";
+  }
+
+======================================================
+
+Given (Function - multi-line string with another multi-line string at the end - single quotes):
+  public function test()
+  {
+    $test = ' 
+    multi
+    line'; $sameLine = ' 
+    test}';
+    return "string";
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return string
+   */
+  public function test()
+  {
+    $test = ' 
+    multi
+    line'; $sameLine = ' 
+    test}';
+    return "string";
+  }
+
+======================================================
+
+Given (Function - multi-line string with single line string at start - double quotes):
+  public function test()
+  {
+    $sameLine = "test}"; $test = " 
+    multi
+    line}";
+    return "string";
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return string
+   */
+  public function test()
+  {
+    $sameLine = "test}"; $test = " 
+    multi
+    line}";
+    return "string";
+  }
+
+======================================================
+
+Given (Function - multi-line string with single line string at start - single quotes):
+  public function test()
+  {
+    $sameLine = 'test}'; $test = ' 
+    multi
+    line}';
+    return "string";
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return string
+   */
+  public function test()
+  {
+    $sameLine = 'test}'; $test = ' 
+    multi
+    line}';
+    return "string";
+  }

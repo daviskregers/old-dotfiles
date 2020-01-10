@@ -1,0 +1,278 @@
+" TODO:
+
+======================================================
+
+Given (Procedure - no return):
+  public function test()
+  {
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return void
+   */
+  public function test()
+  {
+  }
+
+======================================================
+
+Given (Procedure - no return - static):
+  static function test()
+  {
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return void
+   */
+  static function test()
+  {
+  }
+
+======================================================
+
+Given (Procedure - no return - public - static):
+  public static function test()
+  {
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return void
+   */
+  public static function test()
+  {
+  }
+
+======================================================
+
+Given (Function - return string - multiple opening/closing braces on the same line):
+  public function test()
+  { if() {
+    } elseif() {
+  } return "success"; }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return string
+   */
+  public function test()
+  { if() {
+    } elseif() {
+  } return "success"; }
+
+======================================================
+
+Given (Procedure - no return - mixed case keywords):
+  pUbLIc fUnCtIoN test()
+  {
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return void
+   */
+  pUbLIc fUnCtIoN test()
+  {
+  }
+
+======================================================
+
+Given (Procedure - no return - new lines between keywords):
+  public
+  function
+  test
+  ()
+  {
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return void
+   */
+  public
+  function
+  test
+  ()
+  {
+  }
+
+======================================================
+
+Given (Procedure - no return - new lines and whitespace between keywords):
+      public      
+        function
+     test     
+    (   )  
+   {
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+      /**
+       * test
+       *
+       * @return void
+       */
+      public      
+        function
+     test     
+    (   )  
+   {
+  }
+
+======================================================
+
+Given (Function - nested braces):
+  public function test()
+  {
+      if($test) {
+          $test = "test";
+      } else {
+          $test = "test2";
+      }
+      return "test";
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return string
+   */
+  public function test()
+  {
+      if($test) {
+          $test = "test";
+      } else {
+          $test = "test2";
+      }
+      return "test";
+  }
+
+======================================================
+
+Given (Function - multiple function blocks):
+  public function firstFunction()
+  {
+      return "string";
+  }
+  
+  public function secondFunction()
+  {
+      return 8;
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * firstFunction
+   *
+   * @return string
+   */
+  public function firstFunction()
+  {
+      return "string";
+  }
+  
+  public function secondFunction()
+  {
+      return 8;
+  }
+
+======================================================
+
+Given (Function - multiple nested blocks - over multiple lines):
+  public function test()
+  {
+      if($test) {
+          if($test) {
+              $test = "test";
+          }
+      } else {
+          $test = "test2";
+      }
+      return "test";
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * test
+   *
+   * @return string
+   */
+  public function test()
+  {
+      if($test) {
+          if($test) {
+              $test = "test";
+          }
+      } else {
+          $test = "test2";
+      }
+      return "test";
+  }
+
+======================================================
+
+Given (Function - return by reference):
+  public function &test()
+  {
+    return "string";
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * &test
+   *
+   * @return string
+   */
+  public function &test()
+  {
+    return "string";
+  }
+

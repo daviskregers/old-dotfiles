@@ -8,6 +8,7 @@
 !.config/albert
 !.config/polybar
 !.config/dunst
+!.config/nvim
 .config/albert/core.db
 .vim/view/*
 .vim/.netrwhist

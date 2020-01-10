@@ -1,0 +1,41 @@
+" TODO:
+
+======================================================
+
+Given (Trait):
+  trait Foo {
+
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * Foo
+   *
+   * @author John Doe <email@example.com>
+   */
+  trait Foo {
+
+  }
+
+======================================================
+
+Given (Trait - Uppercase):
+  TRAIT Foo {
+
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * Foo
+   *
+   * @author John Doe <email@example.com>
+   */
+  TRAIT Foo {
+
+  }

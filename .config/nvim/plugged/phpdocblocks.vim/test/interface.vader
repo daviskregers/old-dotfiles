@@ -1,0 +1,258 @@
+" TODO:
+
+======================================================
+
+Given (Interface):
+  interface Foo {
+
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * Foo
+   *
+   * @author John Doe <email@example.com>
+   */
+  interface Foo {
+
+  }
+
+======================================================
+
+Given (Interface - uppercase keywords):
+  INTERFACE Foo EXTENDS Bar {
+
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * Foo
+   *
+   * @author John Doe <email@example.com>
+   * @see Bar
+   */
+  INTERFACE Foo EXTENDS Bar {
+
+  }
+
+======================================================
+
+Given (Interface - Opening brace on a new line):
+  interface Foo
+  {
+
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * Foo
+   *
+   * @author John Doe <email@example.com>
+   */
+  interface Foo
+  {
+
+  }
+
+======================================================
+
+Given (Interface - New Lines between keywords):
+  interface
+  Foo
+  {
+
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * Foo
+   *
+   * @author John Doe <email@example.com>
+   */
+  interface
+  Foo
+  {
+
+  }
+
+======================================================
+
+Given (Interface - New Lines and whitespace between keywords):
+  interface      
+             Foo   
+    {       
+
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * Foo
+   *
+   * @author John Doe <email@example.com>
+   */
+  interface      
+             Foo   
+    {       
+
+  }
+
+======================================================
+
+Given (Interface - Whitespace between keywords):
+  interface      Foo                 {
+
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * Foo
+   *
+   * @author John Doe <email@example.com>
+   */
+  interface      Foo                 {
+
+  }
+
+======================================================
+
+Given (Interface - extends):
+  interface Foo extends Bar {
+
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * Foo
+   *
+   * @author John Doe <email@example.com>
+   * @see Bar
+   */
+  interface Foo extends Bar {
+
+  }
+
+======================================================
+
+Given (Interface - extends - multiple - Two):
+  interface Foo extends Bar, Baz {
+
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * Foo
+   *
+   * @author John Doe <email@example.com>
+   * @see Bar
+   * @see Baz
+   */
+  interface Foo extends Bar, Baz {
+
+  }
+
+======================================================
+
+Given (Interface - extends - multiple - Five):
+  interface Foo extends Ione, Itwo, Ithree, Ifour, Ifive {
+
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * Foo
+   *
+   * @author John Doe <email@example.com>
+   * @see Ione
+   * @see Itwo
+   * @see Ithree
+   * @see Ifour
+   * @see Ifive
+   */
+  interface Foo extends Ione, Itwo, Ithree, Ifour, Ifive {
+
+  }
+
+======================================================
+
+Given (Interface - extends - keywords on new lines):
+  interface
+  Foo
+  extends
+  Bar
+  {
+
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * Foo
+   *
+   * @author John Doe <email@example.com>
+   * @see Bar
+   */
+  interface
+  Foo
+  extends
+  Bar
+  {
+
+  }
+
+======================================================
+
+Given (Interface - extends - keywords on new lines with whitespace):
+  interface     
+      Foo
+         extends   
+  Bar
+       {
+
+  }
+
+Execute:
+  call phpdocblocks#insert("test")
+
+Expect:
+  /**
+   * Foo
+   *
+   * @author John Doe <email@example.com>
+   * @see Bar
+   */
+  interface     
+      Foo
+         extends   
+  Bar
+       {
+
+  }
