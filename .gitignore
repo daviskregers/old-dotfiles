@@ -9,6 +9,7 @@
 !.config/polybar
 !.config/dunst
 !.config/nvim
+.config/nvim/plugged/*
 .config/albert/core.db
 .vim/view/*
 .vim/.netrwhist

@@ -1,3 +1,0 @@
-extends:
-    - plugin:with-two-configs/foo
-    - plugin:with-two-configs/bar
