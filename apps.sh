@@ -1,105 +1,115 @@
 #! /bin/bash
 
+# TODO:
+# - Multi monitors
+# - remove encryption key
+# - setup edurio
+
+echo "[APPS] Enable pacman colors"
+grep "Color" /etc/pacman.conf && \
+sudo sed -i -e 's/#Color/Color/g' /etc/pacman.conf && \
+grep "Color" /etc/pacman.conf
+
+echo "Sync directories"
+ln -sf ~/.dotfiles/.config ~
+ln -sf ~/.dotfiles/.bash_profile ~
+ln -sf ~/.dotfiles/.bashrc ~
+ln -sf ~/.dotfiles/.bashrc ~
+ln -sf ~/.dotfiles/.zshrc ~
+ln -sf ~/.dotfiles/.Xauthority ~
+ln -sf ~/.dotfiles/.dmrc ~
+ln -sf ~/.dotfiles/.albertignore ~
+ln -sf ~/.dotfiles/.tmux.conf ~
+
 echo "[APPS] Update pacman"
-sudo pacman -Syu --noconfirm
+sudo pacman -Syyuu --noconfirm
 
 if ! [ -x "$(command -v yay)" ]; then
-    echo 'Warning: yay not installed, downloading it...' >&2
-    cd /tmp 
-    rm -rf yay
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si --noconfirm
+	echo "[APPS] yay not installed, downloading it..."
+	cd /tmp
+	rm -rf yay
+	git clone https://aur.archlinux.org/yay.git
+	cd yay
+	makepkg -si --noconfirm
+
+	# optimize system for faster compilation of the source based packages
+	# -T represents num of cores, get it with `lscpu | grep "CPU(s):" | grep -v NUMA`
+	grep "COMPRESSXZ=(xz" /etc/makepkg.conf && \
+	grep "#MAKEFLAGS=\"-j" /etc/makepkg.conf && \
+	sudo sed -i ' s/COMPRESSXZ=(xz -c -z -)/COMPRESSXZ=(xz -c -T 8 -z -)/g' /etc/makepkg.conf && \
+	sudo sed -i ' s/#MAKEFLAGS="-j2"/MAKEFLAGS="-j7"/g' /etc/makepkg.conf
+	grep "COMPERSSXZ=(xz" /etc/makepkg.conf && \
+	grep "#MAKEFLAGS=\"-j" /etc/makepkg.conf
 fi
 
 echo "[APPS] Update AUR"
-yay -Syu --noconfirm
+yay -Syyuu --noconfirm
 
 echo "[APPS] Install official packages"
-sudo pacman -S --noconfirm --needed ttf-dejavu redshift thunar zip unzip \
-lxappearance xdg-utils playerctl openssh gedit xarchiver ntp conky \
-conky-manager zsh pambase xclip wine docker docker-compose muparser numlockx \
-filezilla ranger xdotool pulseaudio lib32-libpulse lib32-alsa-plugins \
-pulseaudio-alsa pavucontrol ctags xcompmgr libreoffice aws-cli jdk-openjdk gnutls \
-lib32-gnutls terminator tmux dunst libnotify terminator \
-wifi-radar bluez bluez-utils tmux cmake \
-libsecret gnome-keyring git ctags ncurses curl \
-elixir nodejs npm gvim python-pip go go-tools
-# nvidia bbswitch
+# Note: nvidia non open source drivers may conflict with nouveau OS drivers
+# and in below case to make drivers work in needed to blacklist nouveau drivers
+# > cat /usr/lib/modprobe.d/nvidia.conf
+# > blacklist nouveau
+sudo pacman -S --needed nvidia nvidia-utils nvidia-settings xorg-server xorg-apps xorg-xinit i3-wm numlockx \
+	lightdm lightdm-gtk-greeter \
+	noto-fonts ttf-ubuntu-font-family ttf-dejavu ttf-freefont ttf-liberation ttf-droid ttf-inconsolata ttf-roboto terminus-font ttf-font-awesome \
+	alsa-utils alsa-plugins alsa-lib pavucontrol \
+	rxvt-unicode ranger rofi conky dmenu urxvt-perls perl-anyevent-i3 perl-json-xs \
+	atool highlight elinks mediainfo w3m ffmpegthumbnailer mupdf playerctl \
+	chromium firefox vlc \
+	zsh terminator tmux \
+	bluez bluez-utils blueberry \
+	zip unzip muparser redshift thunar libsecret gnome-keyring \
+	docker docker-compose tlp lxappearance neovim xarchiver arandr bumblebee xf86-video-intel \
+	linux-headers build-essential gcc make git
+echo "[APPS] Install community packages"
+yay -S urxvt-font-size-git python-pdftotext spotify google-chrome polybar albert \
+	slack-desktop postman-bin perl-goo-canvas heidisql mailspring \
+	i3lock betterlockscreen feh rtlwifi_new-rtw88-dkms
 
-echo "[APPS] Install packages from AUR"
-yay -S --noconfirm --needed google-chrome ttf-ms-fonts spotify playerctl \
-betterlockscreen feh discord slack-desktop postman-bin shutter perl-goo-canvas \
-heidisql xkb-switch albert yad paswitch deepin-calculator \
-compton-conf shantz-xwinwrap-bzr stacer visual-studio-code-bin rescuetime2 \
-polybar todoist-electron google-calendar-nativefier \
-mailspring the_silver_searcher powerline-fonts-git \
-php-codesniffer arc-gtk-theme arc-icon-theme \
-google-drive-ocamlfuse dbeaver
+echo "[APPS] Link xinitrc"
+ln -sf ~/.dotfiles/.xinitrc ~
 
-#nvidia-xrun 
+echo "[APPS] Link profile"
+sudo ln -sf ~/.dotfiles/profile /etc/profile
+sudo chown root /etc/profile
 
-echo "[APPS] Install evernote6"
-cd $HOME/.dotfiles/evernote6
-makepkg -si --noconfirm
+echo "[APPS] Configure lightdm"
+grep ' autologin-user=\|autologin-session=\|greeter-session='  /etc/lightdm/lightdm.conf && \
+sudo sed -i 's/#autologin-user=/autologin-user=$USER/g' /etc/lightdm/lightdm.conf && \
+sudo sed -i 's/#autologin-session=/autologin-session=i3/g' /etc/lightdm/lightdm.conf && \
+sudo sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-gtk-greeter/g' /etc/lightdm/lightdm.conf && \
+grep ' autologin-user=\|autologin-session=\|greeter-session='  /etc/lightdm/lightdm.conf
 
-echo "[APPS] Install python modules for vim"
-pip install flake8 jedi pylint --user
-pip3 install flake8 jedi pylint --user
-pip3.8 install flake8 jedi pylint --user
-if [ -f $HOME/.vim/plugged/youcompleteme/.is-installed ]
-then
-    echo "[APPS] youcompleteme is already installed, skipping..."
-else
-    cd $HOME/.vim/plugged/youcompleteme && git clean -f && git pull && git submodule update --recursive --init && ./install.py --clang-completer
-    $HOME/.vim/plugged/youcompleteme/.is-installed
+echo "[APPS] Configure bluetooth"
+sudo sed -i 's/#AutoEnable=false/AutoEnable=true/g' /etc/bluetooth/main.conf
+
+echo "[APPS] Setup oh-my-zsh"
+if [ ! -d "~/.oh-my-zsh" ]; then
+	curl -L http://install.ohmyz.sh | sh
 fi
 
-#echo "[APPS] Clean unneeded dependencies"
-#yay -Yc --noconfirm
+echo "[APPS] Setup video"
+sudo ln -sf ~/.dotfiles/20-intel.conf /etc/X11/xorg.conf.d/
+sudo ln -sf ~/.dotfiles/xorg.conf.nvidia /etc/bumblebee/
 
-echo "[APPS] Upgrade NPM"
-sudo npm install -g npm eslint instant-markdown-d vue-language-server intelephense
+echo "[APPS] Switch user to ZSH"
+chsh -s /usr/bin/zsh
 
-if [ -f $HOME/.elixir-ls] ; then
-    echo "[APPS] elixir-ls already installed."
-else
-    git clone https://github.com/elixir-lsp/elixir-ls.git $HOME/.elixir-ls
-    cd $HOME/.elixir-ls
-    mix deps.get && mix compile && mix elixir_ls.release -o release
-fi
-
-
-echo "[APPS] Setup tmux plugins"
-if [ -f $HOME/.tmux/plugins/tpm ]
-then
-    echo "[APPS] tmux plugin system already installed, skipping."
-else
-    git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-fi
-
-echo "[APPS] Setup ZSH"
-if [ ! -n "$ZSH_NAME" ] ;then
-    echo Already running as zsh, no action needed;
-else
-    curl -L http://install.ohmyz.sh | sh
-    usermod --shell /bin/zsh $USER
-fi
-
-echo "[APPS] link vi vim and nvim"
-cd $HOME/.dotfiles/vi-vim-nvim-symlink
-makepkg -si --noconfirm
-
-echo "[APPS] Enable services"
-sudo systemctl enable ntpd.service
-sudo systemctl start ntpd.service
-sudo systemctl enable docker
-sudo systemctl restart docker
-systemctl --user enable pulseaudio
-
-echo "[APPS] Setup permissions"
-sudo chmod +x ~/.dotfiles/scripts/*
+echo "[APPS] Edit user groups & permissions"
 sudo usermod -a -G rfkill $USER
+sudo usermod -a -G docker $USER
+sudo usermod -a -G bumblebee $USER
 
-echo "[APPS] Set defaults"
-xdg-mime default thunar.desktop inode/directory
+echo "%wheel ALL=(root) NOPASSWD: /home/$USER/.dotfiles/scripts/brightness_controll" | sudo EDITOR='tee -a' visudo
+
+echo "[APPS] enable services"
+sudo systemctl enable lightdm
+sudo systemctl enable bluetooth
+sudo systemctl enable docker
+sudo systemctl enable tlp
+sudo systemctl enable bumblebeed.service
+
+echo "options r8822be aspm=0" | sudo tee /etc/modprobe.d/r8822be.conf
+sudo modprobe -r r8822be
+sudo modprobe r8822be

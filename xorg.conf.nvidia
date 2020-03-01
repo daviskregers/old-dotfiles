@@ -1,0 +1,19 @@
+Section "ServerLayout"
+    Identifier  "Layout0"
+    Option      "AutoAddDevices" "true"
+    Option      "AutoAddGPU" "false"
+EndSection
+
+Section "Device"
+    Identifier  "DiscreteNvidia"
+    Driver      "nvidia"
+    VendorName  "NVIDIA Corporation"
+    Option "ProbeAllGpus" "false"
+    Option "NoLogo" "true"
+    Option "AllowEmptyInitialConfiguration"
+EndSection
+
+Section "Screen"
+    Identifier "Screen0"
+    Device "DiscreteNVidia"
+EndSection
