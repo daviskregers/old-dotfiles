@@ -303,19 +303,19 @@ format-discharging = <ramp-capacity> <label-discharging>
 ;   %percentage_raw%
 ;   %time%
 ;   %consumption% (shows current charge rate in watts)
-label-charging = Charging %percentage%%
+label-charging = Charging %percentage%, %consumption%W, %time%
 
 ; Available tokens:
 ;   %percentage% (default) - is set to 100 if full-at is reached
 ;   %percentage_raw%
 ;   %time%
 ;   %consumption% (shows current discharge rate in watts)
-label-discharging = Discharging %percentage%%
+label-discharging = Discharging %percentage%%, %consumption%W, %time%
 
 ; Available tokens:
 ;   %percentage% (default) - is set to 100 if full-at is reached
 ;   %percentage_raw%
-label-full = Fully charged
+label-full = Fully charged, %consumption%W, %time%
 
 ; Only applies if <ramp-capacity> is used
 ramp-capacity-0 = 

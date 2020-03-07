@@ -72,7 +72,8 @@ sudo npm i -g eslint lynt pug-lint-vue instant-markdown-d
 echo "[APPS] Install community packages"
 yay -S urxvt-font-size-git python-pdftotext spotify google-chrome polybar albershutter \
 	postman-bin perl-goo-canvas heidisql mailspring \
-	i3lock betterlockscreen feh the_silver_searcher
+	i3lock betterlockscreen feh the_silver_searcher \
+	tlpui
 
 echo "[APPS] Link xinitrc"
 ln -sf ~/.dotfiles/.xinitrc ~
