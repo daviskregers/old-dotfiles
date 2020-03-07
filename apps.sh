@@ -61,11 +61,18 @@ sudo pacman -S --needed nvidia nvidia-utils nvidia-settings xorg-server xorg-app
 	bluez bluez-utils blueberry \
 	zip unzip muparser redshift thunar libsecret gnome-keyring \
 	docker docker-compose tlp lxappearance neovim xarchiver arandr bumblebee xf86-video-intel \
-	linux-headers build-essential gcc make git
+	linux-headers gcc make git python-gnupg python-pip aws-cli nodejs npm php composer ctags elixir \
+	python-pylint python-pillow
+
+echo "[APPS] Install packages for development"
+pip install awsebcli --upgrade --user
+composer global require phpdocumentor/phpdocumentor phpmd/phpmd squizlabs/php_codesniffer 
+sudo npm i -g eslint lynt pug-lint-vue instant-markdown-d
+
 echo "[APPS] Install community packages"
-yay -S urxvt-font-size-git python-pdftotext spotify google-chrome polybar albert \
-	slack-desktop postman-bin perl-goo-canvas heidisql mailspring \
-	i3lock betterlockscreen feh rtlwifi_new-rtw88-dkms
+yay -S urxvt-font-size-git python-pdftotext spotify google-chrome polybar albershutter \
+	postman-bin perl-goo-canvas heidisql mailspring \
+	i3lock betterlockscreen feh the_silver_searcher
 
 echo "[APPS] Link xinitrc"
 ln -sf ~/.dotfiles/.xinitrc ~
@@ -109,7 +116,3 @@ sudo systemctl enable bluetooth
 sudo systemctl enable docker
 sudo systemctl enable tlp
 sudo systemctl enable bumblebeed.service
-
-echo "options r8822be aspm=0" | sudo tee /etc/modprobe.d/r8822be.conf
-sudo modprobe -r r8822be
-sudo modprobe r8822be

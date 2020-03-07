@@ -112,3 +112,10 @@ export LESS_TERMCAP_md=$(printf '\e[1;34m')
 export LESS_TERMCAP_us=$(printf '\e[1;32m')
 export LESS_TERMCAP_so=$(printf '\e[1;44;1m')
 
+# Work things
+. ~/.edurioalias
+
+# AWS EB Path
+export PATH=~/.local/bin:$PATH
+# Composer path
+export PATH=~/.dotfiles/.config/composer/vendor/bin:$PATH
