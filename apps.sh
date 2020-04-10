@@ -2,8 +2,6 @@
 
 # TODO:
 # - Multi monitors
-# - remove encryption key
-# - setup edurio
 
 echo "[APPS] Enable pacman colors"
 grep "Color" /etc/pacman.conf && \
@@ -62,7 +60,8 @@ sudo pacman -S --needed nvidia nvidia-utils nvidia-settings xorg-server xorg-app
 	zip unzip muparser redshift thunar libsecret gnome-keyring \
 	docker docker-compose tlp lxappearance neovim xarchiver arandr bumblebee xf86-video-intel \
 	linux-headers gcc make git python-gnupg python-pip aws-cli nodejs npm php composer ctags elixir \
-	python-pylint python-pillow
+	python-pylint python-pillow acpi powertop python-six libreoffice-still gnutls gnome-disk-utility \
+	obs-studio
 
 echo "[APPS] Install packages for development"
 pip install awsebcli --upgrade --user
@@ -70,10 +69,13 @@ composer global require phpdocumentor/phpdocumentor phpmd/phpmd squizlabs/php_co
 sudo npm i -g eslint lynt pug-lint-vue instant-markdown-d
 
 echo "[APPS] Install community packages"
-yay -S urxvt-font-size-git python-pdftotext spotify google-chrome polybar albershutter \
+yay -S urxvt-font-size-git python-pdftotext spotify google-chrome polybar albert shutter \
 	postman-bin perl-goo-canvas heidisql mailspring \
-	i3lock betterlockscreen feh the_silver_searcher \
-	tlpui
+	betterlockscreen feh the_silver_searcher \
+	tlpui jmeter mariadb-jdbc \
+	noto-fonts-emoji ttf-twemoji-color todoist-linux-bin \
+	joplin
+#	i3lock
 
 echo "[APPS] Link xinitrc"
 ln -sf ~/.dotfiles/.xinitrc ~
@@ -117,3 +119,4 @@ sudo systemctl enable bluetooth
 sudo systemctl enable docker
 sudo systemctl enable tlp
 sudo systemctl enable bumblebeed.service
+# sudo systemctl enable powertop

@@ -119,3 +119,7 @@ export LESS_TERMCAP_so=$(printf '\e[1;44;1m')
 export PATH=~/.local/bin:$PATH
 # Composer path
 export PATH=~/.dotfiles/.config/composer/vendor/bin:$PATH
+export PATH=/var/lib/snapd/snap/bin:$PATH
+export GTK_PATH=:/usr/lib/gtk-2.0
+
+

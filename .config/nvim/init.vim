@@ -1,6 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
     Plug 'scrooloose/nerdtree'
-    Plug 'majutsushi/tagbar'
+    " Plug 'majutsushi/tagbar'
 
     Plug 'AlessandroYorba/Alduin' " Colorscheme
     Plug 'sakshamgupta05/vim-todo-highlight' " Highlight tasks
@@ -121,7 +121,7 @@ let g:airline_theme = 'angr'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
+" let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
 
 " Syntax
@@ -134,9 +134,10 @@ let g:syntastic_check_on_wq = 1
 
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 let g:syntastic_vue_checkers = ['eslint', 'pug_lint_vue']
-let g:syntastic_python_checkers = ["pylint"]
-let g:syntastic_elixir_checkers = ["elixir"]
+let g:syntastic_python_checkers = ['python', 'pylint']
+let g:syntastic_elixir_checkers = ['elixir']
 
+let g:syntastic_enable_elixir_checker = 1
 let g:syntastic_enable_elixir_checker = 1
 " Color column for max characters in line
 :set colorcolumn=79
@@ -157,8 +158,8 @@ noremap <leader>w :bn<CR>
 noremap <leader>c :bd<CR>
 
 " Tags
-nmap <F5> :TagbarToggle<CR>
-autocmd BufEnter * TagbarOpen
+" nmap <F5> :TagbarToggle<CR>
+" autocmd BufEnter * TagbarToggle
 
 " Search
 let g:fzf_buffers_jump = 1
