@@ -122,4 +122,31 @@ export PATH=~/.dotfiles/.config/composer/vendor/bin:$PATH
 export PATH=/var/lib/snapd/snap/bin:$PATH
 export GTK_PATH=:/usr/lib/gtk-2.0
 
+export PATH=~/.dotfiles/scripts:$PATH
+export PROJECTS=~/projects
+# ALIASES
+alias shdn="shutdown now"
+alias c="clear"
+alias rcs="source ~/.zshrc"
+alias c.="cd .."
 
+alias pr="cd $PROJECTS"
+
+alias dot="cd ~/.dotfiles"
+alias dotupd="bash ~/.dotfiles/apps.sh"
+
+alias ga="git add"
+alias gs="git status"
+alias gp="git push"
+alias gpl="git push"
+alias gd="git diff"
+alias gc="git checkout"
+alias grp="gpull"
+alias grb="gbranch"
+
+alias dp="docker ps"
+alias du="docker-compose up"
+alias dkill="docker kill $(docker ps -q)"
+alias dk="dkill"
+
+alias pipr="pip install -r requirements.txt"
