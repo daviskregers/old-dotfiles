@@ -27,7 +27,7 @@ cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 reflector -c "US" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 
 mount /dev/sdb2 /mnt
-pacstrap /mnt base linux linux-firmware vim git
+pacstrap /mnt base base-devel linux linux-firmware vim git
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 
@@ -64,6 +64,8 @@ visudo
 
 pacman -S networkmanager
 systemctl enable NetworkManager
+
+pacman -S fakeroot
 
 exit
 reboot

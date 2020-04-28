@@ -74,7 +74,7 @@ yay -S urxvt-font-size-git python-pdftotext spotify google-chrome polybar albert
 	betterlockscreen feh the_silver_searcher \
 	tlpui jmeter mariadb-jdbc \
 	noto-fonts-emoji ttf-twemoji-color todoist-linux-bin \
-	joplin
+	joplin cherrytomato
 #	i3lock
 
 echo "[APPS] Link xinitrc"
