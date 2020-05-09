@@ -119,7 +119,7 @@ sudo usermod -a -G bumblebee $USER
 echo "%wheel ALL=(root) NOPASSWD: /home/$USER/.dotfiles/scripts/brightness_controll" | sudo EDITOR='tee -a' visudo
 
 echo "[APPS] enable services"
-sudo systemctl enable lightdm
+#sudo systemctl enable lightdm
 sudo systemctl enable bluetooth
 sudo systemctl enable docker
 #sudo systemctl enable tlp

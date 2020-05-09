@@ -43,3 +43,8 @@ export VDPAU_DRIVER=va_gl
 # Custom
 source ~/.variables
 source ~/.functions
+
+#autostart systemd default session on tty1
+if [[ "$(tty)" == '/dev/tty1' ]]; then
+	exec startx
+fi
