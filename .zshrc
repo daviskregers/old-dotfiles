@@ -98,55 +98,5 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Nicer look of Java Apps
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
-export EDITOR=/usr/bin/vim
-
-# Coloring less command
-export LESS=-R
-export LESS_TERMCAP_me=$(printf '\e[0m')
-export LESS_TERMCAP_se=$(printf '\e[0m')
-export LESS_TERMCAP_ue=$(printf '\e[0m')
-export LESS_TERMCAP_mb=$(printf '\e[1;32m')
-export LESS_TERMCAP_md=$(printf '\e[1;34m')
-export LESS_TERMCAP_us=$(printf '\e[1;32m')
-export LESS_TERMCAP_so=$(printf '\e[1;44;1m')
-
-# Work things
-. ~/.edurioalias
-
-# AWS EB Path
-export PATH=~/.local/bin:$PATH
-# Composer path
-export PATH=~/.dotfiles/.config/composer/vendor/bin:$PATH
-export PATH=/var/lib/snapd/snap/bin:$PATH
-export GTK_PATH=:/usr/lib/gtk-2.0
-
-export PATH=~/.dotfiles/scripts:$PATH
-export PROJECTS=~/projects
-# ALIASES
-alias shdn="shutdown now"
-alias c="clear"
-alias rcs="source ~/.zshrc"
-alias c.="cd .."
-
-alias pr="cd $PROJECTS"
-
-alias dot="cd ~/.dotfiles"
-alias dotupd="bash ~/.dotfiles/apps.sh"
-
-alias ga="git add"
-alias gs="git status"
-alias gp="git push"
-alias gpl="git push"
-alias gd="git diff"
-alias gc="git checkout"
-alias grp="gpull"
-alias grb="gbranch"
-
-alias dp="docker ps"
-alias du="docker-compose up"
-alias dkill="docker kill $(docker ps -q)"
-alias dk="dkill"
-
-alias pipr="pip install -r requirements.txt"
+source ~/.variables
+source ~/.functions

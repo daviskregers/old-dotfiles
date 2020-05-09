@@ -1,0 +1,3 @@
+#!/bin/bash
+notify-send "Wallpaper reset"
+feh --bg-scale ~/.wallpaper.jpg

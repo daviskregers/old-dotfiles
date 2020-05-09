@@ -5,12 +5,12 @@ umask 022
 
 # Append our default paths
 appendpath () {
-    case ":$PATH:" in
-        *:"$1":*)
-            ;;
-        *)
-            PATH="${PATH:+$PATH:}$1"
-    esac
+  case ":$PATH:" in
+      *:"$1":*)
+          ;;
+      *)
+          PATH="${PATH:+$PATH:}$1"
+  esac
 }
 
 appendpath '/usr/local/sbin'
@@ -22,15 +22,15 @@ export PATH
 
 # Load profiles from /etc/profile.d
 if test -d /etc/profile.d/; then
-	for profile in /etc/profile.d/*.sh; do
-		test -r "$profile" && . "$profile"
-	done
-	unset profile
+  for profile in /etc/profile.d/*.sh; do
+      test -r "$profile" && . "$profile"
+  done
+  unset profile
 fi
 
 # Source global bash config
-if test "$PS1" && test "$BASH" && test -z ${POSIXLY_CORRECT+x} && test -r /etc/bash.bashrc; then
-	. /etc/bash.bashrc
+if test "$PS1" && test "$BASH" && test -z ${POSIXLY_CORRECT+x} && tes  t -r /etc/bash.bashrc; then
+  . /etc/bash.bashrc
 fi
 
 # Termcap is outdated, old, and crusty, kill it.
@@ -38,8 +38,8 @@ unset TERMCAP
 
 # Man is much better than us at figuring this out
 unset MANPATH
+export VDPAU_DRIVER=va_gl
 
-#autostart systemd default session on tty1
-if [[ "$(tty)" == '/dev/tty1' ]]; then
-	exec startx
-fi
+# Custom
+source ~/.variables
+source ~/.functions

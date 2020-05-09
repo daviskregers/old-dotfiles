@@ -11,9 +11,11 @@
 
 set $mod Mod4
 
-set $redshift_manual "redshift -O 2000 -b 1.0:0.5"
-set $redshift_gradual "redshift -l 56.946285:24.105078 -P -t 6500:2500 -b 1.0:0.5"
-set $redshift_kill "redshift -x && pkill redshift"
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -23,50 +25,34 @@ font pango:monospace 8
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-
-bindsym XF86AudioRaiseVolume exec /usr/bin/amixer -D pulse sset Master 2%+
-bindsym XF86AudioLowerVolume exec /usr/bin/amixer -D pulse sset Master 2%-
-bindsym XF86AudioMute exec /usr/bin/amixer -D pulse sset Master 0
+bindsym XF86AudioRaiseVolume exec change_volume 2%+
+bindsym XF86AudioLowerVolume exec change_volume 2%-
+bindsym XF86AudioMute exec change_volume 0
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioNext exec playerctl next
-bindsym $mod+F10 exec $redshift_manual
-bindsym $mod+F11  exec $redshift_gradual
-bindsym $mod+F12 exec $redshift_kill
+bindsym $mod+F10 exec "launch_redshift --manual 2000"
+bindsym $mod+F11  exec "launch_redshift --auto 6500:2500"
+bindsym $mod+F12 exec "launch_redshift --kill"
 bindsym Print exec shutter -s
-bindsym $mod+F8 exec "/home/davis/.dotfiles/scripts/change-sound-device"
-bindsym $mod+shift+x exec betterlockscreen -l dim
+bindsym $mod+Print exec peek
+bindsym $mod+F8 exec change-sound-device
+bindsym $mod+shift+x exec launch_lockscreen --lock
 
 # Brightness control (without any fuzz)
-bindsym XF86MonBrightnessUp exec --no-startup-id sudo /home/davis/.dotfiles/scripts/brightness_controll +10000
-bindsym XF86MonBrightnessDown exec --no-startup-id sudo /home/davis/.dotfiles/scripts/brightness_controll -10000
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo brightness_controll +10000
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo brightness_controll -10000
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec "terminator -e tmux"
+bindsym $mod+Return exec launch_terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec "albert show" 
+bindsym $mod+d exec "albert show"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -145,7 +131,7 @@ bindsym $mod+5 workspace number $ws5
 bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
+bindsym $mod+9 workspace number $ws9; layout stacking
 bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
@@ -160,6 +146,15 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+r mode "resize"
+
 # bind apps to workspaces, run xprop, get WM_CLASS
 
 for_window [class="Spotify"] move window to workspace $ws10
@@ -173,13 +168,6 @@ for_window [class="Yad"] floating enable
 for_window [class="google-calendar-nativefier-e22938"] move to workspace $ws1
 for_window [class="Todoist"] move to workspace $ws1
 for_window [class="Mailspring"] move to workspace $ws8
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -206,7 +194,16 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
+# Hide title bar
+# new_window none # hides the title and borders
+for_window [class="^.*"] border pixel 1 red # hides the title but not border
+
+# class                         border          background      text            indicator       child_border
+client.focused                  #ffff33         #000000         #ffff33         $coloratt       #182414
+client.focused_inactive         #333333         #000000         #ffff33         $coloratt       #182414
+client.unfocused                #333333         #000000         #888888         $coloratt       #182414
+client.urgent                   #2f343a         #900000         #ffffff         $coloratt       #900000
+client.placeholder              #182414         #000000         #ffffff         $coloratt       #0c0c0c
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -214,13 +211,28 @@ bindsym $mod+r mode "resize"
 #        status_command i3status
 #}
 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always albert
-exec "setxkbmap lv -variant apostrophe"
-exec $redshift_gradual
-exec "source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh && mailspring"
-exec "spotify"
-exec_always "betterlockscreen -u ~/.dotfiles/wallpaper.jpg -r 1920x1080 -b 0.5"
-exec_always "feh --bg-scale ~/.dotfiles/wallpaper.jpg"
-exec "slack"
-exec "todoist"
+# The combination of xss-lock, nm-applet and pactl is a popular choice, so
+# they are included here as an example. Modify as you see fit.
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+
+exec launch_screenlayout
+exec setxkbmap lv -variant apostrophe
+exec launch_wallpaper
+exec_always launch_polybar
+exec compton
+exec launch_dunst
+exec spotify
+exec slack
+exec todoist
+exec "launch_redshift --auto 6500:2500"
+exec launch_lockscreen
+exec launch_mailspring
+exec albert
+exec_always update_ntpd

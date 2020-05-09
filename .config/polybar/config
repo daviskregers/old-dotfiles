@@ -18,7 +18,7 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
+background = #182414
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
@@ -83,7 +83,7 @@ label-mode-active-font = 7
 
 ; focused = Active workspace on focused monitor
 label-focused = %name%
-label-focused-background = #252936
+label-focused-background = #20331b
 label-focused-underline = #112222
 label-focused-padding = 2
 label-focused-active-font = 7
@@ -95,14 +95,14 @@ label-unfocused-active-font = 7
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %name%
-label-visible-background = #252936
+label-visible-background = #20331b
 label-visible-underline = #112222
 label-visible-padding = 2
 label-visible-active-font = 7
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %name%
-label-urgent-background = #112222
+label-urgent-background = #0a0e09
 label-urgent-padding = 2
 label-urgent-active-font = 7
 
@@ -150,16 +150,16 @@ menu-2-1-exec = menu-open-0
 
 [module/spotify]
 type = custom/script
-exec = ~/.dotfiles/scripts/spotify.sh
+exec = spotify_status
 click-left = playerctl next
 interval = 2
 label = %output:25%
 
 [module/date]
 type = custom/script
-exec = ~/.dotfiles/scripts/popup-calendar.sh
+exec = calendar_popup
 interval = 1
-click-left = ~/.dotfiles/scripts/popup-calendar.sh --popup
+click-left = calendar_popup --popup
 ;format-background = ${colors.alt-background}
 ;format-foreground = ${colors.alt-foreground}
 label = %output:25%
