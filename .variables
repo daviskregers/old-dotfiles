@@ -35,7 +35,7 @@ export PATH=~/.dotfiles/bin:$PATH
 export PROJECTS=~/projects
 
 export WALLPAPER=$DOTFILES/wallpapers/wallpaper.jpg
-export SCREENLAYOUT=$DOTFILES/screenlayouts/$(hostname).sh
+export SCREENLAYOUT=$DOTFILES/configurations/$(hostname)/screenlayout.sh
 
 # Work things
 . ~/.edurioalias

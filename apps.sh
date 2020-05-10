@@ -22,6 +22,8 @@ ln -sf ~/.dotfiles/.variables ~
 ln -sf ~/.dotfiles/.functions ~
 ln -sf $WALLPAPER ~/.wallpaper.jpg
 ln -sf $SCREENLAYOUT ~/.screenlayout.sh
+cp $DOTFILES/configurations/$(hostname)/alacritty.yml $DOTFILES/.config/alacritty
+
 
 echo "[APPS] Update pacman"
 sudo pacman -Syu --noconfirm

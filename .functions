@@ -6,7 +6,7 @@ alias c.="cd .."
 alias pr="cd $PROJECTS"
 
 alias dot="cd ~/.dotfiles"
-alias dotupd="bash ~/.dotfiles/apps.sh"
+alias dotupd="dotfiles_update"
 
 alias ga="git add"
 alias gs="git status"
