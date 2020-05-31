@@ -3,6 +3,10 @@
 Dotfiles for archlinux with i3wm, alacritty terminal and tmux+neovim.
 Mostly used for personal use.
 
+## Screenshot
+
+![screenshot](screenshots/screenshot.png)
+
 ## TODOS:
 
 - [ ] Split apps.sh into multiple functions
