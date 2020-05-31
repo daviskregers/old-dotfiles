@@ -81,7 +81,7 @@ yay -S --needed urxvt-font-size-git python-pdftotext spotify google-chrome polyb
 	betterlockscreen feh the_silver_searcher \
 	jmeter mariadb-jdbc \
 	noto-fonts-emoji ttf-twemoji-color todoist-linux-bin \
-    joplin cherrytomato compton alacritty wf-recorder
+    joplin cherrytomato compton alacritty wf-recorder i3-agenda-git
 #	i3lock heidisql
 
 echo "[APPS] Link xinitrc"
@@ -127,3 +127,5 @@ sudo systemctl enable docker
 #sudo systemctl enable tlp
 sudo systemctl enable bumblebeed.service
 # sudo systemctl enable powertop
+
+sudo pip install todoist-python

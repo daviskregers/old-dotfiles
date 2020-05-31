@@ -225,6 +225,7 @@ exec launch_lockscreen
 exec launch_mailspring
 exec albert
 exec_always update_ntpd
+exec "i3-agenda -c ~/.poly_calendar_credentials.json"
 
 
 

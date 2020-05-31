@@ -53,7 +53,7 @@ font-4 = "FontAwesome:style=Solid:size=8;0"
 font-5 = "FontAwesome:style=Regular:size=10;3"
 font-6 = "DejaVu Sans:pixelsize=3;3"
 modules-left = i3
-modules-center = 
+modules-center = todoist agenda
 modules-right = alsa spotify network wired-network wireless-network battery date
 
 tray-position = right
@@ -108,6 +108,20 @@ label-urgent-active-font = 7
 
 ; Separator in between workspaces
 ; label-separator = |
+
+[module/todoist]
+type = custom/script
+exec = "polybar-todoist"
+click-left="google-chrome-stable https://todoist.com/app/#agenda%2Foverdue%20%26%20!assigned%20to%3A%20other%2C%20today%20%26%20!assigned%20to%3A%20other"
+click-right="polybar-todoist --update"
+interval = 5
+
+[module/agenda]
+type = custom/script
+exec = i3-agenda -c ~/.poly_calendar_credentials.json --today --maxres 30
+click-left = google-chrome-stable https://calendar.google.com/calendar/r/day
+click-right = notify-send "syncing..." && i3-agenda -c ~/.poly_calendar_credentials.json --maxres 30 --today --update && notify-send -t 2000 "sync finished"
+interval = 60
 
 [module/alsa]
 type = internal/alsa

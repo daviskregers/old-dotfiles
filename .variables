@@ -42,3 +42,4 @@ export SCREENLAYOUT=$DOTFILES/configurations/$(hostname)/screenlayout.sh
 
 # OTHER
 export REDSHIFT_LOCATION=56.946285:24.105078
+export POLYBAR_CALENDAR_CREDS=$HOME/.poly_calendar_credentials.json
