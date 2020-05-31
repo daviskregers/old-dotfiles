@@ -117,6 +117,8 @@ def main():
 
     if result:
         print("%s: %s" % (replace_priority_with_text(result[0][2]), result[0][0]))
+    else:
+        print("Reached reached #TodoistZero!")
 
 if __name__ == '__main__':
     main()
