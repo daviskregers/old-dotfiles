@@ -34,6 +34,10 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'ferrine/md-img-paste.vim'
 
     Plug 'omnisharp/omnisharp-vim' " RUN :OmniSharpInstall v1.34.2
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plug 'jistr/vim-nerdtree-tabs'
 
 call plug#end()
 
@@ -160,7 +164,7 @@ noremap <leader>z :bp<CR>
 noremap <leader>q :bp<CR>
 noremap <leader>x :bn<CR>
 noremap <leader>w :bn<CR>
-noremap <leader>c :bd<CR>
+noremap <leader>c :NERDTreeClose<CR>:bd<CR>
 
 " Tags
 " nmap <F5> :TagbarToggle<CR>
@@ -358,3 +362,23 @@ nnoremap <Leader>sp :OmniSharpStopServer<CR>
 
 " Enable snippet completion
 " let g:OmniSharp_want_snippet=1
+
+" NerdTree Git Status
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+let g:NERDTreeShowIgnoredStatus = 1
+
+" NerdTree syntax highligh
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1

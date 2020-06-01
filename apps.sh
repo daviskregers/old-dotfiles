@@ -72,7 +72,8 @@ sudo pacman -S --needed \
 	docker docker-compose lxappearance neovim xarchiver arandr bumblebee \
 	linux-headers gcc make git python-gnupg python-pip aws-cli nodejs npm php composer ctags elixir \
 	python-pylint python-pillow acpi powertop python-six libreoffice-still gnutls gnome-disk-utility \
-	obs-studio dunst xdotool yad peek mono dotnet-host dotnet-runtime dotnet-sdk inotify-tools code coreutils
+	obs-studio dunst xdotool yad peek mono dotnet-host dotnet-runtime dotnet-sdk inotify-tools code coreutils \
+    ttf-nerd-fonts-symbols
 
 echo "[APPS] Install packages for development"
 pip install awsebcli --upgrade --user
