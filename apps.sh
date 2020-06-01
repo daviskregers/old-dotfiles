@@ -49,6 +49,10 @@ fi
 echo "[APPS] Update AUR"
 yay -Syu --noconfirm
 
+# Force python 3.7 for AWS EB-CLI
+sudo pacman -Rdd python
+yay -S python37
+
 echo "[APPS] Install official packages"
 # Note: nvidia non open source drivers may conflict with nouveau OS drivers
 # and in below case to make drivers work in needed to blacklist nouveau drivers
@@ -68,12 +72,12 @@ sudo pacman -S --needed \
 	docker docker-compose lxappearance neovim xarchiver arandr bumblebee \
 	linux-headers gcc make git python-gnupg python-pip aws-cli nodejs npm php composer ctags elixir \
 	python-pylint python-pillow acpi powertop python-six libreoffice-still gnutls gnome-disk-utility \
-	obs-studio dunst xdotool yad peek
+	obs-studio dunst xdotool yad peek mono dotnet-host dotnet-runtime dotnet-sdk inotify-tools code coreutils
 
 echo "[APPS] Install packages for development"
-#pip install awsebcli --upgrade --user
-#composer global require phpdocumentor/phpdocumentor phpmd/phpmd squizlabs/php_codesniffer 
-#sudo npm i -g eslint lynt pug-lint-vue instant-markdown-d
+pip install awsebcli --upgrade --user
+composer global require phpdocumentor/phpdocumentor phpmd/phpmd squizlabs/php_codesniffer
+sudo npm i -g eslint lynt pug-lint-vue instant-markdown-d
 
 echo "[APPS] Install community packages"
 yay -S --needed urxvt-font-size-git python-pdftotext spotify google-chrome polybar albert shutter \
@@ -81,7 +85,7 @@ yay -S --needed urxvt-font-size-git python-pdftotext spotify google-chrome polyb
 	betterlockscreen feh the_silver_searcher \
 	jmeter mariadb-jdbc \
 	noto-fonts-emoji ttf-twemoji-color todoist-linux-bin \
-    joplin cherrytomato compton alacritty wf-recorder i3-agenda-git
+    joplin cherrytomato compton alacritty monodevelop-bin i3-agenda-git
 #	i3lock heidisql
 
 echo "[APPS] Link xinitrc"
