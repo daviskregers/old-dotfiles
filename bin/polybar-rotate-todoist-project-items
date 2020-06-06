@@ -1,0 +1,96 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+import argparse
+import datetime
+import json
+import os
+import time
+import todoist
+import pickle
+import random
+
+CONFIG_PATH = str(Path.home()) + "/.todoist_api"
+CACHE_PATH = "/tmp/todoist-polybar-cache"
+API_KEY=None
+with open(CONFIG_PATH, 'r') as content_file:
+    API_KEY = content_file.read()
+
+parser = argparse.ArgumentParser(description='Todoist Polybar Widget')
+parser.add_argument('--cachettl',
+                    '-ttl',
+                    type=int,
+                    default=5,
+                   help='time for cache to be kept in minutes')
+parser.add_argument('--update',
+                    '-u',
+                    action='store_true',
+                    default=False,
+                    help='when using this flag it will not load previous results from cache, it will however save new results to cache. You can use this flag to refresh all the cache forcefully')
+parser.add_argument('--project', '-p', default='Quotes', help='Select project to pull items from')
+
+
+# Setup todoist
+
+def save_cache(result, project):
+    with open(CACHE_PATH + project, 'wb') as f:
+        f.write(pickle.dumps(result))
+
+def load_cache(cachettl, project):
+
+    if not os.path.exists(CACHE_PATH + project):
+        return None
+
+    if time.time() - os.path.getmtime(CACHE_PATH + project) > cachettl * 60:
+        return None
+
+    with open(CACHE_PATH + project, 'rb') as f:
+        try:
+            return pickle.loads(f.read());
+        except:
+            return None
+
+def get_project_id_by_name(api, name):
+    projects = list(filter(lambda x: x['name'] == name, api.state['projects']))
+    if not projects:
+        raise Exception('No projects by name %s' % (name))
+    return projects[0]['id']
+
+def get_items_by_project_id(api, project_id):
+    items = list(
+        filter(
+            lambda x:
+                x['project_id'] == project_id and
+                x['is_deleted'] == 0 and
+                x['content'] != '.', # sometimes I add quotes with text . and add an image to the comments for later processing
+            api.state['items']
+        )
+    )
+    items = list(map(lambda x: x['content'], items))
+    return items
+
+def main():
+
+    args = parser.parse_args()
+    result = None
+
+    if not args.update:
+        result = load_cache(args.cachettl, args.project)
+
+    if result is None:
+
+        api = todoist.TodoistAPI(API_KEY);
+        api.sync
+
+        project_id = get_project_id_by_name(api, args.project)
+        result = get_items_by_project_id(api, project_id)
+
+        save_cache(result, args.project)
+
+    if result:
+        print('%s: %s' % (args.project, random.choice(result)))
+    else:
+        print("Reached #TodoistZero!")
+
+if __name__ == '__main__':
+    main()
