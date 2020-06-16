@@ -73,7 +73,7 @@ sudo pacman -S --needed \
 	linux-headers gcc make git python-gnupg python-pip aws-cli nodejs npm php composer ctags elixir \
 	python-pylint python-pillow acpi powertop python-six libreoffice-still gnutls gnome-disk-utility \
 	obs-studio dunst xdotool yad peek mono dotnet-host dotnet-runtime dotnet-sdk inotify-tools code coreutils \
-    ttf-nerd-fonts-symbols unclutter
+    ttf-nerd-fonts-symbols nvidia nvidia-libgl nvidia-settings mesa ttf-hack ttf-anonymous-pro ttf-dejavu ttf-freefont ttf-liberation screenfetch unclutter
 
 echo "[APPS] Install packages for development"
 pip install awsebcli --upgrade --user
@@ -86,7 +86,7 @@ yay -S --needed urxvt-font-size-git python-pdftotext spotify google-chrome polyb
 	betterlockscreen feh the_silver_searcher \
 	jmeter mariadb-jdbc \
 	noto-fonts-emoji ttf-twemoji-color todoist-linux-bin \
-    joplin cherrytomato compton alacritty monodevelop-bin i3-agenda-git
+    joplin cherrytomato compton alacritty monodevelop-bin i3-agenda-git plymouth
 #	i3lock heidisql
 
 echo "[APPS] Link xinitrc"
