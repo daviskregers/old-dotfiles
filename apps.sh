@@ -49,31 +49,27 @@ fi
 echo "[APPS] Update AUR"
 yay -Syu --noconfirm
 
-# Force python 3.7 for AWS EB-CLI
-sudo pacman -Rdd python
-yay -S python37
-
 echo "[APPS] Install official packages"
 # Note: nvidia non open source drivers may conflict with nouveau OS drivers
 # and in below case to make drivers work in needed to blacklist nouveau drivers
 # > cat /usr/lib/modprobe.d/nvidia.conf
 # > blacklist nouveau
 sudo pacman -S --needed \
-	xorg-server xorg-apps xorg-xinit i3-wm numlockx \
-	lightdm lightdm-gtk-greeter \
-	noto-fonts ttf-ubuntu-font-family ttf-dejavu ttf-freefont ttf-liberation ttf-droid ttf-inconsolata ttf-roboto terminus-font ttf-font-awesome \
-	alsa-utils alsa-plugins alsa-lib pavucontrol \
-	rxvt-unicode ranger rofi conky dmenu urxvt-perls perl-anyevent-i3 perl-json-xs \
-	atool highlight elinks mediainfo w3m ffmpegthumbnailer mupdf playerctl \
-	chromium firefox vlc \
-	zsh terminator tmux \
-	bluez bluez-utils blueberry \
-	zip unzip muparser redshift thunar libsecret gnome-keyring \
-	docker docker-compose lxappearance neovim xarchiver arandr bumblebee \
-	linux-headers gcc make git python-gnupg python-pip aws-cli nodejs npm php composer ctags elixir \
-	python-pylint python-pillow acpi powertop python-six libreoffice-still gnutls gnome-disk-utility \
-	obs-studio dunst xdotool yad peek mono dotnet-host dotnet-runtime dotnet-sdk inotify-tools code coreutils \
-    ttf-nerd-fonts-symbols nvidia nvidia-libgl nvidia-settings mesa ttf-hack ttf-anonymous-pro ttf-dejavu ttf-freefont ttf-liberation screenfetch unclutter
+	xorg-server xorg-apps xorg-xinit i3-wm numlockx lightdm lightdm-gtk-greeter \
+	noto-fonts ttf-ubuntu-font-family ttf-dejavu ttf-freefont ttf-liberation \
+    ttf-droid ttf-inconsolata ttf-roboto terminus-font ttf-font-awesome \
+	alsa-utils alsa-plugins alsa-lib pavucontrol rxvt-unicode rofi conky \
+    dmenu urxvt-perls perl-anyevent-i3 perl-json-xs atool highlight elinks \
+    mediainfo w3m ffmpegthumbnailer mupdf playerctl firefox vlc zsh tmux \
+    bluez bluez-utils blueberry zip unzip muparser redshift thunar libsecret \
+    gnome-keyring docker docker-compose lxappearance neovim xarchiver arandr \
+    bumblebee linux-headers gcc make git python-gnupg python-pip aws-cli \
+    nodejs npm php composer ctags elixir python-pylint python-pillow acpi \
+    powertop python-six libreoffice-still gnutls gnome-disk-utility \
+	obs-studio dunst xdotool yad peek mono dotnet-host dotnet-runtime \
+    dotnet-sdk inotify-tools code coreutils ttf-nerd-fonts-symbols nvidia \
+    nvidia-libgl nvidia-settings mesa ttf-hack ttf-anonymous-pro ttf-dejavu \
+    ttf-freefont ttf-liberation screenfetch unclutter
 
 echo "[APPS] Install packages for development"
 pip install awsebcli --upgrade --user
@@ -81,13 +77,11 @@ composer global require phpdocumentor/phpdocumentor phpmd/phpmd squizlabs/php_co
 sudo npm i -g eslint lynt pug-lint-vue instant-markdown-d
 
 echo "[APPS] Install community packages"
-yay -S --needed urxvt-font-size-git python-pdftotext spotify google-chrome polybar albert shutter \
-	postman-bin perl-goo-canvas mailspring \
-	betterlockscreen feh the_silver_searcher \
-	jmeter mariadb-jdbc \
+yay -S --needed urxvt-font-size-git python-pdftotext spotify google-chrome \
+    polybar albert shutter postman-bin perl-goo-canvas mailspring \
+	betterlockscreen feh the_silver_searcher mariadb-jdbc \
 	noto-fonts-emoji ttf-twemoji-color todoist-linux-bin \
-    joplin cherrytomato compton alacritty monodevelop-bin i3-agenda-git plymouth
-#	i3lock heidisql
+    compton alacritty i3-agenda-git plymouth
 
 echo "[APPS] Link xinitrc"
 #ln -sf ~/.dotfiles/.xinitrc ~

@@ -39,6 +39,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'jistr/vim-nerdtree-tabs'
 
+    Plug 'vim-scripts/BufOnly.vim'
+
 call plug#end()
 
 " General settings
@@ -110,7 +112,12 @@ set mouse=a
 map <F9> :source ~/.config/nvim/init.vim<CR>
 
 " Display tasks
-nnoremap <F8> ::cexpr system('git grep --line-number -e FIXME -e TODO -e DEIVS')<CR>:copen<CR>
+function! SearchTodos()
+  ::cexpr system('git grep --line-number -e FIXME -e TODO -e DEIVS')
+  :copen
+endfunction
+nnoremap <F8> :call SearchTodos()<CR>
+"autocmd VimEnter * :call SearchTodos()
 
 " Blame
 let g:blameLineVirtualTextHighlight = 'Question'
@@ -350,7 +357,6 @@ xnoremap <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
 
 " Rename with dialog
 nnoremap <Leader>nm :OmniSharpRename<CR>
-nnoremap <F2> :OmniSharpRename<CR>
 " Rename without dialog - with cursor on the symbol to rename: `:Rename newname`
 command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
 
@@ -382,3 +388,14 @@ let g:NERDTreeShowIgnoredStatus = 1
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
+
+" Copy to clipboard
+set clipboard=unnamedplus
+
+" BufOnly
+nnoremap <F7> :BufOnly<CR>
+
+" Disable swap files - haven't used them and usually when closing terminal
+" they persist, takes an extra step to open files.
+set noswapfile
+
