@@ -1,17 +1,27 @@
 call plug#begin('~/.config/nvim/plugged')
-    Plug 'scrooloose/nerdtree'
     " Plug 'majutsushi/tagbar'
-
     Plug 'AlessandroYorba/Alduin' " Colorscheme
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'dart-lang/dart-vim-plugin'
+    Plug 'ekalinin/dockerfile.vim'
+    Plug 'ferrine/md-img-paste.vim'
+    Plug 'jistr/vim-nerdtree-tabs'
+    Plug 'ntpeters/vim-better-whitespace'
+    Plug 'omnisharp/omnisharp-vim' " RUN :OmniSharpInstall v1.34.2
+    Plug 'plasticboy/vim-markdown'
+    Plug 'ryanoasis/vim-devicons'
     Plug 'sakshamgupta05/vim-todo-highlight' " Highlight tasks
-
+    Plug 'scrooloose/nerdcommenter'
+    Plug 'scrooloose/nerdtree'
+    Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plug 'tveskag/nvim-blame-line' " Display GIT Blame on the same line as cursor
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-
+    Plug 'vim-scripts/BufOnly.vim'
+    Plug 'vim-scripts/PDV--phpDocumentor-for-Vim'
     Plug 'vim-syntastic/syntastic'
-    Plug 'tveskag/nvim-blame-line' " Display GIT Blame on the same line as cursor
-    Plug 'ntpeters/vim-better-whitespace'
-    Plug 'scrooloose/nerdcommenter'
 
     if isdirectory('/usr/local/opt/fzf')
         Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -20,26 +30,10 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'junegunn/fzf.vim'
     endif
 
-    Plug 'ctrlpvim/ctrlp.vim'
-
     " :CocInstall coc-tsserver coc-git coc-yaml coc-json coc-python coc-html
     " coc-eslint coc-rls coc-vetur coc-tslint coc-tslint-plugin coc-css
-    " coc-phpls coc-elixir coc-spell-checker
+    " coc-phpls coc-elixir coc-spell-checker coc-flutter
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'ekalinin/dockerfile.vim'
-    Plug 'vim-scripts/PDV--phpDocumentor-for-Vim'
-
-    Plug 'plasticboy/vim-markdown'
-    Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-    Plug 'ferrine/md-img-paste.vim'
-
-    Plug 'omnisharp/omnisharp-vim' " RUN :OmniSharpInstall v1.34.2
-    Plug 'ryanoasis/vim-devicons'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    Plug 'jistr/vim-nerdtree-tabs'
-
-    Plug 'vim-scripts/BufOnly.vim'
 
 call plug#end()
 
@@ -399,3 +393,6 @@ nnoremap <F7> :BufOnly<CR>
 " they persist, takes an extra step to open files.
 set noswapfile
 
+
+" Flutter
+let g:dart_format_on_save = 1
