@@ -24,6 +24,12 @@ ln -sf $WALLPAPER ~/.wallpaper.jpg
 ln -sf $SCREENLAYOUT ~/.screenlayout.sh
 ln -sf $DOTFILES/configurations/$(hostname)/alacritty.yml $DOTFILES/.config/alacritty
 
+# remove AWS cli
+sudo pacman -R aws-cli
+if ! [ -x "$(command -v yay)" ]; then
+    sudo rm -rf ~/.local/lib/python3.8/site-packages/six*
+fi
+pip uninstall awsebcli
 
 echo "[APPS] Update pacman"
 sudo pacman -Syu --noconfirm
@@ -63,7 +69,7 @@ sudo pacman -S --needed \
     mediainfo w3m ffmpegthumbnailer mupdf playerctl firefox vlc zsh tmux \
     bluez bluez-utils blueberry zip unzip muparser redshift thunar libsecret \
     gnome-keyring docker docker-compose lxappearance neovim xarchiver arandr \
-    bumblebee linux-headers gcc make git python-gnupg python-pip aws-cli \
+    bumblebee linux-headers gcc make git python-gnupg python-pip \
     nodejs npm php composer ctags elixir python-pylint python-pillow acpi \
     powertop python-six libreoffice-still gnutls gnome-disk-utility \
 	obs-studio dunst xdotool yad peek mono dotnet-host dotnet-runtime \
@@ -72,7 +78,6 @@ sudo pacman -S --needed \
     ttf-freefont ttf-liberation screenfetch unclutter
 
 echo "[APPS] Install packages for development"
-pip install awsebcli --upgrade --user
 composer global require phpdocumentor/phpdocumentor phpmd/phpmd squizlabs/php_codesniffer
 sudo npm i -g eslint lynt pug-lint-vue instant-markdown-d
 
