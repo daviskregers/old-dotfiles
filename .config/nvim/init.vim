@@ -22,6 +22,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'vim-scripts/BufOnly.vim'
     Plug 'vim-scripts/PDV--phpDocumentor-for-Vim'
     Plug 'vim-syntastic/syntastic'
+    Plug 'yggdroot/indentline'
 
     if isdirectory('/usr/local/opt/fzf')
         Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -396,3 +397,6 @@ set noswapfile
 
 " Flutter
 let g:dart_format_on_save = 1
+
+" Indent line
+let g:indentLine_color_term = 0
