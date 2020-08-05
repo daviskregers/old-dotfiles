@@ -75,7 +75,7 @@ sudo pacman -S --needed \
 	obs-studio dunst xdotool yad peek mono dotnet-host dotnet-runtime \
     dotnet-sdk inotify-tools code coreutils ttf-nerd-fonts-symbols nvidia \
     nvidia-libgl nvidia-settings mesa ttf-hack ttf-anonymous-pro ttf-dejavu \
-    ttf-freefont ttf-liberation screenfetch unclutter
+    ttf-freefont ttf-liberation screenfetch unclutter yarn
 
 echo "[APPS] Install packages for development"
 composer global require phpdocumentor/phpdocumentor phpmd/phpmd squizlabs/php_codesniffer

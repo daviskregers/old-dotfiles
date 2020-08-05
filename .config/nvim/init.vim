@@ -23,6 +23,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'vim-scripts/PDV--phpDocumentor-for-Vim'
     Plug 'vim-syntastic/syntastic'
     Plug 'yggdroot/indentline'
+    Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
+    Plug 'frazrepo/vim-rainbow'
 
     if isdirectory('/usr/local/opt/fzf')
         Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -37,6 +39,10 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
+
+" Rainbow brackets
+au FileType c,cpp,objc,objcpp,cs,js,php,vue call rainbow#load()
+let g:rainbow_active = 1
 
 " General settings
 set tags=tags;,./tags;
@@ -146,7 +152,6 @@ let g:syntastic_vue_checkers = ['eslint', 'pug_lint_vue']
 let g:syntastic_python_checkers = ['python', 'pylint']
 let g:syntastic_elixir_checkers = ['elixir']
 
-let g:syntastic_enable_elixir_checker = 1
 let g:syntastic_enable_elixir_checker = 1
 let g:syntastic_cs_checkers = ['code_checker']
 
