@@ -11,13 +11,14 @@ END="\e[0m"
 BLINK="\e[33;91;7m"
 
 function confirmation() {
-    echo -e $1
-    while true; do
+    local confirmation_result=-1
+    while [[ $confirmation_result -eq -1 ]]; do
         read -p "Continue (y/n)? " choice
         case "$choice" in
-          y|Y ) return 1;;
-          n|N ) return 0;;
+          y|Y ) confirmation_result=1;;
+          n|N ) confirmation_result=0;;
           * ) echo "invalid";;
         esac
     done
+    echo $confirmation_result;
 }
