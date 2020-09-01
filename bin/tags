@@ -1,2 +1,0 @@
-#ctags -R -f ./.git/tags .
-ctags --verbose=yes -R .

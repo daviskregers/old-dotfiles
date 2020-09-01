@@ -1,6 +1,0 @@
-#!/bin/bash
-
-cd $DOTFILES
-git pull
-
-exec $DOTFILES/apps.sh

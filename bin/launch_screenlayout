@@ -1,4 +1,0 @@
-#/usr/bin/zsh
-hostname=$(hostname)
-notify-send "launching default screen layout for $hostname"
-exec ~/.screenlayout.sh
