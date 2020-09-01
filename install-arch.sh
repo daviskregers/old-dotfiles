@@ -1,8 +1,9 @@
 #!/bin/bash
-
-source .colors
+source .bash_helpers
 
 SEPARATOR="------------------------------------------"
+
+confirmation "$RED asdasd $END $GREEN asdasdas $END"
 
 if [ $(uname -n ) != "archiso" ]; then
 	echo -e "${BLINK}This isn't an arch installation, exiting...$END"

@@ -1,0 +1,23 @@
+PURPLE="\e[95m"
+CYAN="\e[96m"
+DARKCYAN="\e[36m"
+BLUE="\e[94m"
+GREEN="\e[92m"
+YELLOW="\e[93m"
+RED="\e[91m"
+BOLD="\e[1m"
+UNDERLINE="\e[4m"
+END="\e[0m"
+BLINK="\e[33;91;7m"
+
+function confirmation() {
+    echo -e $1
+    while true; do
+        read -p "Continue (y/n)? " choice
+        case "$choice" in
+          y|Y ) return 1;;
+          n|N ) return 0;;
+          * ) echo "invalid";;
+        esac
+    done
+}
