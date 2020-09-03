@@ -78,7 +78,7 @@ mkdir /mnt/boot/efi || cleanup;
 mount $efipartition /mnt/boot/efi || cleanup;
 
 echo "install arch base"
-pacstrap -i /mnt base base-devel efibootmgr grub || cleanup;
+pacstrap -i /mnt base base-devel efibootmgr grub vim neovim mkinitcpio linux linux-firmware os-prober || cleanup;
 
 echo $SEPARATOR
 echo -e "${RED}Generating FSTAB$END"
