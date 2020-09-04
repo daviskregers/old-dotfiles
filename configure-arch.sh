@@ -1,6 +1,8 @@
 #!/bin/bash
 source .bash_helpers
 
+PWD=$(pwd)
+
 if [ $(uname -n ) != "archiso" ]; then
 	echo -e "${BLINK}This isn't an arch installation, exiting...$END"
 	exit 1;
@@ -20,7 +22,6 @@ locale-gen --purge $LOCALE
 echo LANG=$LOCALE > /etc/locale.conf
 export LANG=$LOCALE
 
-# TODO: choose timezone?
 ln -sf /usr/share/zoneinfo/Europe/Riga /etc/localtime
 hwclock --systohc --utc
 
@@ -55,11 +56,14 @@ echo -e "${RED}Generating new user$END"
 
 read -p "Enter your user name: " username
 useradd -m $username
+passwd $username
 usermod -a -G wheel $username
 sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
 cat /etc/sudoers | grep wheel
 
-# TODO: copy dotfiles, set them up for the new user
+echo -e "${RED}Setting up dotfiles for $username$END"
+
+cp -r $PWD /home/$username/.dotfiles
 
 echo -e "${RED}Setting up NetworkManager$END"
 
@@ -70,9 +74,9 @@ echo -e "${RED}Syncing pacman mirrors$END"
 
 pacman -S reflector
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-# TODO: input configuration?
 reflector -c "LV" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 
 cat /etc/pacman.d/mirrorlist
 
-echo -e "${GREEN} Everything should be done, you can exit and reboot now $END"
+echo -e "${GREEN}Everything should be done, you can exit and reboot now $END"
+echo -e "${GREEN}Afterwards - log into $username, cd into \$HOME/.dotfiles and run the configure-user.sh file$END"
