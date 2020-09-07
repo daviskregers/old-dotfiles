@@ -1,4 +1,7 @@
-sudo pacman -S --needed --noconfirm pulseaudio kmix pavucontrol
+sudo pacman -S --needed --noconfirm pulseaudio pavucontrol
 yay -S --needed --noconfirm spotify
+
+# had issues with icons, reinstall fixed it
+sudo pacman -S --noconfirm kmix
 
 echo "TODO: something wrong with keys"
