@@ -14,5 +14,3 @@ balooctl enable
 
 mkdir -p ~/.config/qt5ct
 ln -sfv ~/.dotfiles/configuration/Linux/qt5ct.conf ~/.config/qt5ct
-
-echo "TODO: fix dolphin colors, missing icons"
