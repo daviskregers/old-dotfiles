@@ -11,3 +11,8 @@ sudo cp -v ~/.dotfiles/configuration/Linux/org.freedesktop.UDisks2.policy /usr/s
 ln -sfv ~/.dotfiles/configuration/Linux/baloofileinformationrc ~/.config
 
 balooctl enable
+
+mkdir -p ~/.config/qt5ct
+ln -sfv ~/.dotfiles/configuration/Linux/qt5ct.conf ~/.config/qt5ct
+
+echo "TODO: fix dolphin colors, missing icons"

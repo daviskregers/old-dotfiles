@@ -1,4 +1,4 @@
-sudo pacman -S --needed --noconfirm xorg-server xorg-apps xorg-xinit i3status feh dunst xdotool yad rofi inotify-tools atool
+sudo pacman -S --needed --noconfirm xorg-server xorg-apps xorg-xinit i3status feh dunst xdotool yad rofi inotify-tools atool dmenu
 sudo pacman -S --needed --noconfirm i3-wm
 
 sudo ln -sfv ~/.dotfiles/configuration/Linux/.xsession ~

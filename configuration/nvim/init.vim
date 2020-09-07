@@ -373,7 +373,7 @@ nnoremap <Leader>sp :OmniSharpStopServer<CR>
 " let g:OmniSharp_want_snippet=1
 
 " NerdTree Git Status
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
@@ -385,7 +385,7 @@ let g:NERDTreeIndicatorMapCustom = {
     \ 'Ignored'   : '☒',
     \ "Unknown"   : "?"
     \ }
-let g:NERDTreeShowIgnoredStatus = 1
+let g:NERDTreeGitStatusShowIgnored = 1
 
 " NerdTree syntax highligh
 let g:NERDTreeFileExtensionHighlightFullName = 1

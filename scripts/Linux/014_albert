@@ -1,4 +1,5 @@
 yay -S --needed --noconfirm albert
 
 ln -sfv ~/.dotfiles/configuration/Linux/.albertignore
-ln -sfv ~/.dotfiles/configuration/Linux/albert.conf ~/.config/albert
+mkdir -p ~/.config/albert
+ln -sfv ~/.dotfiles/configuration/Linux/albert.conf ~/.config/albert/albert.conf

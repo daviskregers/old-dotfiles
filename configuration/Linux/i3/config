@@ -54,7 +54,7 @@ bindsym $mod+Shift+Return exec dolphin
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-# bindsym $mod+d exec dmenu_run
+bindsym $mod+Shift+d exec dmenu_run # for backup if something happens with Albert
 bindsym $mod+d exec "albert show"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
