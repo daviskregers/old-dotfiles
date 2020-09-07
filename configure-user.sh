@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO: add alias, git sync
+
 source .bash_helpers
 source configuration/.variables
 source configuration/.functions

@@ -2,7 +2,8 @@
 
 These dotfiles are being written for my archlinux and OSX setup.
 
-[[ screenshot ]]
+![1](screenshots/1.png)
+![2](screenshots/2.png)
 
 ## Installation on arch
 
