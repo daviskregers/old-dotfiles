@@ -16,7 +16,7 @@ passwd
 
 echo -e "Set locale & timezone"
 
-sed -i 's/#en_US.UTF-8/en-US.UTF-8/' /etc/locale.gen
+sed -i 's/#en_US.UTF-8/en_US.UTF-8/' /etc/locale.gen
 LOCALE=en_US.UTF-8
 echo LANG=$LOCALE > /etc/locale.conf
 export LANG=$LOCALE
