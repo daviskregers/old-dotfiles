@@ -1,6 +1,9 @@
 #!/bin/bash
 
 source .bash_helpers
+source configuration/.variables
+source configuration/.functions
+
 ARCH=$(uname)
 CONFIGURATION_PATH=scripts/$ARCH
 
