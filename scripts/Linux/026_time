@@ -1,0 +1,3 @@
+sudo pacman -S --needed --noconfirm ntp
+sudo systemctl enable ntpd
+update-ntpd

@@ -1,0 +1,2 @@
+sudo ln -sfv ~/.dotfiles/configuration/Linux/profile /etc/profile
+sudo chown -v root /etc/profile

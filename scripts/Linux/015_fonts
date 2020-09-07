@@ -1,0 +1,2 @@
+sudo pacman -S --needed --noconfirm noto-fonts ttf-ubuntu-font-family ttf-dejavu ttf-font-awesome ttf-nerd-fonts-symbols ttf-freefont ttf-liberation ttf-hack ttf-anonymous-pro ttf-freefont ttf-liberation
+yay -S --needed --noconfirm noto-fonts-emoji ttf-twemoji-color

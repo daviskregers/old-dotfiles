@@ -1,0 +1,4 @@
+sudo pacman -S --needed --noconfirm alacritty tmux
+
+ln -sfv ~/.dotfiles/configuration/.tmux.conf ~
+ln -sfv ~/.dotfiles/configuration/alacritty ~/.config/

@@ -1,0 +1,16 @@
+sudo pacman -S --needed --noconfirm neovim
+yay -S --needed --noconfirm the_silver_searcher
+
+ln -sfv ~/.dotfiles/configuration/nvim ~/.config
+
+sudo pacman -S --needed --noconfirm linux-headers gcc make python-pip nodejs npm php composer \
+ctags elixir python-pylint python-pillow yarn
+
+composer global require hirak/prestissimo # install things in parallel
+composer global require phpdocumentor/phpdocumentor phpmd/phpmd squizlabs/php_codesniffer
+sudo npm i -gh eslint lynt pug-lint-vue instant-markdown-d
+
+yay -S --noconfirm --needed todoist-linux-bin
+
+echo "TODO: install plugins on start"
+echo "TODO: ag ignore compiled stuff"

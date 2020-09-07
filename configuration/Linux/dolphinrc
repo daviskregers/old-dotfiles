@@ -1,0 +1,40 @@
+[CompactMode]
+FontWeight=50
+
+[DetailsMode]
+FontWeight=50
+
+[General]
+Version=200
+ViewPropsTimestamp=2020,9,5,14,50,42
+
+[IconsMode]
+FontWeight=50
+
+[KPropertiesDialog]
+Height 1200=463
+Width 1920=496
+
+[MainWindow]
+Height 1200=1171
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAwAAAAAAAABOAAAEavwCAAAAAvsAAAAWAGYAbwBsAGQAZQByAHMARABvAGMAawAAAAAA/////wAAAAEA////+wAAABQAcABsAGEAYwBlAHMARABvAGMAawEAAAApAAAEagAAAE8A////AAAAAQAAAQ0AAARq/AIAAAAB+wAAABAAaQBuAGYAbwBEAG8AYwBrAQAAACkAAARqAAAA8QD///8AAAADAAAAAAAAAAD8AQAAAAH7AAAAGAB0AGUAcgBtAGkAbgBhAGwARABvAGMAawAAAAAA/////wAAAAEA////AAABFQAABGoAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAACAAAAAQAAABYAbQBhAGkAbgBUAG8AbwBsAEIAYQByAQAAAAD/////AAAAAAAAAAA=
+ToolBarsMovable=Disabled
+Width 1920=638
+
+[PreviewSettings]
+Plugins=appimagethumbnail,audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,opendocumentthumbnail,svgthumbnail
+
+[Search]
+Location=Everywhere
+
+[SettingsDialog]
+Height 1200=410
+Width 1920=637
+
+[VersionControl]
+enabledPlugins=Git
+
+[ViewPropertiesDialog]
+Height 1200=264
+Width 1920=371

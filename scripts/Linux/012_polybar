@@ -1,0 +1,3 @@
+yay -S --needed --noconfirm polybar
+
+sudo ln -sfv ~/.dotfiles/configuration/Linux/polybar ~/.config

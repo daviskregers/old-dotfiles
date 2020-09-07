@@ -1,0 +1,2 @@
+sudo pacman -S --needed --noconfirm telegram-desktop discord
+yay -S --needed --noconfirm mailspring slack-desktop

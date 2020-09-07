@@ -22,3 +22,5 @@ function confirmation() {
     done
     echo $confirmation_result;
 }
+
+SEPARATOR="--------------------------"

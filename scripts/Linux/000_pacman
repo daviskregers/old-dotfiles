@@ -1,0 +1,5 @@
+sudo grep "Color" /etc/pacman.conf && \
+sudo sed -i -e ' s/#Color/Color/g' /etc/pacman.conf && \
+sudo grep "Color" /etc/pacman.conf
+
+pacman -Syu

@@ -1,0 +1,2 @@
+sudo pacman -S --needed --noconfirm code mono dotnet-host dotnet-runtime dotnet-sdk
+yay -S --needed --noconfirm postman-bin

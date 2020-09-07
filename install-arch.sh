@@ -12,7 +12,7 @@ fi
 echo -e "${GREEN}Arch installation $END"
 echo -e $SEPARATOR
 
-echo -e "${RED} Before starting - create 3 partitions. EFI (256M), BOOT (512M), SYSTEM $END"
+echo -e "${RED}Before starting - create 3 partitions. EFI (256M), BOOT (512M), SYSTEM $END"
 echo -e "You can use cfdisk, fdisk or cgdisk to do that."
 PREPPED=$(confirmation)
 

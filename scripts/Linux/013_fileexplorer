@@ -1,0 +1,10 @@
+sudo pacman -S --needed --noconfirm dolphin breeze dolphin-plugins lxappearance kvantum-qt5 qt5ct baloo taglib kdegraphics-thumbnailers qt5-imageformats kimageformats ffmpegthumbs ffmpegthumbnailer audiocd-kio
+
+ln -sfv ~/.dotfiles/configuration/Linux/dolphinrc ~/.config
+ln -sfv ~/.dotfiles/configuration/Linux/kdeglobals ~/.config
+ln -sfv ~/.dotfiles/configuration/Linux/gtk-2.0 ~/.config
+ln -sfv ~/.dotfiles/configuration/Linux/gtk-3.0 ~/.config
+ln -sfv ~/.dotfiles/configuration/Linux/gtkrc-2.0 ~
+
+ln -sfv ~/.dotfiles/configuration/Linux/baloofileinformationrc ~/.config
+balooctl enable

@@ -1,0 +1,4 @@
+sudo pacman -S --needed --noconfirm pulseaudio kmix pavucontrol
+yay -S --needed --noconfirm spotify
+
+echo "TODO: something wrong with keys"

@@ -1,0 +1,36 @@
+# bash
+
+alias c="clear"
+alias ls="ls --color=auto"
+alias l="ls -lah --color=auto"
+alias shdn="shutdown now"
+
+# zsh
+
+alias rcs="source ~/.zshrc"
+
+# paths
+
+alias c.="cd .."
+alias dot="cd ~/.dotfiles"
+alias pr="cd $PROJECTS"
+
+
+# git
+
+alias ga="git add"
+alias gs="git status"
+alias gp="git push"
+alias gpl="git push"
+alias gd="git diff"
+alias gc="git checkout"
+
+# docker
+
+alias dp="docker ps"
+alias du="docker-compose up"
+#alias dkill="docker kill $(docker ps -q)"
+
+# python
+
+alias pipr="pip install -r requirements.txt"
