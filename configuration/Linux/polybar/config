@@ -56,8 +56,7 @@ modules-left = i3
 ; modules-center = quotes goals todoist agenda
 ; modules-center = todoist agenda
 modules center =
-; modules-right = alsa spotify network wired-network wireless-network battery date
-modules-right = network wired-network wireless-network battery date
+modules-right = alsa spotify network wired-network wireless-network battery date
 
 tray-position = right
 tray-padding = 5

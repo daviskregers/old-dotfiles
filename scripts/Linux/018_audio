@@ -1,4 +1,4 @@
-sudo pacman -S --needed --noconfirm pulseaudio pavucontrol
+sudo pacman -S --needed --noconfirm pulseaudio pavucontrol playerctl
 
 # had issues with icons, reinstall fixed it
 sudo pacman -S --noconfirm kmix
