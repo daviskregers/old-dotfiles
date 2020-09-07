@@ -5,6 +5,7 @@ FontWeight=50
 FontWeight=50
 
 [General]
+RememberOpenedTabs=false
 Version=200
 ViewPropsTimestamp=2020,9,5,14,50,42
 
@@ -18,9 +19,9 @@ Width 1920=496
 [MainWindow]
 Height 1200=1171
 MenuBar=Disabled
-State=AAAA/wAAAAD9AAAAAwAAAAAAAABOAAAEavwCAAAAAvsAAAAWAGYAbwBsAGQAZQByAHMARABvAGMAawAAAAAA/////wAAAAEA////+wAAABQAcABsAGEAYwBlAHMARABvAGMAawEAAAApAAAEagAAAE8A////AAAAAQAAAQ0AAARq/AIAAAAB+wAAABAAaQBuAGYAbwBEAG8AYwBrAQAAACkAAARqAAAA8QD///8AAAADAAAAAAAAAAD8AQAAAAH7AAAAGAB0AGUAcgBtAGkAbgBhAGwARABvAGMAawAAAAAA/////wAAAAEA////AAABFQAABGoAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAACAAAAAQAAABYAbQBhAGkAbgBUAG8AbwBsAEIAYQByAQAAAAD/////AAAAAAAAAAA=
+State=AAAA/wAAAAD9AAAAAwAAAAAAAACfAAAEavwCAAAAAvsAAAAWAGYAbwBsAGQAZQByAHMARABvAGMAawAAAAAA/////wAAAAEA////+wAAABQAcABsAGEAYwBlAHMARABvAGMAawEAAAApAAAEagAAAE8A////AAAAAQAAAKgAAARq/AIAAAAB+wAAABAAaQBuAGYAbwBEAG8AYwBrAQAAACkAAARqAAAA8QD///8AAAADAAAAAAAAAAD8AQAAAAH7AAAAGAB0AGUAcgBtAGkAbgBhAGwARABvAGMAawAAAAAA/////wAAAAEA////AAACaQAABGoAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAACAAAAAQAAABYAbQBhAGkAbgBUAG8AbwBsAEIAYQByAQAAAAD/////AAAAAAAAAAA=
 ToolBarsMovable=Disabled
-Width 1920=638
+Width 1920=958
 
 [PreviewSettings]
 Plugins=appimagethumbnail,audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,opendocumentthumbnail,svgthumbnail
@@ -29,8 +30,8 @@ Plugins=appimagethumbnail,audiothumbnail,comicbookthumbnail,cursorthumbnail,djvu
 Location=Everywhere
 
 [SettingsDialog]
-Height 1200=410
-Width 1920=637
+Height 1200=404
+Width 1920=604
 
 [VersionControl]
 enabledPlugins=Git

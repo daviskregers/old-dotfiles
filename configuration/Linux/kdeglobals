@@ -108,9 +108,9 @@ ForegroundVisited=127,140,141
 [General]
 ColorScheme=Breeze
 Name=Breeze
+TerminalApplication="launch_terminal"
 shadeSortColumn=true
 widgetStyle=Breeze
-TerminalApplication="launch_terminal"
 
 [Icons]
 Theme=breeze

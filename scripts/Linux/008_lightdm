@@ -14,3 +14,5 @@ sudo sed -i "s/#greeter-session=example-gtk-gnome/autologin-user=lightdm-gtk-gre
 sudo grep 'autologin-user=\|autologin-session=\|greeter-session=' /etc/lightdm/lightdm.conf
 
 sudo systemctl enable lightdm
+
+echo "TODO: checkout other greeters"

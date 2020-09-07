@@ -1,4 +1,4 @@
-sudo pacman -S --needed --noconfirm dolphin breeze dolphin-plugins lxappearance kvantum-qt5 qt5ct baloo taglib kdegraphics-thumbnailers qt5-imageformats kimageformats ffmpegthumbs ffmpegthumbnailer audiocd-kio
+sudo pacman -S --needed --noconfirm dolphin breeze dolphin-plugins lxappearance kvantum-qt5 qt5ct baloo taglib kdegraphics-thumbnailers qt5-imageformats kimageformats ffmpegthumbs ffmpegthumbnailer audiocd-kio ntfs-3g
 
 ln -sfv ~/.dotfiles/configuration/Linux/dolphinrc ~/.config
 ln -sfv ~/.dotfiles/configuration/Linux/kdeglobals ~/.config
@@ -6,5 +6,8 @@ ln -sfv ~/.dotfiles/configuration/Linux/gtk-2.0 ~/.config
 ln -sfv ~/.dotfiles/configuration/Linux/gtk-3.0 ~/.config
 ln -sfv ~/.dotfiles/configuration/Linux/gtkrc-2.0 ~
 
+sudo cp -v ~/.dotfiles/configuration/Linux/org.freedesktop.UDisks2.policy /usr/share/polkit-1/actions
+
 ln -sfv ~/.dotfiles/configuration/Linux/baloofileinformationrc ~/.config
+
 balooctl enable

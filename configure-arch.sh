@@ -47,6 +47,8 @@ cat /etc/default/grub | grep GRUB_CMDLINE_LINUX
 sed -i 's/HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)/HOOKS=(base udev autodetect modconf block encrypt filesystems keyboard fsck)/g' /etc/mkinitcpio.conf
 cat /etc/mkinitcpio.conf | grep "^HOOKS"
 
+sudo pacman -S --noconfirm os-prober
+os-prober
 mkinitcpio -p linux
 grub-install --boot-directory=/boot --efi-directory=/boot/efi $bootpartition
 grub-mkconfig -o /boot/grub/grub.cfg
