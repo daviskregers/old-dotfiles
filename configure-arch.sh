@@ -16,11 +16,11 @@ passwd
 
 echo -e "Set locale & timezone"
 
+sed -i 's/#en_US.UTF-8/en-US.UTF-8/' /etc/locale.gen
 LOCALE=en_US.UTF-8
-
-locale-gen --purge $LOCALE
 echo LANG=$LOCALE > /etc/locale.conf
 export LANG=$LOCALE
+locale-gen --purge $LOCALE
 
 ln -sf /usr/share/zoneinfo/Europe/Riga /etc/localtime
 hwclock --systohc --utc
