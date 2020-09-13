@@ -175,6 +175,7 @@ for_window [class="Yad"] floating enable
 for_window [class="google-calendar-nativefier-e22938"] move to workspace $ws1
 for_window [class="Todoist"] move to workspace $ws1
 for_window [class="Mailspring"] move to workspace $ws8
+for_window [class="Protonmail Desktop"] move to workspace $ws8
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -226,13 +227,11 @@ exec launch_dunst
 exec spotify
 exec "launch_redshift --auto 6500:2500"
 exec launch_lockscreen
-#exec launch_mailspring
+exec launch_mailspring
+exec_always protonmail-desktop
 exec albert
 exec_always update_ntpd
 exec "unclutter &"
-exec "kmix &"
-
-
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.

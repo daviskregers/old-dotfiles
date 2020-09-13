@@ -24,4 +24,5 @@ case "$GPU" in
 	;;
 esac
 
-sudo pacman -S --needed --noconfirm arandr
+sudo pacman -S --needed --noconfirm arandr lxrandr
+ya

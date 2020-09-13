@@ -17,11 +17,11 @@ Height 1200=463
 Width 1920=496
 
 [MainWindow]
-Height 1200=1198
+Height 1200=1171
 MenuBar=Disabled
-State=AAAA/wAAAAD9AAAAAwAAAAAAAAEXAAAEjfwCAAAAAvsAAAAWAGYAbwBsAGQAZQByAHMARABvAGMAawAAAAAA/////wAAAAEA////+wAAABQAcABsAGEAYwBlAHMARABvAGMAawEAAAAhAAAEjQAAAEEA////AAAAAQAAALAAAASN/AIAAAAB+wAAABAAaQBuAGYAbwBEAG8AYwBrAQAAACEAAASNAAAA9QD///8AAAADAAAAAAAAAAD8AQAAAAH7AAAAGAB0AGUAcgBtAGkAbgBhAGwARABvAGMAawAAAAAA/////wAAAAEA////AAAFrQAABI0AAAAEAAAABAAAAAgAAAAI/AAAAAEAAAACAAAAAQAAABYAbQBhAGkAbgBUAG8AbwBsAEIAYQByAQAAAAD/////AAAAAAAAAAA=
+State=AAAA/wAAAAD9AAAAAwAAAAAAAACPAAAEdPwCAAAAAvsAAAAWAGYAbwBsAGQAZQByAHMARABvAGMAawAAAAAA/////wAAAAEA////+wAAABQAcABsAGEAYwBlAHMARABvAGMAawEAAAAfAAAEdAAAACoA////AAAAAQAAALAAAAR0/AIAAAAB+wAAABAAaQBuAGYAbwBEAG8AYwBrAQAAAB8AAAR0AAAA3gD///8AAAADAAAAAAAAAAD8AQAAAAH7AAAAGAB0AGUAcgBtAGkAbgBhAGwARABvAGMAawAAAAAA/////wAAAAEA////AAACdQAABHQAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAACAAAAAQAAABYAbQBhAGkAbgBUAG8AbwBsAEIAYQByAQAAAAD/////AAAAAAAAAAA=
 ToolBarsMovable=Disabled
-Width 1920=1918
+Width 1920=958
 
 [PreviewSettings]
 Plugins=appimagethumbnail,audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,opendocumentthumbnail,svgthumbnail
@@ -30,8 +30,8 @@ Plugins=appimagethumbnail,audiothumbnail,comicbookthumbnail,cursorthumbnail,djvu
 Location=Everywhere
 
 [SettingsDialog]
-Height 1200=404
-Width 1920=604
+Height 1200=477
+Width 1920=724
 
 [VersionControl]
 enabledPlugins=Git

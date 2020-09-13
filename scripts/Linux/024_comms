@@ -1,2 +1,2 @@
-sudo pacman -S --needed --noconfirm telegram-desktop discord
-yay -S --needed --noconfirm mailspring slack-desktop
+sudo pacman -S --needed --noconfirm telegram-desktop discord libsecret gnome-keyring
+yay -S --needed --noconfirm mailspring slack-desktop protonmail-desktop
