@@ -12,5 +12,7 @@ sudo npm i -gh eslint lynt pug-lint-vue instant-markdown-d
 
 yay -S --noconfirm --needed todoist-linux-bin
 
+sudo npm install -g npm
+
 echo "TODO: install plugins on start"
 echo "TODO: ag ignore compiled stuff"

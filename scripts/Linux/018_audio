@@ -1,4 +1,5 @@
-sudo pacman -S --needed --noconfirm pulseaudio pavucontrol playerctl
+sudo pacman -S --needed --noconfirm pulseaudio pavucontrol playerctl alsa-utils \
+pulseaudio-alsa pulseaudio-bluetooth pulseaudio-equalizer pulseaudio-jack pulseaudio-zeroconf
 
 # had issues with icons, reinstall fixed it
 sudo pacman -S --noconfirm kmix
