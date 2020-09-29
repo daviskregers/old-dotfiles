@@ -412,3 +412,6 @@ let g:indentLine_color_term = 0
 " switch tabs
 nnoremap <C-Left> :bp<CR>
 nnoremap <C-Right> :bn<CR>
+
+" Sorting
+map <C-s> :sort u<CR>
