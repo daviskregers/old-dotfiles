@@ -408,3 +408,7 @@ let g:dart_format_on_save = 1
 " Indent line
 let g:indentLine_color_term = 0
 
+
+" switch tabs
+nnoremap <C-Left> :bp<CR>
+nnoremap <C-Right> :bn<CR>
