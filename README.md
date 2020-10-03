@@ -56,3 +56,4 @@ timeout 3
 EOF
 ```
 
+Also, on that machine I used 2 partitions instead of 3 - EFI and system partition.
