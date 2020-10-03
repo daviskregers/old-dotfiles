@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source ../.bash_helpers
+
+cd $DOTFILES
+
+if ! git diff-index --quiet HEAD --; then
+    echo -e $SEPARATOR
+    echo -e "${RED}Dotfiles have been changed, make sure to commit & push!$END"
+    echo -e $SEPARATOR
+    confirmation
+fi
+
+git pull
+source ./configure-user.sh

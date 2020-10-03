@@ -37,8 +37,8 @@ cat /etc/hosts
 echo "Set up grub"
 read -p "On which device is the linux installed? (/dev/sdX) " devicepath
 
-systempartition=${devicepath}3
-bootparition=${devicepath}2
+systempartition=${devicepath}2
+bootparition=${devicepath}1
 efipartition=${devicepath}1
 
 sed -i "s#GRUB_CMDLINE_LINUX=[\"][\"]#GRUB_CMDLINE_LINUX=\"cryptdevice=$systempartition:system\"#g" /etc/default/grub

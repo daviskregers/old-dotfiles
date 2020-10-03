@@ -32,8 +32,8 @@ ${GREEN}Format: /dev/sdX$END
 read -p "Device name: " device
 
 efipartition=${device}1
-bootpartition=${device}2
-systempartition=${device}3
+bootpartition=${device}1
+systempartition=${device}2
 luks_root=system
 luks_path=/dev/mapper/$luks_root
 
@@ -59,8 +59,8 @@ modprobe dm-mod || exit 1;
 cryptsetup luksFormat -v -s 512 -h sha512 $systempartition || exit 1;
 cryptsetup open $systempartition $luks_root || exit 1;
 
-mkfs.vfat -n "EFI System Partition" $efiparition
-mkfs.ext4 -L boot $bootpartition
+mkfs.vfat -F32 $efiparition
+#mkfs.ext4 -L boot $bootpartition
 mkfs.ext4 -L root $luks_path
 
 echo -e "${RED}Installing arch$END"
@@ -73,9 +73,9 @@ echo "make & mount boot directory - $bootpartition"
 mkdir /mnt/boot || cleanup;
 mount $bootpartition /mnt/boot || cleanup;
 
-echo "make & mount efi directory - $efiparition"
-mkdir /mnt/boot/efi || cleanup;
-mount $efipartition /mnt/boot/efi || cleanup;
+#echo "make & mount efi directory - $efiparition"
+#mkdir /mnt/boot/efi || cleanup;
+#mount $efipartition /mnt/boot/efi || cleanup;
 
 echo "install arch base"
 pacstrap -i /mnt base base-devel efibootmgr grub vim neovim mkinitcpio linux linux-firmware os-prober || cleanup;

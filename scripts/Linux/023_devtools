@@ -1,2 +1,9 @@
 sudo pacman -S --needed --noconfirm code mono dotnet-host dotnet-runtime dotnet-sdk
-yay -S --needed --noconfirm postman-bin
+
+if ! command -v postman &> /dev/null
+then
+    yay -S --needed --noconfirm postman-bin
+else
+    echo "postman already installed"
+fi
+

@@ -15,7 +15,6 @@ alias c.="cd .."
 alias dot="cd ~/.dotfiles"
 alias pr="cd $PROJECTS"
 
-
 # git
 
 alias ga="git add"
@@ -29,7 +28,23 @@ alias gc="git checkout"
 
 alias dp="docker ps"
 alias du="docker-compose up"
-#alias dkill="docker kill $(docker ps -q)"
+
+function dkill() {
+    docker kill $(docker ps -q)
+}
+
+function drm() {
+    docker rm -f $(docker ps -qa)
+}
+
+function dipfix() {
+    sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+    sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
+}
+
+# archiving
+alias dirgz="find * -maxdepth 0 -type d -exec tar czvf {}.tar.gz {} \;"
+alias dirzip="find * -maxdepth 0 -type d -exec zip -r {}.zip {} \;"
 
 # python
 

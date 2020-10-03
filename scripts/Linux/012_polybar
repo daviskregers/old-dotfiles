@@ -1,3 +1,8 @@
-yay -S --needed --noconfirm polybar
+if ! command -v polybar &> /dev/null
+then
+    yay -S --needed --noconfirm polybar
+else
+    echo "polybar already installed"
+fi
 
 sudo ln -sfv ~/.dotfiles/configuration/Linux/polybar ~/.config

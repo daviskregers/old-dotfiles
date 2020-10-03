@@ -1,4 +1,9 @@
-yay -S --needed --noconfirm albert
+if ! command -v albert &> /dev/null
+then
+    yay -S --needed --noconfirm albert
+else
+    echo "albert already installed"
+fi
 
 ln -sfv ~/.dotfiles/configuration/Linux/.albertignore
 mkdir -p ~/.config/albert

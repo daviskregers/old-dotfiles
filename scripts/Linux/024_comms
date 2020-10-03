@@ -1,2 +1,18 @@
 sudo pacman -S --needed --noconfirm telegram-desktop discord libsecret gnome-keyring
-yay -S --needed --noconfirm mailspring slack-desktop protonmail-desktop
+yay_packages=(
+        "mailspring:mailspring"
+        "slack:slack-desktop"
+        "protonmail-desktop:protonmail-desktop" )
+
+
+for app in "${yay_packages[@]}"
+do
+    command="${app%%:*}"
+    package="${app##*:}"
+    if ! command -v $command &> /dev/null
+    then
+        yay -S --needed --noconfirm $package
+    else
+        echo "$package already installed"
+    fi
+done
