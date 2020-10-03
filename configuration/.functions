@@ -4,6 +4,7 @@ alias c="clear"
 alias ls="ls --color=auto"
 alias l="ls -lah --color=auto"
 alias shdn="shutdown now"
+alias dotupd="dotfiles_update"
 
 # zsh
 
