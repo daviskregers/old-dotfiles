@@ -1,4 +1,4 @@
-sudo pacman -S --needed --noconfirm code mono dotnet-host dotnet-runtime dotnet-sdk
+sudo pacman -S --needed --noconfirm code mono dotnet-host dotnet-runtime dotnet-sdk ktimer
 
 if ! command -v postman &> /dev/null
 then
@@ -6,4 +6,3 @@ then
 else
     echo "postman already installed"
 fi
-
