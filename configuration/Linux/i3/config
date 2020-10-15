@@ -228,7 +228,7 @@ exec spotify
 exec "launch_redshift --auto 6500:2500"
 exec launch_lockscreen
 exec launch_mailspring
-exec_always protonmail-desktop
+#exec_always protonmail-desktop
 exec albert
 exec_always update_ntpd
 exec "unclutter &"
