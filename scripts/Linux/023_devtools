@@ -1,4 +1,4 @@
-sudo pacman -S --needed --noconfirm code mono dotnet-host dotnet-runtime dotnet-sdk filezilla wine-stable
+sudo pacman -S --needed --noconfirm code mono dotnet-host dotnet-runtime dotnet-sdk filezilla wine-stable ktimer
 
 if ! command -v postman &> /dev/null
 then
