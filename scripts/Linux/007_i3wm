@@ -28,5 +28,8 @@ fi
 
 launch_lockscreen --force
 
+sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
+cat /etc/sudoers | grep wheel
+
 echo "TODO: can we solve the i3-wm i3-gaps conflicts?"
 echo "TODO: dynamic resolution to set for the launch_lockscreen?"

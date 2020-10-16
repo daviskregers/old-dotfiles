@@ -6,5 +6,6 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 source ~/.variables
 source ~/.functions
+source ~/.edurioalias
 
 screenfetch
