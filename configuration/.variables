@@ -50,3 +50,6 @@ export POLYBAR_CALENDAR_CREDS=$HOME/.poly_calendar_credentials.json
 export EDURIO_DEV_DIR=$PROJECTS/edurio/
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
+
+export DOTFILES_ENABLE_KEYPAD="on"
+source .override_variables
