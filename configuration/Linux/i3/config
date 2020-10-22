@@ -233,6 +233,7 @@ exec albert
 exec_always update_ntpd
 exec "unclutter &"
 exec "enable-numlock-if-var"
+exec "launch_slack_startup"
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.

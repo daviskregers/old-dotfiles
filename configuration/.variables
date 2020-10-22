@@ -52,4 +52,4 @@ export EDURIO_DEV_DIR=$PROJECTS/edurio/
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
 export DOTFILES_ENABLE_KEYPAD="on"
-source .override_variables
+source ~/.override_variables
