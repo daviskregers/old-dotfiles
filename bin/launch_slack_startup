@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ "${DOTFILES_LAUNCH_SLACK_STARTUP}" == "on" ]]; then
+    slack &
+    echo "launching slack"
+else
+    echo "DOTFILES_LAUNCH_SLACK_STARTUP not set to \"on\""
+fi

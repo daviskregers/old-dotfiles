@@ -1,4 +1,4 @@
-sudo pacman -S --needed --noconfirm code mono dotnet-host dotnet-runtime dotnet-sdk ktimer
+sudo pacman -S --needed --noconfirm code mono dotnet-host dotnet-runtime dotnet-sdk filezilla wine-stable ktimer
 
 mkdir -p ~/.helpers/
 git clone https://github.com/strindberg/rg.git ~/.helpers/rg
@@ -8,4 +8,25 @@ then
     yay -S --needed --noconfirm postman-bin
 else
     echo "postman already installed"
+fi
+
+if ! command -v todoist &> /dev/null
+then
+    yay -S --needed --noconfirm todoist-electron
+else
+    echo "todoist already installed"
+fi
+
+if ! command -v heidisql &> /dev/null
+then
+    yay -S --needed --noconfirm heidisql
+else
+    echo "heidisql already installed"
+fi
+
+if ! command -v quickredis &> /dev/null
+then
+    yay -S --needed --noconfirm quickredis
+else
+    echo "quickredis already installed"
 fi
