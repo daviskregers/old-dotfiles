@@ -44,5 +44,9 @@ unset TERMCAP
 # Man is much better than us at figuring this out
 unset MANPATH
 
+export RUNNING_FROM_PROFILE=1
+
 source ~/.variables
 source ~/.functions
+
+unset RUNNING_FROM_PROFILE

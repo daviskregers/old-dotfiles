@@ -1,5 +1,5 @@
 call plug#begin('~/.config/nvim/plugged')
-    " Plug 'majutsushi/tagbar'
+    Plug 'majutsushi/tagbar'
     Plug 'AlessandroYorba/Alduin' " Colorscheme
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'ctrlpvim/ctrlp.vim'
@@ -25,6 +25,11 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'yggdroot/indentline'
     Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
     Plug 'frazrepo/vim-rainbow'
+    Plug 'tpope/vim-fugitive'
+    Plug 'christoomey/vim-conflicted'
+    Plug 'codegram/vim-codereview'
+    Plug 'junkblocker/patchreview-vim'
+
 
     if isdirectory('/usr/local/opt/fzf')
         Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -33,12 +38,18 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'junegunn/fzf.vim'
     endif
 
-    " :CocInstall coc-tsserver coc-git coc-yaml coc-json coc-python coc-html
-    " coc-eslint coc-rls coc-vetur coc-tslint coc-tslint-plugin coc-css
-    " coc-phpls coc-elixir coc-spell-checker coc-flutter
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
+
+function! InstallOrUpdatePlugins()
+    execute ":echo \"Updating plugins...\""
+    execute ":PlugClean"
+    execute ":PlugInstall"
+    execute ":PlugUpdate"
+    execute ":CocInstall coc-tsserver coc-git coc-yaml coc-json coc-python coc-html coc-eslint coc-rls coc-vetur coc-tslint coc-tslint-plugin coc-css coc-phpls coc-elixir coc-spell-checker coc-flutter"
+endfunction
+" autocmd VimEnter * call InstallOrUpdatePlugins()
 
 au ColorScheme * hi Normal ctermbg=none guibg=none
 au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red
@@ -48,7 +59,6 @@ au FileType c,cpp,objc,objcpp,cs,js,php,vue call rainbow#load()
 let g:rainbow_active = 1
 
 " General settings
-set tags=tags;,./tags;
 syntax on
 set ruler
 set number              " show line numbers
@@ -113,7 +123,7 @@ set autoread
 set mouse=a
 
 " RELOAD vimrc
-map <F9> :source ~/.config/nvim/init.vim<CR>
+map <F9> :source ~/.config/nvim/init.vim<CR>:call InstallOrUpdatePlugins()<CR>
 
 " Display tasks
 function! SearchTodos()
@@ -139,7 +149,7 @@ let g:airline_theme = 'angr'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
 
 " Syntax
@@ -177,18 +187,18 @@ noremap <leader>w :bn<CR>
 noremap <leader>c :NERDTreeClose<CR>:bd<CR>
 
 " Tags
-" nmap <F5> :TagbarToggle<CR>
+nmap <F5> :TagbarToggle<CR>
 " autocmd BufEnter * TagbarToggle
 
 " Search
 let g:fzf_buffers_jump = 1
 
-" The Silver Searcher
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
+" RG searcher
+if executable('rg')
+  set grepprg=rg\ --nogroup\ --nocolor
 endif
-let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git --ignore "*tags" --ignore "*-chunk.js" -g ""'
-nnoremap <silent> <F3> :Ag<CR>
+let $FZF_DEFAULT_COMMAND = 'rg --hidden'
+nnoremap <silent> <F3> :Rg<CR>
 
 " CtrlP
 let g:ctrlp_map = '<F2>'
@@ -415,3 +425,28 @@ nnoremap <C-Right> :bn<CR>
 
 " Sorting
 map <C-s> :sort u<CR>
+
+" Git merge conflicts
+
+function! s:setupConflicted()
+    set stl+=%{ConflictedVersion()}
+    " Resolve and move to next conflicted file.
+    nnoremap ]m :GitNextConflict<cr>
+endfunction
+autocmd User VimConflicted call s:setupConflicted()
+
+
+" Folding
+inoremap <leader>f <C-O>za
+nnoremap <leader>f za
+onoremap <leader>f <C-C>za
+vnoremap <leader>f zf
+
+" Trailing whitespace
+nnoremap <leader>s :s/\s\+$//e<CR>
+
+" Tags
+set tags=tags;,./tags;
+nnoremap <F10> :!ctags -R .<CR>
+
+

@@ -1,5 +1,8 @@
 sudo pacman -S --needed --noconfirm code mono dotnet-host dotnet-runtime dotnet-sdk ktimer
 
+mkdir -p ~/.helpers/
+git clone https://github.com/strindberg/rg.git ~/.helpers/rg
+
 if ! command -v postman &> /dev/null
 then
     yay -S --needed --noconfirm postman-bin

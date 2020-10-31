@@ -24,6 +24,27 @@ alias gp="git push"
 alias gpl="git push"
 alias gd="git diff"
 alias gc="git checkout"
+alias gconf="git conflicted"
+
+# search
+
+if [[ $RUNNING_FROM_PROFILE != 1 && -f ~/.helpers/rg/rgf ]]
+then
+    source ~/.helpers/rg/rgf
+
+    RG_EXCLUDES=(build target node node_modules bower_components \
+        '.idea' '.settings' '.git' '.svn' '.gradle' \
+        '*min.js' '*min.css' '*js.map' '*css.map' '*-chunk.*' \
+        'bundle.js' '*.bundle.*'
+    )
+
+    alias rG='noglob rgf -f ${=${(j: -f :)RG_EXCLUDES}}'
+    alias rg='rG -i'
+
+    declare -a lastoutput
+else
+    echo "rg not found, skipping..."
+fi
 
 # docker
 

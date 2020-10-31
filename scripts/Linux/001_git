@@ -1,5 +1,7 @@
 sudo pacman -Sy --noconfirm git
 
 echo "Setting git user to $GIT_NAME <$GIT_EMAIL>"
+# TODO: implement overrides
 git config --global user.email "$GIT_EMAIL"
 git config --global user.name "$GIT_NAME"
+git config --global alias.conflicted '!nvim +Conflicted'
