@@ -1,1 +1,4 @@
-echo "TODO: firewall"
+sudo pacman -S --needed --noconfirm gufw fail2ban
+sudo systemctl enable ufw
+sudo ufw enable
+sudo systemctl enable fail2ban
