@@ -30,3 +30,10 @@ then
 else
     echo "quickredis already installed"
 fi
+
+if ! command -v mimic &> /dev/null
+then
+    yay -S --needed --noconfirm mimic
+else
+    echo "mimic already installed"
+fi

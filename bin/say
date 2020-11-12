@@ -1,0 +1,36 @@
+#!/bin/bash
+
+if [ "$#" -lt 1 ]; then
+    echo "Usage:"
+    echo "- say \"something\""
+    echo "- say -t 10s \"something\""
+    echo "- say -t 15:14 \"something\""
+fi
+
+timeout=${t:-0}
+
+# If -t is set, the text is in the 3rd arg.
+# If not, it's the first one.
+text=$1
+if [ "$text" = "-t" ]; then
+    text=$3
+    timeout=$2
+fi
+
+# If the -t contains a colon, it is a time
+# and we calculate time difference from now in seconds.
+if [[ $timeout == *":"* ]] ; then
+    date=$(date --date $timeout +%s)
+    now=$(date +%s)
+
+    if [[ "$date" -lt "$now" ]]; then
+        echo "Date should be in future"
+        exit 1
+    fi
+
+    timeout=$(($date - $now))
+fi
+
+# This is executed in another process in order for not waiting in terminal for it to execute.
+# Basically waits for the timeout, sends a notification and plays tts of the text.
+bash -c "sleep $timeout && notify-send 'Friendly reminder' $text --expire-time 20000 --urgency critical --icon=dialog-information && mimic -t $text" &

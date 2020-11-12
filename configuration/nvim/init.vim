@@ -30,7 +30,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'codegram/vim-codereview'
     Plug 'junkblocker/patchreview-vim'
 
-
     if isdirectory('/usr/local/opt/fzf')
         Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
     else
@@ -72,6 +71,8 @@ set signcolumn=yes      " always show signcolumns
 let mapleader=','       " Map leader to ,
 filetype plugin on
 
+" Font
+set guifont=Fira\ Code:h12
 
 "" Colors
 set background = "dark"
@@ -449,4 +450,11 @@ nnoremap <leader>s :s/\s\+$//e<CR>
 set tags=tags;,./tags;
 nnoremap <F10> :!ctags -R .<CR>
 
+" Providers
+let g:ruby_host_prog = '~/.gem/ruby/2.7.0/bin/neovim-ruby-host'
+let g:python3_host_prog = '/usr/bin/python'
+
+" YAML
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 

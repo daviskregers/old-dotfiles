@@ -1,4 +1,6 @@
-sudo pacman -S --needed --noconfirm neovim
+sudo pacman -S --needed --noconfirm neovim ruby
+gem install --user neovim
+python -m pip install --user --upgrade pynvim
 
 if ! command -v ag &> /dev/null
 then
@@ -17,6 +19,3 @@ composer global require phpdocumentor/phpdocumentor phpmd/phpmd squizlabs/php_co
 sudo npm i -gh eslint lynt pug-lint-vue instant-markdown-d
 
 sudo npm install -g npm
-
-echo "TODO: install plugins on start"
-echo "TODO: ag ignore compiled stuff"

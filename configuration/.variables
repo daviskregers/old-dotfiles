@@ -9,7 +9,7 @@ if [[ $0 =~ ^.*\.variables$ ]]; then
 fi
 
 # Specify default terminal for i3wm
-export TERMINAL="alacritty -e tmux"
+export TERMINAL="konsole -e tmux"
 
 # Nicer look of Java Apps
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
