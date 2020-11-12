@@ -2,7 +2,7 @@
 DefaultProfile=Profile.profile
 
 [Favorite Profiles]
-Favorites=Profile.profile
+Favorites=
 
 [KonsoleWindow]
 SaveGeometryOnExit=false
@@ -12,8 +12,9 @@ ShowMenuBarByDefault=false
 DP-0 DP-3 Height 1080=1051
 DP-0 DP-3 Height 1200=1171
 DP-0 DP-3 Width 1920=1918
-DP-0 DP-3 XPosition=1
+DP-0 DP-3 XPosition=1921
 DP-0 DP-3 YPosition=1
 MenuBar=Disabled
-State=AAAA/wAAAAD9AAAAAAAAB34AAAR7AAAABAAAAAQAAAAIAAAACPwAAAAA
+RestorePositionForNextInstance=false
+State=AAAA/wAAAAD9AAAAAAAAB34AAAQbAAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
