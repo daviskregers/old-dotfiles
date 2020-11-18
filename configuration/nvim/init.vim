@@ -27,8 +27,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'frazrepo/vim-rainbow'
     Plug 'tpope/vim-fugitive'
     Plug 'christoomey/vim-conflicted'
-    Plug 'codegram/vim-codereview'
-    Plug 'junkblocker/patchreview-vim'
 
     if isdirectory('/usr/local/opt/fzf')
         Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -93,6 +91,7 @@ set tabstop=4
 set softtabstop=0
 set shiftwidth=4
 set expandtab
+set foldmethod=indent
 
 "" The PC is fast enough, do syntax highlight syncing from start unless 200 lines
 augroup vimrc-sync-fromstart
@@ -441,7 +440,17 @@ autocmd User VimConflicted call s:setupConflicted()
 inoremap <leader>f <C-O>za
 nnoremap <leader>f za
 onoremap <leader>f <C-C>za
-vnoremap <leader>f zf
+vnoremap <leader>f zR
+
+inoremap <leader>F <C-O>zR
+nnoremap <leader>F zR
+onoremap <leader>F <C-C>zR
+vnoremap <leader>F zR
+
+inoremap <leader>FF <C-O>zM
+nnoremap <leader>FF zM
+onoremap <leader>FF <C-C>zM
+vnoremap <leader>FF zM
 
 " Trailing whitespace
 nnoremap <leader>s :s/\s\+$//e<CR>
@@ -458,3 +467,6 @@ let g:python3_host_prog = '/usr/bin/python'
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
+" Vue
+au! BufNewFile,BufReadPost *.vue set filetype=vue foldmethod=indent
+autocmd FileType vue setlocal ts=2 sts=2 sw=2 expandtab

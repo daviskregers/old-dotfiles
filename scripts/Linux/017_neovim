@@ -19,3 +19,4 @@ composer global require phpdocumentor/phpdocumentor phpmd/phpmd squizlabs/php_co
 sudo npm i -gh eslint lynt pug-lint-vue instant-markdown-d
 
 sudo npm install -g npm
+sudo npm install -g eslint
