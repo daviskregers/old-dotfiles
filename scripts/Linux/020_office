@@ -6,3 +6,10 @@ then
 else
     echo "tusk already installed"
 fi
+
+if ! command -v authy &> /dev/null
+then
+    yay -S --needed --noconfirm authy
+else
+    echo "authy already installed"
+fi
