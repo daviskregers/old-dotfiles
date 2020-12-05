@@ -472,6 +472,11 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 au! BufNewFile,BufReadPost *.vue set filetype=vue foldmethod=indent
 autocmd FileType vue setlocal ts=2 sts=2 sw=2 expandtab
 
+" PHP docblock
+inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
+nnoremap <C-P> :call PhpDocSingle()<CR>
+vnoremap <C-P> :call PhpDocRange()<CR>
+
 " Vdebug
 
 let g:vdebug_options = {
