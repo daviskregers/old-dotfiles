@@ -1,12 +1,16 @@
 call plug#begin('~/.config/nvim/plugged')
-    Plug 'majutsushi/tagbar'
     Plug 'AlessandroYorba/Alduin' " Colorscheme
     Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'christoomey/vim-conflicted'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'dart-lang/dart-vim-plugin'
     Plug 'ekalinin/dockerfile.vim'
+    Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
     Plug 'ferrine/md-img-paste.vim'
+    Plug 'frazrepo/vim-rainbow'
     Plug 'jistr/vim-nerdtree-tabs'
+    Plug 'joonty/vdebug'
+    Plug 'majutsushi/tagbar'
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'omnisharp/omnisharp-vim' " RUN :OmniSharpInstall v1.34.2
     Plug 'plasticboy/vim-markdown'
@@ -16,6 +20,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'scrooloose/nerdtree'
     Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plug 'tpope/vim-fugitive'
     Plug 'tveskag/nvim-blame-line' " Display GIT Blame on the same line as cursor
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -23,10 +28,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'vim-scripts/PDV--phpDocumentor-for-Vim'
     Plug 'vim-syntastic/syntastic'
     Plug 'yggdroot/indentline'
-    Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
-    Plug 'frazrepo/vim-rainbow'
-    Plug 'tpope/vim-fugitive'
-    Plug 'christoomey/vim-conflicted'
 
     if isdirectory('/usr/local/opt/fzf')
         Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -470,3 +471,13 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 " Vue
 au! BufNewFile,BufReadPost *.vue set filetype=vue foldmethod=indent
 autocmd FileType vue setlocal ts=2 sts=2 sw=2 expandtab
+
+" Vdebug
+
+let g:vdebug_options = {
+      \ 'port' : 9001,
+      \ 'server' : '',
+      \ 'path_maps': {
+      \    '/var/www/': '/home/davis/projects/edurio/edurio_api/'
+      \ }
+      \}
