@@ -11,6 +11,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'jistr/vim-nerdtree-tabs'
     Plug 'joonty/vdebug'
     Plug 'majutsushi/tagbar'
+    Plug 'mg979/vim-visual-multi'
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'omnisharp/omnisharp-vim' " RUN :OmniSharpInstall v1.34.2
     Plug 'plasticboy/vim-markdown'
@@ -25,7 +26,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'vim-scripts/BufOnly.vim'
-    Plug 'vim-scripts/PDV--phpDocumentor-for-Vim'
     Plug 'vim-syntastic/syntastic'
     Plug 'yggdroot/indentline'
 
@@ -75,7 +75,6 @@ set guifont=Fira\ Code:h12
 
 "" Colors
 set background = "dark"
-" let g:alduin_Shout_Dragon_Aspect = 1
 silent! colorscheme alduin " https://github.com/AlessandroYorba/Alduin
 
 "" Encoding
@@ -205,6 +204,44 @@ nnoremap <silent> <F3> :Rg<CR>
 let g:ctrlp_map = '<F2>'
 let g:ctrlp_cmd = 'CtrlP'
 
+" --- COC configuration
+" Add an option to rename things
+nmap <leader>rn <Plug>(coc-rename)
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of language server.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+" Notes on COC:
+" -- dockblocks - just type /**
+
+" unfold all under selected
+" formatting
+" " Applying codeAction to the selected region.
+
 " Autocomplete
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -256,6 +293,10 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
+" Refactor
+xmap <leader>rf <Plug>(coc-refactor)
+nmap <leader>rf <Plug>(coc-refactor)
+
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -268,11 +309,6 @@ augroup end
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Docblock
-inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
-nnoremap <C-P> :call PhpDocSingle()<CR>
-vnoremap <C-P> :call PhpDocRange()<CR>
 
 " Markdown
 let g:vim_markdown_folding_disabled = 1
@@ -417,7 +453,7 @@ set noswapfile
 let g:dart_format_on_save = 1
 
 " Indent line
-let g:indentLine_color_term = 0
+" let g:indentLine_color_term = 0
 
 
 " switch tabs
@@ -425,7 +461,7 @@ nnoremap <C-Left> :bp<CR>
 nnoremap <C-Right> :bn<CR>
 
 " Sorting
-map <C-s> :sort u<CR>
+map <leader>s :sort u<CR>
 
 " Git merge conflicts
 
@@ -438,23 +474,24 @@ autocmd User VimConflicted call s:setupConflicted()
 
 
 " Folding
-inoremap <leader>f <C-O>za
-nnoremap <leader>f za
-onoremap <leader>f <C-C>za
-vnoremap <leader>f zR
+" Just use the za / zR
+"inoremap <leader>f <C-O>za
+"nnoremap <leader>f za
+"onoremap <leader>f <C-C>za
+"vnoremap <leader>f zR
 
-inoremap <leader>F <C-O>zR
-nnoremap <leader>F zR
-onoremap <leader>F <C-C>zR
-vnoremap <leader>F zR
+"inoremap <leader>F <C-O>zR
+"nnoremap <leader>F zR
+"onoremap <leader>F <C-C>zR
+"vnoremap <leader>F zR
 
-inoremap <leader>FF <C-O>zM
-nnoremap <leader>FF zM
-onoremap <leader>FF <C-C>zM
-vnoremap <leader>FF zM
+"inoremap <leader>FF <C-O>zM
+"nnoremap <leader>FF zM
+"onoremap <leader>FF <C-C>zM
+"vnoremap <leader>FF zM
 
 " Trailing whitespace
-nnoremap <leader>s :s/\s\+$//e<CR>
+" nnoremap <leader>s :s/\s\+$//e<CR>
 
 " Tags
 set tags=tags;,./tags;
@@ -472,13 +509,7 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 au! BufNewFile,BufReadPost *.vue set filetype=vue foldmethod=indent
 autocmd FileType vue setlocal ts=2 sts=2 sw=2 expandtab
 
-" PHP docblock
-inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
-nnoremap <C-P> :call PhpDocSingle()<CR>
-vnoremap <C-P> :call PhpDocRange()<CR>
-
 " Vdebug
-
 let g:vdebug_options = {
       \ 'port' : 9001,
       \ 'server' : '',
@@ -486,3 +517,13 @@ let g:vdebug_options = {
       \    '/var/www/': '/home/davis/projects/edurio/edurio_api/'
       \ }
       \}
+
+" multiple cursors
+"let g:VM_maps = {}
+"let g:VM_maps['Find Under']         = '<C-d>'           " replace C-n
+"let g:VM_maps['Find Subword Under'] = '<C-d>'           " replace visual C-n
+
+let g:VM_mouse_mappings = 1
+nmap   <C-LeftMouse>         <Plug>(VM-Mouse-Cursor)
+nmap   <C-RightMouse>        <Plug>(VM-Mouse-Word)
+nmap   <M-C-RightMouse>      <Plug>(VM-Mouse-Column)
