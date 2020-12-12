@@ -10,6 +10,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'frazrepo/vim-rainbow'
     Plug 'jistr/vim-nerdtree-tabs'
     Plug 'joonty/vdebug'
+    Plug 'junegunn/vim-easy-align'
     Plug 'majutsushi/tagbar'
     Plug 'mg979/vim-visual-multi'
     Plug 'ntpeters/vim-better-whitespace'
@@ -527,3 +528,12 @@ let g:VM_mouse_mappings = 1
 nmap   <C-LeftMouse>         <Plug>(VM-Mouse-Cursor)
 nmap   <C-RightMouse>        <Plug>(VM-Mouse-Word)
 nmap   <M-C-RightMouse>      <Plug>(VM-Mouse-Column)
+
+" Alignment
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+" try these commands:
+" vipga= visual-select inner paragraph
+" gaip= Start EasyAlign command (ga) for inner paragraph
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
