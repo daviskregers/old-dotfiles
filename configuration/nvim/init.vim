@@ -315,7 +315,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 let g:vim_markdown_folding_disabled = 1
 
 "let g:instant_markdown_slow = 1
-"let g:instant_markdown_autostart = 0
+let g:instant_markdown_autostart = 1
 "let g:instant_markdown_open_to_the_world = 1
 "let g:instant_markdown_allow_unsafe_content = 1
 "let g:instant_markdown_allow_external_content = 0

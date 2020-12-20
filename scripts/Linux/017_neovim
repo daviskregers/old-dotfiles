@@ -1,4 +1,4 @@
-sudo pacman -S --needed --noconfirm neovim ruby
+sudo pacman -S --needed --noconfirm neovim ruby xclip
 gem install --user neovim
 python -m pip install --user --upgrade pynvim
 
@@ -20,3 +20,4 @@ sudo npm i -gh eslint lynt pug-lint-vue instant-markdown-d
 
 sudo npm install -g npm
 sudo npm install -g eslint
+sudo npm install -g instant-markdown-d
