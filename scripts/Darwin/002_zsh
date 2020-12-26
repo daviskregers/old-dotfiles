@@ -1,0 +1,11 @@
+ln -sfv ~/.dotfiles/configuration/.variables ~
+ln -sfv ~/.dotfiles/configuration/.functions ~
+touch ~/.override_variables
+
+if [ ! -d "~/.oh-my-zsh" ]; then
+	curl -L http://install.ohmyz.sh | sh
+else
+	echo "oh-my-zsh already installed"
+fi
+
+ln -sfv ~/.dotfiles/configuration/.zshrc ~

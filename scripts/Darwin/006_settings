@@ -1,0 +1,3 @@
+# dark mode
+sudo defaults write /Library/Preferences/.GlobalPreferences.plist _HIEnableThemeSwitchHotKey -bool true
+osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'

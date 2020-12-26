@@ -1,3 +1,4 @@
+ARCH=$(uname)
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
@@ -8,4 +9,6 @@ source ~/.variables
 source ~/.functions
 source ~/.edurioalias
 
-screenfetch
+if [ $ARCH = "Linux" ]; then
+	screenfetch
+fi

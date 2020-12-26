@@ -1,8 +1,11 @@
 # bash
+ARCH=$(uname)
 
 alias c="clear"
-alias ls="ls --color=auto"
-alias l="ls -lah --color=auto"
+if [ $ARCH = "Linux" ]; then
+	alias ls="ls --color=auto"
+	alias l="ls -lah --color=auto"
+fi
 alias shdn="shutdown now"
 alias dotupd="dotfiles_update"
 

@@ -1,0 +1,6 @@
+brew install --cask authy
+mas install 406056744 # evernote
+mas install 585829637 # todoist
+mas install 926036361 # lastpass
+brew install --cask protonmail-bridge
+

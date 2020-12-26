@@ -1,0 +1,19 @@
+brew install --cask docker
+
+brew tap homebrew/cask-fonts
+brew install --cask font-fira-code
+
+# iterm
+brew install --cask iterm2
+ln -sfv ~/.dotfiles/configuration/Darwin/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
+
+# tmux
+brew install tmux
+ln -sfv ~/.dotfiles/configuration/.tmux.conf ~
+brew install reattach-to-user-namespace
+
+# neovim
+brew install neovim
+mkdir ~/.config
+ln -sfv ~/.dotfiles/configuration/nvim ~/.config/nvim
+brew install ripgrep
