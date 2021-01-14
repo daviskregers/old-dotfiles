@@ -1,4 +1,4 @@
-sudo pacman -S --needed --noconfirm code mono dotnet-host dotnet-runtime dotnet-sdk filezilla wine-stable ktimer net-tools kcachegrind
+sudo pacman -S --needed --noconfirm code mono dotnet-host dotnet-runtime dotnet-sdk filezilla wine-stable ktimer net-tools kcachegrind graphviz
 
 mkdir -p ~/.helpers/
 git clone https://github.com/strindberg/rg.git ~/.helpers/rg
