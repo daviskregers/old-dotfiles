@@ -1,1 +1,3 @@
 brew install --cask google-chrome
+brew install --cask firefox
+brew install geckodriver

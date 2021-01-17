@@ -17,3 +17,28 @@ brew install neovim
 mkdir ~/.config
 ln -sfv ~/.dotfiles/configuration/nvim ~/.config/nvim
 brew install ripgrep
+
+# python3
+brew install python3
+pip3 install --user --upgrade neovim pynvim pylint pillow
+
+# nodejs
+brew install nodejs yarn
+sudo npm i -g eslint
+sudo npm i -g instant-markdown-d
+sudo npm i -g lynt
+sudo npm i -g npm
+sudo npm i -g pug-lint-vue
+
+# database
+brew install --cask dbeaver-community
+
+# ruby
+gem install --user neovim
+
+# php
+
+brew install php composer
+composer global require phpdocumentor/phpdocumentor -W
+composer global require phpmd/phpmd -W
+composer global require squizlabs/php_codesniffer -W

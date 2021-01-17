@@ -500,7 +500,22 @@ nnoremap <F10> :!ctags -R .<CR>
 
 " Providers
 let g:ruby_host_prog = '~/.gem/ruby/2.7.0/bin/neovim-ruby-host'
-let g:python3_host_prog = '/usr/bin/python'
+
+if !exists("g:os")
+    if has("win64") || has("win32") || has("win16")
+        let g:os = "Windows"
+    else
+        let g:os = substitute(system('uname'), '\n', '', '')
+    endif
+endif
+
+if has("gui_running")
+    if g:os == "Darwin"
+        let g:python3_host_prog = '/usr/local/bin/python3'
+    elseif g:os == "Linux"
+        let g:python3_host_prog = '/usr/bin/python'
+    endif
+endif
 
 " YAML
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
@@ -537,3 +552,20 @@ nmap   <M-C-RightMouse>      <Plug>(VM-Mouse-Column)
 " gaip= Start EasyAlign command (ga) for inner paragraph
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" Line numbers
+set number relativenumber
+
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:augroup END
+
+" Indentation
+
+function! SetAutoIndent()
+    set autoindent
+    set smartindent
+endfunction
+autocmd VimEnter * call SetAutoIndent()
