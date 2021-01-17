@@ -20,6 +20,25 @@ brew install ripgrep
 
 # python3
 brew install python3
+pip3 install --user --upgrade neovim pynvim pylint pillow
+
+# nodejs
+brew install nodejs yarn
+sudo npm i -g eslint
+sudo npm i -g instant-markdown-d
+sudo npm i -g lynt
+sudo npm i -g npm
+sudo npm i -g pug-lint-vue
 
 # database
 brew install --cask dbeaver-community
+
+# ruby
+gem install --user neovim
+
+# php
+
+brew install php
+composer global require phpdocumentor/phpdocumentor
+composer global require phpmd/phpmd
+composer global require squizlabs/php_codesniffer
