@@ -552,3 +552,20 @@ nmap   <M-C-RightMouse>      <Plug>(VM-Mouse-Column)
 " gaip= Start EasyAlign command (ga) for inner paragraph
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" Line numbers
+set number relativenumber
+
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:augroup END
+
+" Indentation
+
+function! SetAutoIndent()
+    set autoindent
+    set smartindent
+endfunction
+autocmd VimEnter * call SetAutoIndent()

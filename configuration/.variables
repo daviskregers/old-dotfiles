@@ -4,8 +4,12 @@
 # so we check for .variables at the end.
 ARCH=$(uname)
 
-if [ $ARCH = "Linux" ] && [[ $0 =~ ^.*\.variables$ ]]; then
-    dir=$(readlink -f "$0")
+if [[ $0 =~ ^.*\.variables$ ]]; then
+    if [ $ARCH = "Linux" ] ; then
+        dir=$(readlink -f "$0")
+    else
+        dir=$(readlink "$0")
+    fi
     export DOTFILES="$(dirname $(dirname $dir))"
 fi
 
@@ -30,6 +34,7 @@ export LESS_TERMCAP_so=$(printf '\e[1;44;1m')
 # PATHS
 export PATH=~/.local/bin:$PATH # AWS EB
 export PATH=~/.dotfiles/.config/composer/vendor/bin:$PATH # Composer
+export PATH=~/.composer/vendor/bin:$PATH
 export PATH=/var/lib/snapd/snap/bin:$PATH
 export GTK_PATH=:/usr/lib/gtk-2.0
 export PATH=~/.dotfiles/bin:$PATH

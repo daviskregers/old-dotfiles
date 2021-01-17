@@ -38,7 +38,7 @@ gem install --user neovim
 
 # php
 
-brew install php
-composer global require phpdocumentor/phpdocumentor
-composer global require phpmd/phpmd
-composer global require squizlabs/php_codesniffer
+brew install php composer
+composer global require phpdocumentor/phpdocumentor -W
+composer global require phpmd/phpmd -W
+composer global require squizlabs/php_codesniffer -W
