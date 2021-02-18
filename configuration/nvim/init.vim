@@ -169,9 +169,6 @@ let g:syntastic_elixir_checkers = ['elixir']
 let g:syntastic_enable_elixir_checker = 1
 let g:syntastic_cs_checkers = ['code_checker']
 
-" Color column for max characters in line
-:set colorcolumn=79
-
 " Trailing whitespace
 let g:better_whitespace_enabled=1
 autocmd BufEnter * EnableWhitespace
@@ -569,3 +566,21 @@ function! SetAutoIndent()
     set smartindent
 endfunction
 autocmd VimEnter * call SetAutoIndent()
+
+" Comments should be in red color
+
+syn match phpComment  "#.\{-}\(?>\|$\)\@="
+syn match phpComment  "//.\{-}\(?>\|$\)\@="
+syn match phpComment  "#.\{-}$"
+syn match phpComment  "#.\{-}?>"me=e-2
+syn match phpComment  "//.\{-}$"
+syn match phpComment  "//.\{-}?>"me=e-2
+syn region phpDocComment start="/\*\*" end="\*/"
+
+hi Comment  guifg=#80a0ff ctermfg=darkred
+hi phpDocComment guifg=#80a0ff ctermfg=darkred
+hi phpComment guifg=#80a0ff ctermfg=darkred
+
+" max line-width line should be red and 120 chars
+:set colorcolumn=120
+hi ColorColumn ctermfg=144 ctermbg=52
