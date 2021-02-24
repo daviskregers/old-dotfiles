@@ -13,6 +13,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'junegunn/vim-easy-align'
     Plug 'majutsushi/tagbar'
     Plug 'mg979/vim-visual-multi'
+    Plug 'morhetz/gruvbox'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'omnisharp/omnisharp-vim' " RUN :OmniSharpInstall v1.34.2
     Plug 'plasticboy/vim-markdown'
@@ -20,6 +22,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'sakshamgupta05/vim-todo-highlight' " Highlight tasks
     Plug 'scrooloose/nerdcommenter'
     Plug 'scrooloose/nerdtree'
+    Plug 'stanangeloff/php.vim'
     Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'tpope/vim-fugitive'
@@ -36,9 +39,6 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
         Plug 'junegunn/fzf.vim'
     endif
-
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 call plug#end()
 
 function! InstallOrUpdatePlugins()
@@ -75,8 +75,11 @@ filetype plugin on
 set guifont=Fira\ Code:h12
 
 "" Colors
-set background = "dark"
-silent! colorscheme alduin " https://github.com/AlessandroYorba/Alduin
+"set background = "dark"
+"silent! colorscheme alduin " https://github.com/AlessandroYorba/Alduin
+autocmd vimenter * ++nested colorscheme gruvbox
+set background=dark    " Setting dark mode
+colorscheme gruvbox
 
 "" Encoding
 set encoding=utf-8
@@ -560,27 +563,42 @@ set number relativenumber
 :augroup END
 
 " Indentation
-
 function! SetAutoIndent()
     set autoindent
     set smartindent
 endfunction
 autocmd VimEnter * call SetAutoIndent()
 
-" Comments should be in red color
+" comments should be red
 
-syn match phpComment  "#.\{-}\(?>\|$\)\@="
-syn match phpComment  "//.\{-}\(?>\|$\)\@="
-syn match phpComment  "#.\{-}$"
-syn match phpComment  "#.\{-}?>"me=e-2
-syn match phpComment  "//.\{-}$"
-syn match phpComment  "//.\{-}?>"me=e-2
-syn region phpDocComment start="/\*\*" end="\*/"
+function! OverrideCommentColors()
+    syn match phpComment  "#.\{-}\(?>\|$\)\@="
+    syn match phpComment  "//.\{-}\(?>\|$\)\@="
+    syn match phpComment  "#.\{-}$"
+    syn match phpComment  "#.\{-}?>"me=e-2
+    syn match phpComment  "//.\{-}$"
+    syn match phpComment  "//.\{-}?>"me=e-2
+    syn region phpDocComment start="/\*\*" end="\*/"
 
-hi Comment  guifg=#80a0ff ctermfg=darkred
-hi phpDocComment guifg=#80a0ff ctermfg=darkred
-hi phpComment guifg=#80a0ff ctermfg=darkred
+    au ColorScheme * :hi! Comment  guifg=#80a0ff ctermfg=darkred
+    au ColorScheme * :hi! phpDocComment guifg=#80a0ff ctermfg=darkred
+    au ColorScheme * :hi! phpComment guifg=#80a0ff ctermfg=darkred
+endfunctio
+
+augroup phpSyntaxOverride
+  autocmd!
+  autocmd FileType php call OverrideCommentColors()
+augroup END
+
+call OverrideCommentColors()
 
 " max line-width line should be red and 120 chars
 :set colorcolumn=120
-hi ColorColumn ctermfg=144 ctermbg=52
+au ColorScheme * :hi ColorColumn ctermfg=144 ctermbg=52
+
+" Change syntastic.nvim problem highlighting
+au ColorScheme * :hi SyntasticError ctermfg=144 ctermbg=9
+au ColorScheme * :hi SyntasticWarning ctermfg=144 ctermbg=9
+au ColorScheme * :hi SyntasticStyleError ctermfg=144 ctermbg=9
+au ColorScheme * :hi SyntasticStyleWarning
+au ColorScheme * :hi Comment ctermfg=blue
