@@ -2,11 +2,12 @@ brew install --cask docker
 
 brew tap homebrew/cask-fonts
 brew install --cask font-fira-code
+brew install --cask font-jetbrains-mono-nerd-font
+brew install --cask font-fira-code-nerd-font
 
 # iterm
 brew install --cask iterm2
-ln -sfv ~/.dotfiles/configuration/Darwin/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
-
+git clone https://github.com/kkga/nibar $HOME/Library/Application\ Support/†bersicht/widgets/nibar
 # tmux
 brew install tmux
 ln -sfv ~/.dotfiles/configuration/.tmux.conf ~
@@ -39,6 +40,18 @@ gem install --user neovim
 # php
 
 brew install php composer
+composer global config minimum-stability dev
 composer global require phpdocumentor/phpdocumentor -W
 composer global require phpmd/phpmd -W
 composer global require squizlabs/php_codesniffer -W
+composer global require phpactor/phpactor -W
+
+# uebersicht
+brew install --cask ubersicht
+git clone https://github.com/Jean-Tinland/simple-bar $HOME/Library/Application\ Support/Ãœbersicht/widgets/simple-bar
+
+# ksh
+brew install koekeishiya/formulae/skhd
+brew services start skhd
+
+brew install jq

@@ -15,9 +15,11 @@ sudo pacman -S --needed --noconfirm linux-headers gcc make python-pip nodejs npm
 ctags elixir python-pylint python-pillow yarn
 
 # composer global require hirak/prestissimo # install things in parallel
+composer global config minimum-stability dev
 composer global require phpdocumentor/phpdocumentor -W
 composer global require phpmd/phpmd -W
 composer global require squizlabs/php_codesniffer -W
+composer global require phpactor/phpactor -W
 sudo npm i -gh eslint lynt pug-lint-vue instant-markdown-d
 
 sudo npm install -g npm
