@@ -172,6 +172,10 @@ function! OverrideColors()
     hi SyntasticStyleError ctermfg=144 ctermbg=9
     hi SyntasticStyleWarning ctermfg=144 ctermbg=9
     hi SyntasticWarning ctermfg=144 ctermbg=9
+
+    " transparent background
+    hi! NonText ctermbg=NONE guibg=NONE
+    hi! Normal ctermbg=NONE guibg=NONE
 endfunction
 
 augroup MyColorScheme
