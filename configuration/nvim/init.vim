@@ -157,6 +157,14 @@ noremap <Leader>c :Bw<CR>
 noremap <leader>Q :PhpactorContextMenu<CR>
 noremap <leader>cc :call NERDComment('n', 'toggle')<CR>
 
+" move line up or down
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
 if exists(":Tabularize")
   nmap <Leader>t= :Tabularize /=<CR>
   nmap <Leader>t= :Tabularize /=<CR>
