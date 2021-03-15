@@ -16,10 +16,10 @@ ctags elixir python-pylint python-pillow yarn
 
 # composer global require hirak/prestissimo # install things in parallel
 composer global config minimum-stability dev
-composer global require phpdocumentor/phpdocumentor -W
-composer global require phpmd/phpmd -W
-composer global require squizlabs/php_codesniffer -W
-composer global require phpactor/phpactor -W
+composer global require phpdocumentor/phpdocumentor
+composer global require phpmd/phpmd
+composer global require squizlabs/php_codesniffer
+composer global require phpactor/phpactor
 sudo npm i -gh eslint lynt pug-lint-vue instant-markdown-d
 
 sudo npm install -g npm

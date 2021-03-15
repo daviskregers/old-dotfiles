@@ -1,10 +1,10 @@
 sudo pacman -S --needed --noconfirm libreoffice-still
 
-if ! command -v tusk &> /dev/null
+if ! command -v notion-app &> /dev/null
 then
-    yay -S --needed --noconfirm tusk
+    yay -S --needed --noconfirm notion-app
 else
-    echo "tusk already installed"
+    echo "notion-app already installed"
 fi
 
 if ! command -v authy &> /dev/null
