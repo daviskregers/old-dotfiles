@@ -1,5 +1,5 @@
 sudo pacman -S --needed --noconfirm neovim ruby xclip
-gem install --user neovim
+gem install --user neovim tabularize
 python -m pip install --user --upgrade pynvim
 
 if ! command -v ag &> /dev/null
