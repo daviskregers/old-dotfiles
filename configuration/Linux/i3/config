@@ -119,7 +119,7 @@ set $ws2 "2. Code"
 set $ws3 "3. Repo"
 set $ws4 "4. Database"
 set $ws5 "5"
-set $ws6 "6"
+set $ws6 "6. Notes"
 set $ws7 "7. Todo"
 set $ws8 "8. Mail"
 set $ws9 "9. Comms"
@@ -176,6 +176,7 @@ for_window [class="google-calendar-nativefier-e22938"] move to workspace $ws1
 for_window [class="todoist"] move to workspace $ws7
 for_window [class="Mailspring"] move to workspace $ws8
 for_window [class="Protonmail Desktop"] move to workspace $ws8
+for_window [class="Notion"] move to workspace $ws6
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -235,6 +236,7 @@ exec "unclutter &"
 exec "enable-numlock-if-var"
 exec "launch_slack_startup"
 exec_always "todoist"
+exec_always "notion-app"
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
