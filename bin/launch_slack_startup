@@ -1,5 +1,11 @@
 #!/bin/bash
 
+include () {
+    [[ -f "$1" ]] && source "$1"
+}
+
+include ~/.override_variables
+
 if [[ "${DOTFILES_LAUNCH_SLACK_STARTUP}" == "on" ]]; then
     slack &
     echo "launching slack"

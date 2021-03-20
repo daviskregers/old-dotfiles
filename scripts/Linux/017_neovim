@@ -1,5 +1,5 @@
 sudo pacman -S --needed --noconfirm neovim ruby xclip
-gem install --user neovim tabularize
+gem install --user neovim tabularize vim-flavor
 python -m pip install --user --upgrade pynvim
 
 if ! command -v ag &> /dev/null
@@ -25,3 +25,6 @@ sudo npm i -gh eslint lynt pug-lint-vue instant-markdown-d
 sudo npm install -g npm
 sudo npm install -g eslint
 sudo npm install -g instant-markdown-d
+sudo npm install -g neovim
+
+yay -S --needed --noconfirm elixir-ls

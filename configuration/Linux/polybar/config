@@ -55,7 +55,7 @@ font-6 = "DejaVu Sans:pixelsize=3;3"
 modules-left = i3
 ; modules-center = quotes goals todoist agenda
 ; modules-center = todoist agenda
-modules center =
+; modules center =
 modules-right = alsa spotify network wired-network wireless-network battery date
 
 tray-position = right

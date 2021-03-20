@@ -2,8 +2,6 @@ sudo pacman -S --needed --noconfirm telegram-desktop discord libsecret gnome-key
 yay_packages=(
         "mailspring:mailspring"
         "slack:slack-desktop"
-        "protonmail-desktop:protonmail-desktop"
-        "protonmail-bridge-bin:protonmail-bridge"
 )
 
 

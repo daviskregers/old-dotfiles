@@ -167,3 +167,5 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+noremap <leader>Q :PhpactorContextMenu<CR>

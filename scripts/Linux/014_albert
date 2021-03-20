@@ -1,3 +1,5 @@
+sudo pacman -S --needed --noconfirm muparser
+
 if ! command -v albert &> /dev/null
 then
     yay -S --needed --noconfirm albert

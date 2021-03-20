@@ -7,7 +7,7 @@ brew install --cask font-fira-code-nerd-font
 
 # iterm
 brew install --cask iterm2
-git clone https://github.com/kkga/nibar $HOME/Library/Application\ Support/†bersicht/widgets/nibar
+git clone https://github.com/kkga/nibar $HOME/Library/Application\ Support/?bersicht/widgets/nibar
 # tmux
 brew install tmux
 ln -sfv ~/.dotfiles/configuration/.tmux.conf ~
@@ -30,12 +30,13 @@ sudo npm i -g instant-markdown-d
 sudo npm i -g lynt
 sudo npm i -g npm
 sudo npm i -g pug-lint-vue
+sudo npm i -g neovim
 
 # database
 brew install --cask dbeaver-community
 
 # ruby
-gem install --user neovim
+gem install --user neovim vim-flavor
 
 # php
 
