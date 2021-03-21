@@ -40,12 +40,14 @@ gem install --user neovim vim-flavor
 
 # php
 
+sudo sed -i .bak -E 's/(memory_limit = )[0-9]+M/\14G/g' /usr/local/etc/php/8.0/php.ini
+cat /usr/local/etc/php/8.0/php.ini | grep memory_limit
 brew install php composer
 composer global config minimum-stability dev
-composer global require phpdocumentor/phpdocumentor -W
-composer global require phpmd/phpmd -W
-composer global require squizlabs/php_codesniffer -W
-composer global require phpactor/phpactor -W
+composer global require phpdocumentor/phpdocumentor
+composer global require phpmd/phpmd
+composer global require squizlabs/php_codesniffer
+composer global require phpactor/phpactor
 
 # uebersicht
 brew install --cask ubersicht

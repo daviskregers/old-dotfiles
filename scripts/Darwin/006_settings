@@ -1,3 +1,85 @@
+# parts taken from
+# https://github.com/sobolevn/dotfiles/blob/master/macos/settings.sh
+# https://github.com/zoumo/dotfiles/blob/master/os/macos/set-defaults.sh
+# https://github.com/ericwbailey/dotfiles/blob/main/.macos
+# https://gist.github.com/denji/a97c6d870cde0c6c8105
+
+echo 'Configuring your mac. Hang tight.'
+osascript -e 'tell application "System Preferences" to quit'
+
 # dark mode
 sudo defaults write /Library/Preferences/.GlobalPreferences.plist _HIEnableThemeSwitchHotKey -bool true
 osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'
+
+#show battery percent
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+defaults write com.apple.menuextra.battery ShowTime -string "NO"
+
+# Show file extensions in Finder:
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Avoid creating .DS_Store files on network volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+# Disable creation of .DS_Store files on USB volumes
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+# Show hidden files in Finder:
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Show Finder path bar:
+defaults write com.apple.finder ShowPathbar -bool true
+defaults write com.apple.finder PathBarRootAtHome -bool TRUE
+
+# When performing a search, search the current folder by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Privacy: don’t send search queries to Apple
+defaults write com.apple.Safari UniversalSearchEnabled -bool false
+defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+
+# Save to disk (not to iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Check for software updates daily, not just once per week
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+
+# Use list view in all Finder windows by default
+# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+# Improve Safari security
+defaults write com.apple.Safari \
+  com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled \
+  -bool false
+defaults write com.apple.Safari \
+  com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles \
+  -bool false
+
+# Enable the Develop menu and the Web Inspector in Safari
+defaults write com.apple.Safari IncludeDevelopMenu -bool true
+defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+
+# Enable Safari’s debug menu
+defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+
+
+# screenshot directory
+mkdir ~/.Screenshots
+defaults write com.apple.screencapture location ~/Screenshots
+
+# Open and save files as UTF-8 in TextEdit
+defaults write com.apple.TextEdit PlainTextEncoding -int 4
+defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
+
+# Set the icon size of Dock items
+defaults write com.apple.dock tilesize -int 24
+
+echo 'Restarting apps...'
+
+for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" \
+"cfprefsd" "Dock" "Finder" "Mail" "Messages" "Safari"  \
+"SystemUIServer" "Terminal" "Transmission" "iCal"; do
+killall "${app}" > /dev/null 2>&1
+done
