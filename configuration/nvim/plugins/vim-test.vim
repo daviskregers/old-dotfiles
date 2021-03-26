@@ -1,5 +1,6 @@
 let test#custom_runners = {'php': ['Customphpunit']}
-let test#strategy = "vimux"
+" let test#strategy = "vimux"
+let test#strategy = "neovim"
 let test#enabled_runners = ["php#customphpunit"]
 let test#php#customphpunit#executable = './vim-test.sh'
 

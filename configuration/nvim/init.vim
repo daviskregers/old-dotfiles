@@ -24,6 +24,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'scrooloose/nerdcommenter'                     " toggle comments
     Plug 'scrooloose/nerdtree'                          " File explorer
     Plug 'spf13/vim-autoclose'                          " Auto close brackets/braces/etc
+    Plug 'tpope/vim-fugitive'
     Plug 'tveskag/nvim-blame-line'                      " display git blame
     Plug 'vim-scripts/BufOnly.vim'                      " Close all buffers but current
     Plug 'vim-syntastic/syntastic'                      " linters
