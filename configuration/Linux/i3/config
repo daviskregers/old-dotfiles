@@ -34,7 +34,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym $mod+F10 exec "launch_redshift --manual 2000"
 bindsym $mod+F11  exec "launch_redshift --auto 6500:2500"
 bindsym $mod+F12 exec "launch_redshift --kill"
-bindsym Print exec shutter -s
+bindsym Print exec pkill shutter && shutter -s
 bindsym $mod+Print exec peek
 bindsym $mod+F8 exec change-sound-device
 bindsym $mod+shift+x exec launch_lockscreen --lock
