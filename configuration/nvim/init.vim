@@ -14,14 +14,17 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Functionality
     " Plug 'kbarrette/mediummode'                         " same as hard mode, but allow 2 consecutive arrow keys
+    Plug 'benmills/vimux'
     Plug 'elixir-lang/vim-elixir'                       " elixir support
     Plug 'godlygeek/tabular'                            " Align text
+    Plug 'joonty/vim-phpqa'
     Plug 'lilydjwg/colorizer'
     Plug 'liuchengxu/vim-which-key'
     Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
     Plug 'scrooloose/nerdcommenter'                     " toggle comments
     Plug 'scrooloose/nerdtree'                          " File explorer
     Plug 'spf13/vim-autoclose'                          " Auto close brackets/braces/etc
+    Plug 'tpope/vim-fugitive'
     Plug 'tveskag/nvim-blame-line'                      " display git blame
     Plug 'vim-scripts/BufOnly.vim'                      " Close all buffers but current
     Plug 'vim-syntastic/syntastic'                      " linters
@@ -67,6 +70,7 @@ source $HOME/.config/nvim/plugins/coc.vim
 source $HOME/.config/nvim/plugins/indent-lines.vim
 source $HOME/.config/nvim/plugins/nerdcommenter.vim
 source $HOME/.config/nvim/plugins/nerdtree.vim
+source $HOME/.config/nvim/plugins/phpqa.vim
 source $HOME/.config/nvim/plugins/rainbow.vim
 source $HOME/.config/nvim/plugins/rg.vim
 source $HOME/.config/nvim/plugins/syntastic.vim
