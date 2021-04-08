@@ -4,3 +4,4 @@ mas install 585829637 # todoist
 mas install 926036361 # lastpass
 brew install --cask protonmail-bridge
 brew install --cask notion
+brew install alfred
