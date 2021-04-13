@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if command -v apt &> /dev/null
+then
+	apt install -y neofetch zsh screenfetch
+fi
+
+source $DOTFILES/scripts/Shared/003_zsh

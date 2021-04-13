@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if command -v apt &> /dev/null
+then
+    apt install -y tmux rsync man
+fi
+

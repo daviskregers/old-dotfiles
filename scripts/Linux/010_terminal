@@ -1,6 +1,8 @@
+#!/bin/bash
 sudo pacman -S --needed --noconfirm alacritty tmux rsync man konsole
 
-ln -sfv ~/.dotfiles/configuration/.tmux.conf ~
 ln -sfv ~/.dotfiles/configuration/alacritty ~/.config/
 ln -sfv ~/.dotfiles/configuration/konsole ~/.local/share/
 ln -sfv ~/.dotfiles/configuration/konsolerc ~/.config
+
+source $DOTFILES/scripts/Shared/004_terminal

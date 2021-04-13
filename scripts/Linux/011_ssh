@@ -1,8 +1,7 @@
+#!/bin/bash
+
 sudo pacman -S --needed --noconfirm openssh
 
 sudo systemctl disable sshd
 
-if [ ! -f $HOME/.ssh/id_rsa.pub ]; then
-	echo "ssh key doesn' t exist, generating..."
-	ssh-keygen -t rsa -b 4096
-fi
+source $DOTFILES/scripts/Shared/006_ssh

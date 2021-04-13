@@ -1,7 +1,7 @@
+#!/bin/bash
+
 sudo pacman -S --needed --noconfirm neovim ruby xclip python2-pip
-gem install --user neovim tabularize vim-flavor
-python -m pip install --user --upgrade pynvim
-python2.7 -m pip install --user --upgrade pynvim neovim
+yay -S --needed --noconfirm elixir-ls
 
 if ! command -v ag &> /dev/null
 then
@@ -10,22 +10,7 @@ else
     echo "the_silver_searcher already installed"
 fi
 
-ln -sfv ~/.dotfiles/configuration/nvim ~/.config
-
 sudo pacman -S --needed --noconfirm linux-headers gcc make python-pip nodejs npm php composer \
 ctags elixir python-pylint python-pillow yarn
 
-# composer global require hirak/prestissimo # install things in parallel
-composer global config minimum-stability dev
-composer global require phpdocumentor/phpdocumentor
-composer global require phpmd/phpmd
-composer global require squizlabs/php_codesniffer
-composer global require phpactor/phpactor
-sudo npm i -gh eslint lynt pug-lint-vue instant-markdown-d
-
-sudo npm install -g npm
-sudo npm install -g eslint
-sudo npm install -g instant-markdown-d
-sudo npm install -g neovim
-
-yay -S --needed --noconfirm elixir-ls
+source $DOTFILES/scripts/Shared/005_neovim

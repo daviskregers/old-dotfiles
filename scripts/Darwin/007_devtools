@@ -1,3 +1,4 @@
+#!/bin/bash
 brew install --cask docker
 
 brew tap homebrew/cask-fonts
@@ -20,34 +21,12 @@ ln -sfv ~/.dotfiles/configuration/nvim ~/.config/nvim
 brew install ripgrep
 
 # python3
-brew install python3
-pip3 install --user --upgrade neovim pynvim pylint pillow
-
-# nodejs
-brew install nodejs yarn
-sudo npm i -g eslint
-sudo npm i -g instant-markdown-d
-sudo npm i -g lynt
-sudo npm i -g npm
-sudo npm i -g pug-lint-vue
-sudo npm i -g neovim
-
-# database
 brew install --cask dbeaver-community
-
-# ruby
-gem install --user neovim vim-flavor
-
-# php
-
-sudo sed -i .bak -E 's/(memory_limit = )[0-9]+M/\14G/g' /usr/local/etc/php/8.0/php.ini
-cat /usr/local/etc/php/8.0/php.ini | grep memory_limit
+brew install nodejs yarn
 brew install php composer
-composer global config minimum-stability dev
-composer global require phpdocumentor/phpdocumentor
-composer global require phpmd/phpmd
-composer global require squizlabs/php_codesniffer
-composer global require phpactor/phpactor
+brew install python3
+gem install --user neovim vim-flavor
+pip3 install --user --upgrade neovim pynvim pylint pillow
 
 # uebersicht
 brew install --cask ubersicht
@@ -58,3 +37,5 @@ brew install koekeishiya/formulae/skhd
 brew services start skhd
 
 brew install jq
+
+source $DOTFILES/scripts/Shared/005_neovim

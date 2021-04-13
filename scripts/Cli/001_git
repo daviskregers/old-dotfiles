@@ -1,4 +1,3 @@
 #!/bin/bash
 
-sudo pacman -Sy --noconfirm git
 source $DOTFILES/scripts/Shared/001_git
