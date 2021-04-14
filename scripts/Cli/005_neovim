@@ -15,7 +15,7 @@ if command -v apt &> /dev/null
 then
 	sudo add-apt-repository universe
 	sudo apt install -y ruby xclip python2 gcc make python-pip nodejs npm php php-zip composer ctags \
-			elixir pylint python-pillow yarn
+			elixir pylint python-pillow yarn ripgrep
 
 	# elixir-ls the_silver_searcher
 
