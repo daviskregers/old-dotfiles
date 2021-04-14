@@ -40,6 +40,7 @@ export PATH=~/.dotfiles/.config/composer/vendor/bin:$PATH # Composer
 export PATH=~/.dotfiles/bin:$PATH
 export PATH=~/.gem/ruby/2.7.0/bin:$PATH
 export PATH=~/.local/bin:$PATH # AWS EB
+export PATH=/opt/neovim/bin:$PATH
 export PROJECTS=~/projects
 
 export WALLPAPER=$DOTFILES/wallpapers/wallpaper.jpg

@@ -1,10 +1,21 @@
 #!/bin/bash
 
+if [[ -d /opt/neovim ]]
+then
+    echo "neovim already installed, skipping."
+else
+    cd /opt
+    wget https://github.com/neovim/neovim/releases/download/v0.4.4/nvim-linux64.tar.gz
+    tar zxvf nvim-linux64.tar.gz
+    mv nvim-linux64 neovim
+    rm /opt/nvim-linux64.tar.gz
+fi
+
 if command -v apt &> /dev/null
 then
 	sudo add-apt-repository universe
-	sudo apt install -y neovim ruby xclip python2 gcc make python-pip nodejs npm php php-zip composer ctags \
-			elixir pylint python-pillow yarn	
+	sudo apt install -y ruby xclip python2 gcc make python-pip nodejs npm php php-zip composer ctags \
+			elixir pylint python-pillow yarn
 
 	# elixir-ls the_silver_searcher
 
