@@ -26,6 +26,7 @@ alias gp="git push"
 alias gpl="git push"
 alias gd="git diff"
 alias gc="git checkout"
+alias gcm="git commit -m "
 alias gconf="git conflicted"
 
 # search
@@ -57,6 +58,8 @@ fi
 alias dp="docker ps"
 alias du="docker-compose up"
 alias dl="docker logs"
+alias de="docker exec -it"
+alias drf="docker rm -f"
 
 function dkill() {
     docker kill $(docker ps -q)
