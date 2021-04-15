@@ -30,9 +30,13 @@ alias gconf="git conflicted"
 
 # search
 
-if [[ $RUNNING_FROM_PROFILE != 1 && -f ~/.helpers/rg/rgf ]]
+if [[ $RUNNING_FROM_PROFILE != 1 && -f ~/.helpers/rg/rgf ]] || command -v apt &> /dev/null
 then
-    source ~/.helpers/rg/rgf
+
+    RGF_SOURCE=~/.helpers/rg/rgf
+    if [ -f "$RGF_SOURCE" ]; then
+        source $RGF_SOURCE
+    fi
 
     RG_EXCLUDES=(build target node node_modules bower_components \
         '.idea' '.settings' '.git' '.svn' '.gradle' \
