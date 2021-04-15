@@ -31,7 +31,7 @@ alias gconf="git conflicted"
 
 # search
 
-if [[ $RUNNING_FROM_PROFILE != 1 && -f ~/.helpers/rg/rgf ]] || command -v apt &> /dev/null
+if [[ $RUNNING_FROM_PROFILE != 1 && -f ~/.helpers/rg/rgf ]] || command -v rg &> /dev/null
 then
 
     RGF_SOURCE=~/.helpers/rg/rgf
