@@ -1,6 +1,10 @@
 #!/bin/bash
 ln -sfv ~/.dotfiles/configuration/nvim ~/.config
 
+# install paq
+git clone https://github.com/savq/paq-nvim.git \
+    "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/opt/paq-nvim
+
 # composer global require hirak/prestissimo # install things in parallel
 composer global config minimum-stability dev
 composer global require phpdocumentor/phpdocumentor
@@ -8,11 +12,32 @@ composer global require phpmd/phpmd
 composer global require squizlabs/php_codesniffer
 composer global require -W phpactor/phpactor
 
+# elixir-ls
+cd /tmp
+curl -fLO https://github.com/elixir-lsp/elixir-ls/releases/latest/download/elixir-ls.zip
+mkdir -p ~/.helpers/elixir-ls
+unzip elixir-ls.zip -d ~/.helpers/elixir-ls
+sudo chmod +x ~/.helpers/elixir-ls/language_server.sh
+
+#phpactor
+cd ~/.helpers
+git clone git@github.com:phpactor/phpactor
+cd phpactor
+composer install
+cd /usr/local/bin
+sudo ln -s ~/.helpers/phpactor/bin/phpactor phpactor
+phpactor status
+
+# other
 sudo npm install -g eslint lynt pug-lint-vue instant-markdown-d
 sudo npm install -g npm
 sudo npm install -g eslint
 sudo npm install -g instant-markdown-d
 sudo npm install -g neovim
+sudo npm install -g pyright bash-language-server vscode-css-languageserver-bin dockerfile-language-server-nodejs
+sudo npm install -g graphql-language-service-cli vscode-html-languageserver-bin intelephense vscode-json-languageserver
+sudo npm install -g typescript typescript-language-server vim-language-server vls yaml-language-server
+
 
 python -m pip install --user --upgrade pynvim
 python2.7 -m pip install --user --upgrade pynvim neovim

@@ -15,10 +15,14 @@ ln -sfv ~/.dotfiles/configuration/.tmux.conf ~
 brew install reattach-to-user-namespace
 
 # neovim
-brew install neovim
-mkdir ~/.config
-ln -sfv ~/.dotfiles/configuration/nvim ~/.config/nvim
-brew install ripgrep
+#brew install neovim
+#mkdir ~/.config
+#ln -sfv ~/.dotfiles/configuration/nvim ~/.config/nvim
+#brew install ripgrep
+brew install ctags
+
+brew install --HEAD luajit
+brew install --HEAD neovim
 
 # python3
 brew install --cask dbeaver-community
