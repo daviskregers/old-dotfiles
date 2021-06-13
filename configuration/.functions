@@ -56,7 +56,7 @@ fi
 # docker
 
 alias dp="docker ps"
-alias du="docker-compose up"
+alias dcu="docker-compose up"
 alias dl="docker logs"
 alias de="docker exec -it"
 alias drf="docker rm -f"

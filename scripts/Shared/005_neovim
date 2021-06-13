@@ -1,5 +1,5 @@
 #!/bin/bash
-ln -sfv ~/.dotfiles/configuration/nvim ~/.config
+ln -sfv ~/.dotfiles/configuration/nvim-0.5 ~/.config/nvim
 
 # install paq
 git clone https://github.com/savq/paq-nvim.git \

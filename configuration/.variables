@@ -41,6 +41,7 @@ export PATH=~/.dotfiles/bin:$PATH
 export PATH=~/.gem/ruby/2.7.0/bin:$PATH
 export PATH=~/.local/bin:$PATH # AWS EB
 export PATH=/opt/neovim/bin:$PATH
+export PATH=$(go env GOPATH)/bin:$PATH
 export PROJECTS=~/projects
 
 export WALLPAPER=$DOTFILES/wallpapers/wallpaper.jpg
@@ -61,3 +62,6 @@ export EDURIO_DEV_DIR=$PROJECTS/edurio/
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
 export DOTFILES_ENABLE_KEYPAD="on"
+
+# GO RELATED
+export GO111MODULE=off

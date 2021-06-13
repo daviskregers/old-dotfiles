@@ -1,7 +1,14 @@
 #!/bin/bash
 
-sudo pacman -S --needed --noconfirm neovim ruby xclip python2-pip
+sudo pacman -S --needed --noconfirm ruby xclip python2-pip
 yay -S --needed --noconfirm elixir-ls
+
+if ! command -v neovim &> /dev/null
+then
+    yay -S --needed --noconfirm neovim-nightly-bin
+else
+    echo "neovim already installed"
+fi
 
 if ! command -v ag &> /dev/null
 then

@@ -34,8 +34,8 @@ map('n', '<c-u>' , 'viwU<ESC>', options)
 map('n', '<TAB>', ':bnext<CR>', options)
 map('n', '<S-TAB>', ':bprevious<CR>', options)
 
-map('n', '<C-Left>', ':bp<CR>', options)
-map('n', '<C-Right>', ':bn<CR>', options)
+-- map('n', '<C-Left>', ':bp<CR>', options)
+-- map('n', '<C-Right>', ':bn<CR>', options)
 
 -- close buffer
 map('n', '<Leader>C', ':Bw!<CR>', options)
@@ -91,7 +91,7 @@ map('v', '<A-Up>', ':m \'<-2<CR>gv=gv', options)
 
 -- fuzzy file finder
 
-map('n', '<leader>f', '<cmd>Telescope find_files<CR>', options)
+map('n', '<leader>fd', '<cmd>Telescope find_files<CR>', options)
 map('n', '<leader>fg', '<cmd>Telescope live_grep<CR>', options)
 map('n', '<leader>fb', '<cmd>Telescope buffers<CR>', options)
 map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>', options)

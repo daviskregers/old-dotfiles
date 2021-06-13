@@ -5,12 +5,23 @@ public function test${1:Nothing}()
 }
 endsnippet
 
-snippet php "new php file starter" !b
-<?php
+snippet <?php "new php file starter" !b
+<?php declare(strict_types=1);
 namespace ${1:App\Services};
 
-class ${2:dummy}
+class ${2:Dummy}
 {
-
+	${3:}
 }
+endsnippet
+
+snippet fn "new php function" !b
+private function ${1:doSomething}(): void
+{
+	${2:throw new Exception('not implemented!');}
+}
+endsnippet
+
+snippet exc "throw exception" !b
+throw new Exception('${1:not implemented}');
 endsnippet

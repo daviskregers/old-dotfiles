@@ -52,9 +52,9 @@ buffer.expandtab = true
 buffer.syntax = 'ON'
 --buffer.iskeyword+=-
 buffer.tabstop = 4
-buffer.shiftwidth = 4
+buffer.shiftwidth = 3
 buffer.autoread = true
-buffer.softtabstop = 0
+buffer.softtabstop = 4
 --buffer.formatoptions -= cro
 --
 
@@ -72,3 +72,8 @@ cmd('au Filetype * setlocal omnifunc=v:lua.vim.lsp.omnifunc')
 -- blame line
 cmd('au BufEnter * EnableBlameLine')
 vim.api.nvim_set_var('blameLineVirtualTextHighlight', 'BlameLine')
+
+
+cmd('au VimEnter * set tabstop=4 shiftwidth=4|au BufReadPost,BufNewFile * set tabstop=4 shiftwidth=4')
+cmd('au VimEnter *.yml set tabstop=2 shiftwidth=2|au BufReadPost,BufNewFile * set tabstop=2 shiftwidth=2')
+cmd('au VimEnter *.yaml set tabstop=2 shiftwidth=2|au BufReadPost,BufNewFile * set tabstop=2 shiftwidth=2')

@@ -2,7 +2,7 @@ sudo pacman -S --needed --noconfirm libreoffice-still
 
 if ! command -v notion-app &> /dev/null
 then
-    yay -S --needed --noconfirm notion-app
+    # yay -S --needed --noconfirm notion-app
 else
     echo "notion-app already installed"
 fi

@@ -8,12 +8,12 @@ if has('nvim')
   tmap <C-o> <C-\><C-n>
 endif
 
-augroup test
-  autocmd!
-  autocmd BufWrite * if test#exists() |
-    \   TestFile |
-    \ endif
-augroup END
+"augroup test
+  "autocmd!
+  "autocmd BufWrite * if test#exists() |
+    "\   TestFile |
+    "\ endif
+"augroup END
 
 " these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
 nmap <silent> t<C-n> :TestNearest<CR>
