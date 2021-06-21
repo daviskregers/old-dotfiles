@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo pacman -S --overwrite "*" --needed --noconfirm git || exit 1
+source $DOTFILES/scripts/Shared/001-git

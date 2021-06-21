@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo pacman -S --needed --noconfirm ufw || exit 1
+source $DOTFILES/scripts/Shared/003-ufw

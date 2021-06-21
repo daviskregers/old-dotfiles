@@ -1,4 +1,0 @@
-#!/bin/bash
-
-source $DOTFILES/scripts/Shared/002_bash
-source $DOTFILES/scripts/Shared/003_zsh

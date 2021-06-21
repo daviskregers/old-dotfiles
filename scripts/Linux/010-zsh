@@ -1,0 +1,4 @@
+#!/bin/bash
+sudo pacman -S --needed --noconfirm zsh screenfetch
+
+source $DOTFILES/scripts/Shared/007-zsh

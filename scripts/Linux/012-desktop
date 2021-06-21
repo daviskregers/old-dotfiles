@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ -z ${DESKTOP_ENVIRONMENT+x} ]; then
+        echo "DESKTOP_ENVIRONMENT not set!"
+        exit 1
+fi
+
+if [ $DESKTOP_ENVIRONMENT == 1 ]; then
+        sudo pacman -S --needed --noconfirm xorg-server xorg-apps xorg-xinit \
+        xmonad xmonad-contrib xterm lightdm lightdm-gtk-greeter || exit 1
+
+        # Compton
+        # menu
+        # lockscreen
+        # lightdm
+        # wallpaper
+        # notifications
+
+        source $DOTFILES/scripts/Shared/008-desktop
+else
+        echo "xmonad installation skipped..."
+fi

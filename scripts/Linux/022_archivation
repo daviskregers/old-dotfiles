@@ -1,2 +1,0 @@
-echo "TODO: look through archive managers, are there any better? https://wiki.archlinux.org/index.php/List_of_applications/Utilities#Archive_managers"
-sudo pacman -S --needed --noconfirm zip unzip xarchiver

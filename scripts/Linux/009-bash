@@ -1,0 +1,3 @@
+#!/bin/bash
+
+source $DOTFILES/scripts/Shared/006-bash

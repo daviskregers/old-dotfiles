@@ -1,2 +1,0 @@
-#/usr/bin/zsh
-exec /usr/bin/amixer -D pulse sset Master $1

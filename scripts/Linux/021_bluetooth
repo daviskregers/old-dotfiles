@@ -1,4 +1,0 @@
-sudo pacman -S --needed --noconfirm bluez bluez-utils blueberry
-sudo sed -i 's/#AutoEnable=false/AutoEnable=true/g' /etc/bluetooth/main.conf
-sudo usermod -a -G rfkill $USER
-sudo systemctl enable bluetooth

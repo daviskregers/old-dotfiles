@@ -1,0 +1,15 @@
+source $DOTFILES/.overrides
+
+if [ -z ${GIT_EMAIL+x} ]; then
+        echo "GIT_EMAIL not set!"
+        exit 1
+fi
+
+if [ -z ${GIT_NAME+x} ]; then
+        echo "GIT_NAME not set!"
+        exit 1
+fi
+
+git config --global user.email "$GIT_EMAIL"
+git config --global user.name "$GIT_NAME"
+git config --global alias.conflicted '!nvim +Conflicted'

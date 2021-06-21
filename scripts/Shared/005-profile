@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo ln -sfv $DOTFILES/profile /etc/profile || exit 1
+sudo chown -v root /etc/profile || exit 1

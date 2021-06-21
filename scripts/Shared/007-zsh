@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "Checking for oh-my-zsh installation"
+if [ ! -d "~/.oh-my-zsh" ]; then
+	curl -L http://install.ohmyz.sh | sh
+else
+	echo "Already installed"
+fi
+
+ln -sfv $DOTFILES/.zshrc ~ || exit 1
+
+if [ $SHELL != $(which zsh) ]; then
+	chsh -s $(which zsh) || exit 1
+else
+	echo "ZSH already set as default shell"
+fi

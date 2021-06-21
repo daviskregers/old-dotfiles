@@ -1,8 +1,0 @@
-#!/bin/bash
-
-if [[ "${DOTFILES_ENABLE_KEYPAD}" == "on" ]]; then
-    numlockx on
-    echo "keypad enabled."
-else
-    echo "DOTFILES_ENABLE_KEYPAD not set to \"on\""
-fi

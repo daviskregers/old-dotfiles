@@ -1,0 +1,24 @@
+if ! [ -x "$(command -v yay)" ]; then
+	PWD=$(pwd)
+	cd /tmp
+
+	rm -rf yay
+	git clone https://aur.archlinux.org/yay.git || exit 1
+	cd yay
+	makepkg -si --noconfirm || exit 1
+
+	cd $PWD
+fi
+
+NUM_THREADS=$(lscpu | grep "CPU(s):" | grep -v NUMA | awk '{print $2}')
+
+echo "Setting makepkg to use $NUM_THREADS threads"
+
+grep "COMPRESSXZ=(xz" /etc/makepkg.conf
+grep "#MAKEFLAGS\"-j" /etc/makepkg.conf
+sudo sed -i "s/COMPRESSXZ=(xz -c -z -)/COMPRESSXZ=(xz -c -T $NUM_THREADS -z -)/g" /etc/makepkg.conf || exit 1
+sudo sed -i 's/#MAKEFLAGS="-j2"/MAKEFLAGS="-j7"/g' /etc/makepkg.conf || exit 1
+grep "COMPRESSXZ=(xz" /etc/makepkg.conf
+grep "#MAKEFLAGS\"-j" /etc/makepkg.conf
+
+yay -Syu || exit 1

@@ -1,7 +1,0 @@
-#!/bin/bash
-
-sudo pacman -S --needed --noconfirm openssh
-
-sudo systemctl disable sshd
-
-source $DOTFILES/scripts/Shared/006_ssh

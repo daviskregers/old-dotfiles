@@ -1,9 +1,0 @@
-ln -sfv ~/.dotfiles/configuration/.variables ~
-ln -sfv ~/.dotfiles/configuration/.functions ~
-ln -sfv ~/.dotfiles/configuration/.bash_profile ~
-ln -sfv ~/.dotfiles/configuration/.bashrc ~
-
-if [[ $SHELL = "/bin/bash" ]]; then
-	echo "Reloading bash configuration"
-	source ~/.bash_profile
-fi

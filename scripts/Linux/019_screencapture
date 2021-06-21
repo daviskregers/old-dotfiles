@@ -1,8 +1,0 @@
-sudo pacman -S --needed --noconfirm obs-studio peek
-
-if ! command -v shutter &> /dev/null
-then
-    yay -S --needed --noconfirm perl-gnome2-wnck+ gnome-vfs gconf shutter perl-goo-canvas
-else
-    echo "shutter already installed"
-fi

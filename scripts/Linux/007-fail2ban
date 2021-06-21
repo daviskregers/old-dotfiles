@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo pacman -S --needed --noconfirm fail2ban || exit 1
+source $DOTFILES/scripts/Shared/004-fail2ban

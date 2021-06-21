@@ -1,7 +1,2 @@
 .DS_Store
-/configuration/nvim/plugged
-/configuration/Linux/dolphinrc
-/configuration/Linux/kdeglobals
-/configuration/Linux/qt5ct.conf
-/configuration/Linux/gtk-3.0/bookmarks
-/configuration/nvim/coc-settings.json
+.overrides

@@ -1,0 +1,76 @@
+exit_on_esc_or_cancel() {
+	case $1 in
+		$DIALOG_CANCEL)
+			echo "Terminated."
+			exit 1;
+			;;
+		$DIALOG_ESC)
+			echo "Terminated."
+			exit 1;
+			;;
+	esac
+}
+
+choose_device() {
+	{
+		readarray -t devices < <(lsblk -r | grep disk)
+		menu_items_devices=$(printf '%s\n' "${devices[@]}" | awk '{print $1, $4","$3","$2","$5}')
+
+		exec 3>&1
+		device=$(dialog --backtitle "$BACKTITLE_PARTITION" --title "$TITLE_DEVICE_SELECT" --clear --menu "Please select:" 20 40 4 $menu_items_devices \
+			2>&1 1>&3)
+		exit_on_esc_or_cancel $?
+		exec 3>&-
+
+	}> /dev/tty
+
+	echo $device
+}
+
+partition_prefix() {
+	device=${device}
+	prefix=""
+	partition_found_normal=$(find /dev/ -name ${device}1)
+	partition_found_prefix=$(find /dev/ -name ${device}p1)
+
+	if [[ $partition_found_normal != "" ]]; then
+		prefix=""
+	elif [[ $partition_found_prefix != "" ]]; then
+		prefix="p"
+	else
+		echo "Paritions not found!"
+		exit 1
+	fi
+
+	echo $prefix
+}
+
+get_device() {
+	device=$(choose_device)
+	prefix=$(partition_prefix)
+	device=/dev/$device
+	echo $device
+}
+
+cleanup() {
+	sleep 1
+	umount /mnt/boot
+	umount /mnt
+	cryptsetup close $luks_root
+	exit 1;
+}
+
+cleanup_inside() {
+	exit;
+	cleanup
+}
+
+setup_mirrors() {
+        echo -e "${RED}Syncing pacman mirrors$END"
+
+        pacman -S --noconfirm reflector
+        cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+        reflector -c "LV" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
+
+        cat /etc/pacman.d/mirrorlist
+}

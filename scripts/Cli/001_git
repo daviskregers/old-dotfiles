@@ -1,3 +1,0 @@
-#!/bin/bash
-
-source $DOTFILES/scripts/Shared/001_git

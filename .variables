@@ -1,0 +1,46 @@
+# Get dotfiles directory,
+#
+# can be executed with $0 = -zsh which doesnt work
+# so we check for .variables at the end.
+ARCH=$(uname)
+
+if [[ $0 =~ ^.*\.variables$ ]]; then
+    if [ $ARCH = "Linux" ] ; then
+        dir=$(readlink -f "$0")
+    else
+        dir=$(readlink "$0")
+    fi
+    export DOTFILES="$(dirname $(dirname $dir))"
+fi
+
+# Specify default terminal for i3wm
+export TERMINAL="konsole -e tmux"
+
+# Nicer look of Java Apps
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
+export EDITOR=$(which nvim)
+export VISUAL=$EDITOR
+
+# Coloring less command
+export LESS=-R
+export LESS_TERMCAP_me=$(printf '\e[0m')
+export LESS_TERMCAP_se=$(printf '\e[0m')
+export LESS_TERMCAP_ue=$(printf '\e[0m')
+export LESS_TERMCAP_mb=$(printf '\e[1;32m')
+export LESS_TERMCAP_md=$(printf '\e[1;34m')
+export LESS_TERMCAP_us=$(printf '\e[1;32m')
+export LESS_TERMCAP_so=$(printf '\e[1;44;1m')
+
+# PATHS
+export GTK_PATH=:/usr/lib/gtk-2.0
+export PROJECTS=~/projects
+
+export WALLPAPER=$DOTFILES/wallpapers/wallpaper.jpg
+
+# OTHER
+export REDSHIFT_LOCATION=56.946285:24.105078
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export DOTFILES_ENABLE_KEYPAD="on"
+
+# OVERRIDES
+# source $DOTFILES/.overrides

@@ -1,0 +1,38 @@
+#!/bin/bash
+
+if [ -z ${GPU_DRIVERS+x} ]; then
+        echo "GPU_DRIVERS not set!"
+        exit 1
+fi
+
+if [ $GPU_DRIVERS == 1 ]; then
+        GPU=$(lspci -k | grep -E "(VGA|3D)")
+
+# For NVIDIA - in case you want to revert back to nouveau driver and mesa 3D acceleration,
+# do: sudo pacman -S mesa mesa-libgl xf86-video-nouveau
+
+        case "$GPU" in
+          *NVIDIA*)
+                        echo "Using an NVIDIA card:    $GPU"
+                        sudo pacman -S --needed --noconfirm nvidia nvidia-utils nvidia-settings xorg-server-devel opencl-nvidia mesa-demos || exit 1
+
+                        echo "Confirming that nouveu is blacklisted: "
+                        grep -qxF 'blacklist nouveau' /usr/lib/modprobe.d/nvidia.conf || echo 'blacklist nouveau' >> /usr/lib/modprobe.d/nvidia.conf || exit 1
+                        cat /usr/lib/modprobe.d/nvidia.conf | grep "blacklist nouveau" || exit 1
+
+                        echo "Checking installation, might require restart."
+                        sudo nvidia-smi || exit 1
+
+                        echo "Checking for direct rendering"
+                        sudo glxinfo | grep direct || exit 1
+                ;;
+          *)
+                        echo "Using non-NVIDIA GPU:    $GPU"
+                        echo "Currently not supported, skipping"
+                ;;
+        esac
+
+        sudo pacman -S --needed --noconfirm arandr lxrandr || exit 1
+else
+        echo "GPU DRIVERS skipped..."
+fi

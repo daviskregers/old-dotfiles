@@ -1,9 +1,0 @@
-sudo grep "Color" /etc/pacman.conf && \
-sudo sed -i -e 's/#Color/Color/g' /etc/pacman.conf && \
-sudo grep "Color" /etc/pacman.conf
-
-sudo grep "\[multilib\]" /etc/pacman.conf && \
-sudo sed -i -e 's/\#\[multilib\]/[multilib]\nInclude \= \/etc\/pacman.d\/mirrorlist/g' /etc/pacman.conf && \
-sudo grep "\[multilib\]" /etc/pacman.conf
-
-sudo pacman -Syu

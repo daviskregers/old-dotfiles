@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo pacman -S --needed --noconfirm openssh || exit 1
+source $DOTFILES/scripts/Shared/002-ssh

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+sudo ufw default allow outgoing
+sudo ufw default deny incoming
+
+sudo ufw logging on
+
+if [ $SSH_ENABLED == 1 ]; then
+        sudo ufw allow ssh
+        sudo ufw limit ssh
+else
+        sudo ufw deny ssh
+fi
+
+sudo systemctl enable ufw
+sudo ufw reload || exit 1

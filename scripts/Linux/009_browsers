@@ -1,9 +1,0 @@
-sudo pacman -S --needed --noconfirm firefox
-
-
-if ! command -v google-chrome &> /dev/null
-then
-    yay -S --needed --noconfirm google-chrome
-else
-    echo "google-chrome already installed"
-fi
