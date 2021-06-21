@@ -38,9 +38,10 @@ cat /etc/hosts
 
 echo "Set up bootloader"
 device=$(get_device)
+prefix=$(partition_prefix $device)
 
-systempartition=${device}2
-efipartition=${device}1
+systempartition=${device}${prefix}2
+efipartition=${device}${prefix}1
 
 pacman -S --noconfirm efibootmgr
 sed -i 's/HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)/HOOKS=(base udev autodetect modconf block encrypt filesystems keyboard fsck)/g' /etc/mkinitcpio.conf

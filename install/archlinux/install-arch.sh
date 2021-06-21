@@ -26,6 +26,7 @@ dialog --backtitle "$BACKTITLE_PARTITION" --title "$TITLE_PARTITION_CHECK" --yes
 exit_on_esc_or_cancel $?
 
 device=$(get_device)
+prefix=$(partition_prefix $device)
 
 echo "DEVICE $device, prefix: $prefix"
 

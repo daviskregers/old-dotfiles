@@ -28,7 +28,7 @@ choose_device() {
 }
 
 partition_prefix() {
-	device=${device}
+	device=${basename $1}
 	prefix=""
 	partition_found_normal=$(find /dev/ -name ${device}1)
 	partition_found_prefix=$(find /dev/ -name ${device}p1)
