@@ -4,7 +4,7 @@ TODO: descipriton
 
 ## Useful to rembmer
 
-### Dualbooting systemd
+### Dualbooting systemd-boot
 
 If you want to dualboot into windows using systemd-boot, you can use these steps:
 
