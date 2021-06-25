@@ -2,7 +2,6 @@
 
 TODO: descipriton
 
-
 ## Useful to rembmer
 
 ### Dualbooting systemd
@@ -18,3 +17,12 @@ sudo cp -ax Microsoft /boot/EFI
 
 https://github.com/spxak1/weywot/blob/main/Pop_OS_Dual_Boot.md#22-how-to-add-an-option-for-windows-in-pop_os-boot-menu
 
+
+## TODO:
+
+- [ ] Organize files
+- [ ] Better naming for .overrides and update .overrides.example
+- [ ] xmobar on all monitors
+- [ ] Update readme
+- [ ] Set up OSX config
+- [ ] map existing linux scripts to work w/ ubuntu
