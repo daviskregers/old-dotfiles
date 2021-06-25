@@ -1,12 +1,13 @@
 #!/bin/bash
+set -euxo pipefail
 
-ln -sfv $DOTFILES/.overrides ~ || exit 1
-ln -sfv $DOTFILES/.variables ~ || exit 1
-ln -sfv $DOTFILES/.functions ~ || exit 1
-ln -sfv $DOTFILES/.bash_profile ~ || exit 1
-ln -sfv $DOTFILES/.bashrc ~ || exit 1
+ln -sfv $DOTFILES/.overrides ~
+ln -sfv $DOTFILES/.variables ~
+ln -sfv $DOTFILES/.functions ~
+ln -sfv $DOTFILES/.bash_profile ~
+ln -sfv $DOTFILES/.bashrc ~
 
 if [[ $SHELL = "/bin/bash" ]]; then
 	echo "Reloading bash configuration"
-	source ~/.bash_profile || exit 1
+	source ~/.bash_profile
 fi

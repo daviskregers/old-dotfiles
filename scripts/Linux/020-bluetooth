@@ -1,0 +1,12 @@
+#!/bin/bash
+set -euxo pipefail
+source "$DOTFILES/.bash_helpers"
+
+require_variable INCLUDE_BLUETOOTH_DRIVERS
+
+if [ $INCLUDE_BLUETOOTH_DRIVERS == 1 ]; then
+    sudo pacman -S --needed --noconfirm bluez bluez-utils blueberry
+    source $DOTFILES/scripts/Shared/011-bluetooth
+else
+    echo "Office tool installation skipped!"
+fi

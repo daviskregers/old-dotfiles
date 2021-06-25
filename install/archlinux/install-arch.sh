@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euxo pipefail
+
 source "../../.bash_helpers"
 source .install_helpers
 
@@ -46,10 +48,10 @@ exit_on_esc_or_cancel $?
 echo $SEPARATOR
 echo -e "${RED}Formatting drives$END"
 
-modprobe dm-crypt || exit 1;
-modprobe dm-mod || exit 1;
-cryptsetup luksFormat -v -s 512 -h sha512 $systempartition || exit 1;
-cryptsetup open $systempartition $luks_root || exit 1;
+modprobe dm-crypt;
+modprobe dm-mod;
+cryptsetup luksFormat -v -s 512 -h sha512 $systempartition;
+cryptsetup open $systempartition $luks_root;
 
 echo "Formatting efi parition: $efipartition"
 mkfs.fat -F32 $efipartition

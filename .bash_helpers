@@ -28,3 +28,10 @@ function confirmation() {
 }
 
 SEPARATOR="--------------------------"
+
+require_variable() {
+	if [ -z ${!1+x} ]; then
+		echo "$1 not set!"
+		exit 1
+	fi
+}

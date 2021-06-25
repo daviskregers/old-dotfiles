@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euxo pipefail
 
 if [ -z ${DESKTOP_ENVIRONMENT+x} ]; then
         echo "DESKTOP_ENVIRONMENT not set!"
@@ -7,16 +8,35 @@ fi
 
 if [ $DESKTOP_ENVIRONMENT == 1 ]; then
         sudo pacman -S --needed --noconfirm xorg-server xorg-apps xorg-xinit \
-        xmonad xmonad-contrib xterm lightdm lightdm-gtk-greeter || exit 1
+        xmonad xmonad-contrib xterm lightdm lightdm-gtk-greeter xmobar dmenu \
+        nitrogen redshift dunst feh xdotool trayer gnome-calendar
 
-        # Compton
-        # menu
-        # lockscreen
-        # lightdm
-        # wallpaper
-        # notifications
+	if ! command -v compton &> /dev/null
+	then
+		yay -S --needed --noconfirm compton
+	else
+		echo "compton already installed"
+	fi
 
-        source $DOTFILES/scripts/Shared/008-desktop
+    sudo pacman -S --needed --noconfirm lightdm-webkit2-greeter lightdm-webkit-theme-litarvan
+
+    # dolphin file explorer
+    sudo pacman -S --needed --noconfirm dolphin breeze dolphin-plugins lxappearance \
+        kvantum-qt5 qt5ct baloo taglib kdegraphics-thumbnailers qt5-imageformats kimageformats \
+        ffmpegthumbs ffmpegthumbnailer audiocd-kio ntfs-3g
+
+    source $DOTFILES/scripts/Shared/008-desktop
+
+    if ! command -v albert &> /dev/null
+    then
+        yay -S --needed --noconfirm albert
+    else
+        echo "albert already installed"
+    fi
+
+    ln -sfv $DOTFILES/albert/.albertignore ~
+    mkdir -p ~/.config/albert
+    ln -sfv $DOTFILES/albert/albert.conf ~/.config/albert/albert.conf
 else
         echo "xmonad installation skipped..."
 fi

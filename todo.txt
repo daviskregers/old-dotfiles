@@ -1,41 +1,11 @@
-- Cli, mac, arch ...
-- cleaner instructions
-- non-EFI boot
-- best luks encryption algo
+# Archlinux
 
-https://linuxhint.com/setup-luks-encryption-on-arch-linux/
-virtualbox macos
+- organize files
+- overrides naming and .examples
+- xmobar on all monitors
 
-xmonad / osxmonad
+# OSX
+- osxmonad?
 
-- pacserve
-- xmonad
-- lightdm
-- chrome & firefox
-- terminal
-- compton
-
-- polybar?
-- file explorer
-- albert
-- fonts
-- unclutter
-- neovim
-- audio
-- screencapture - shutter, peek, obs-studio
-- libreoffice
-- notion
-- authy
-- bluetooth
-- xarchiver
-- redshift
-- devtools
-- comms
-- docker
-- ntp
-- battery
-- volumeicon
-- xdotool clickable
-- scratchpads - music
-
-- overrides.example
+# Ubuntu / CLI
+- map linux pacman/yay to ubuntu

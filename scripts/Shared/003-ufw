@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euxo pipefail
 
 sudo ufw default allow outgoing
 sudo ufw default deny incoming
@@ -13,4 +14,4 @@ else
 fi
 
 sudo systemctl enable ufw
-sudo ufw reload || exit 1
+sudo ufw reload

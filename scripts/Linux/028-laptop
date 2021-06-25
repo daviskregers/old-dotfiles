@@ -1,0 +1,11 @@
+#!/bin/bash
+set -euxo pipefail
+source "$DOTFILES/.bash_helpers"
+
+require_variable INCLUDE_LAPTOP_SUPPORT
+
+if [ $INCLUDE_LAPTOP_SUPPORT == 1 ]; then
+    echo "LAPTOP SUPPORT INCOMING!"
+else
+    echo "Laptop support installation skipped!"
+fi

@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euxo pipefail
+source "$DOTFILES/.bash_helpers"
+
+require_variable INCLUDE_SCREEN_CAPTURE
+
+if [ $INCLUDE_SCREEN_CAPTURE == 1 ]; then
+
+    sudo pacman -S --needed --noconfirm obs-studio peek deepin-screenshot
+
+    ln -sfv $DOTFILES/deepin ~/.config
+    mkdir ~/Screenshots
+
+else
+    echo "Screen capture tool installation skipped!"
+fi

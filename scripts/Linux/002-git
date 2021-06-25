@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euxo pipefail
 
-sudo pacman -S --overwrite "*" --needed --noconfirm git || exit 1
+sudo pacman -S --overwrite "*" --needed --noconfirm git
 source $DOTFILES/scripts/Shared/001-git

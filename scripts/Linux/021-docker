@@ -1,0 +1,13 @@
+#!/bin/bash
+set -euxo pipefail
+source "$DOTFILES/.bash_helpers"
+
+require_variable INCLUDE_DOCKER
+
+if [ $INCLUDE_DOCKER == 1 ]; then
+    sudo pacman -S --needed --noconfirm docker docker-compose
+    sudo usermod -a -G docker $USER
+    sudo systemctl enable docker
+else
+    echo "Docker installation skipped!"
+fi

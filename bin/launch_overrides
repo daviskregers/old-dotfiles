@@ -1,0 +1,18 @@
+#!/bin/bash
+set -euxo pipefail
+
+DOTFILES="$(dirname $(dirname $0))"
+OVERRIDE_DIRECTORY=~/.scripts
+source "$DOTFILES/.bash_helpers"
+
+if [[ ! -d $OVERRIDE_DIRECTORY ]]; then
+    mkdir -p $OVERRIDE_DIRECTORY
+    echo "directory created: $OVERRIDE_DIRECTORY"
+fi
+
+for script in $OVERRIDE_DIRECTORY/*
+do
+	echo -e "${RED}\nApplying $script$END"
+	echo $SEPARATOR
+	source $script
+done

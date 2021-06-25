@@ -1,0 +1,130 @@
+#!/bin/bash
+set -euxo pipefail
+source "$DOTFILES/.bash_helpers"
+
+require_variable INCLUDE_OFFICE
+require_variable INCLUDE_NOTION
+require_variable INCLUDE_AUTHY
+require_variable INCLUDE_TELEGRAM
+require_variable INCLUDE_DISCORD
+require_variable INCLUDE_MAILSPRING
+require_variable INCLUDE_SLACK
+require_variable INCLUDE_VSCODE
+require_variable INCLUDE_POSTMAN
+require_variable INCLUDE_TODOIST
+require_variable INCLUDE_HEIDISQL
+require_variable INCLUDE_QUICKREDIS
+
+sudo pacman -S --needed --noconfirm zip unzip xarchiver libsecret gnome-keyring htop
+
+if [ $INCLUDE_OFFICE == 1 ]; then
+    sudo pacman -S --needed --noconfirm libreoffice-still
+else
+    echo "Office tool installation skipped!"
+fi
+
+if [ $INCLUDE_NOTION == 1 ]; then
+    if ! command -v notion-app &> /dev/null
+    then
+        yay -S --needed --noconfirm notion-app
+    else
+        echo "notion-app already installed"
+    fi
+else
+    echo "Notion installation skipped!"
+fi
+
+if [ $INCLUDE_AUTHY == 1 ]; then
+    if ! command -v authy &> /dev/null
+    then
+        yay -S --needed --noconfirm authy
+    else
+        echo "authy already installed"
+    fi
+else
+    echo "authy installation skipped!"
+fi
+
+if [ $INCLUDE_TELEGRAM == 1 ]; then
+    sudo pacman -S --needed --noconfirm telegram-desktop
+else
+    echo "Telegram installation skipped!"
+fi
+
+if [ $INCLUDE_DISCORD == 1 ]; then
+    sudo pacman -S --needed --noconfirm discord
+else
+    echo "Discord installation skipped!"
+fi
+
+if [ $INCLUDE_MAILSPRING == 1 ]; then
+    if ! command -v mailspring &> /dev/null
+    then
+        yay -S --needed --noconfirm mailspring
+    else
+        echo "mailspring already installed"
+    fi
+else
+    echo "Mailspring installation skipped!"
+fi
+
+if [ $INCLUDE_SLACK == 1 ]; then
+    if ! command -v slack &> /dev/null
+    then
+        yay -S --needed --noconfirm slack-desktop
+    else
+        echo "slack already installed"
+    fi
+else
+    echo "Slack installation skipped!"
+fi
+
+if [ $INCLUDE_VSCODE == 1 ]; then
+    sudo pacman -S --needed --noconfirm code
+else
+    echo "VSCode installation skipped!"
+fi
+
+if [ $INCLUDE_POSTMAN == 1 ]; then
+    if ! command -v postman &> /dev/null
+    then
+        yay -S --needed --noconfirm postman-bin
+    else
+        echo "Postman already installed"
+    fi
+else
+    echo "Postman installation skipped!"
+fi
+
+if [ $INCLUDE_TODOIST == 1 ]; then
+    if ! command -v todoist &> /dev/null
+    then
+        yay -S --needed --noconfirm todoist-electron
+    else
+        echo "Todoist already installed"
+    fi
+else
+    echo "Todoist installation skipped!"
+fi
+
+if [ $INCLUDE_HEIDISQL == 1 ]; then
+    if ! command -v heidisql &> /dev/null
+    then
+        yay -S --needed --noconfirm heidisql
+    else
+        echo "Heidisql already installed"
+    fi
+else
+    echo "Heidisql installation skipped!"
+fi
+
+if [ $INCLUDE_QUICKREDIS == 1 ]; then
+    if ! command -v quickredis &> /dev/null
+    then
+        yay -S --needed --noconfirm quickredis
+    else
+        echo "Quickredis already installed"
+    fi
+else
+    echo "Quickredis installation skipped!"
+fi

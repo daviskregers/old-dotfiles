@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sudo pacman -S --needed --noconfirm alacritty tmux rsync man konsole
+
+source $DOTFILES/scripts/Shared/009-terminal

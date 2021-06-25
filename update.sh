@@ -1,4 +1,8 @@
 #!/bin/bash
+now=$(date +"%Y-%m-%d-%T")
+exec &> >(tee  logs/$now.log)
+set -euxo pipefail
+
 DOTFILES="$(pwd)"
 ARCH=$(uname)
 CONFIGURATION_PATH=scripts/$ARCH
@@ -13,5 +17,5 @@ for configuration in $CONFIGURATION_PATH/*
 do
 	echo -e "${RED}\nApplying $configuration$END"
 	echo $SEPARATOR
-	source $configuration || exit 1
+	source $configuration
 done

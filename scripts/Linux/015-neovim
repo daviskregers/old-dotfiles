@@ -1,0 +1,52 @@
+#!/bin/bash
+set -euxo pipefail
+source "$DOTFILES/.bash_helpers"
+
+sudo pacman -S --needed --noconfirm ruby xclip python2-pip ripgrep
+require_variable INCLUDE_ELIXIR
+require_variable INCLUDE_PHP
+require_variable INCLUDE_NODEJS
+require_variable INCLUDE_PYTHON
+require_variable INCLUDE_HASKELL
+
+if ! command -v neovim &> /dev/null
+then
+	yay -S --needed --noconfirm --overwrite "*" neovim-nightly-bin
+else
+	echo "neovim already installed"
+fi
+
+if [ $INCLUDE_ELIXIR == 1 ]; then
+	yay -S --needed --noconfirm elixir-ls
+	sudo pacman -S --needed --noconfirm elixir
+else
+	echo "ElixirLS installation skipped..."
+fi
+
+if [ $INCLUDE_PHP == 1 ]; then
+	sudo pacman -S --needed --noconfirm php composer
+else
+	echo "PHP installation skipped..."
+fi
+
+if [ $INCLUDE_NODEJS == 1 ]; then
+	sudo pacman -S --needed --noconfirm nodejs npm yarn
+else
+	echo "NodeJS installation skipped..."
+fi
+
+if [ $INCLUDE_PYTHON == 1 ]; then
+	sudo pacman -S --needed --noconfirm python-pylint python-pillow
+else
+	echo "Python installation skipped..."
+fi
+
+if [ $INCLUDE_HASKELL == 1 ]; then
+	sudo pacman -S --needed --noconfirm haskell-language-server
+else
+	echo "Haskell installation skipped..."
+fi
+
+sudo pacman -S --needed --noconfirm linux-headers gcc make python-pip ctags
+
+source $DOTFILES/scripts/Shared/010-neovim

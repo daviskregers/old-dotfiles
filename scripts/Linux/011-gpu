@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euxo pipefail
 
 if [ -z ${GPU_DRIVERS+x} ]; then
         echo "GPU_DRIVERS not set!"
@@ -14,17 +15,17 @@ if [ $GPU_DRIVERS == 1 ]; then
         case "$GPU" in
           *NVIDIA*)
                         echo "Using an NVIDIA card:    $GPU"
-                        sudo pacman -S --needed --noconfirm nvidia nvidia-utils nvidia-settings xorg-server-devel opencl-nvidia mesa-demos || exit 1
+                        sudo pacman -S --needed --noconfirm nvidia nvidia-utils nvidia-settings xorg-server-devel opencl-nvidia mesa-demos
 
                         echo "Confirming that nouveu is blacklisted: "
-                        grep -qxF 'blacklist nouveau' /usr/lib/modprobe.d/nvidia.conf || echo 'blacklist nouveau' >> /usr/lib/modprobe.d/nvidia.conf || exit 1
-                        cat /usr/lib/modprobe.d/nvidia.conf | grep "blacklist nouveau" || exit 1
+                        grep -qxF 'blacklist nouveau' /usr/lib/modprobe.d/nvidia.conf || echo 'blacklist nouveau' >> /usr/lib/modprobe.d/nvidia.conf
+                        cat /usr/lib/modprobe.d/nvidia.conf | grep "blacklist nouveau"
 
                         echo "Checking installation, might require restart."
-                        sudo nvidia-smi || exit 1
+                        sudo nvidia-smi
 
                         echo "Checking for direct rendering"
-                        sudo glxinfo | grep direct || exit 1
+                        sudo glxinfo | grep direct
                 ;;
           *)
                         echo "Using non-NVIDIA GPU:    $GPU"
@@ -32,7 +33,7 @@ if [ $GPU_DRIVERS == 1 ]; then
                 ;;
         esac
 
-        sudo pacman -S --needed --noconfirm arandr lxrandr || exit 1
+        sudo pacman -S --needed --noconfirm arandr lxrandr
 else
         echo "GPU DRIVERS skipped..."
 fi

@@ -1,16 +1,18 @@
 #!/bin/bash
+set -euxo pipefail
 
 echo "Checking for oh-my-zsh installation"
-if [ ! -d "~/.oh-my-zsh" ]; then
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
 	curl -L http://install.ohmyz.sh | sh
 else
 	echo "Already installed"
 fi
 
-ln -sfv $DOTFILES/.zshrc ~ || exit 1
+ln -sfv $DOTFILES/.zshrc ~
+CURRENT_SHELL=$(getent passwd $USER | awk -F: '{print $NF }')
 
-if [ $SHELL != $(which zsh) ]; then
-	chsh -s $(which zsh) || exit 1
+if [$CURRENT_SHELL != $(which zsh) ]; then
+	chsh -s $(which zsh)
 else
 	echo "ZSH already set as default shell"
 fi

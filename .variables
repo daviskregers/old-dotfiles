@@ -10,7 +10,7 @@ if [[ $0 =~ ^.*\.variables$ ]]; then
     else
         dir=$(readlink "$0")
     fi
-    export DOTFILES="$(dirname $(dirname $dir))"
+    export DOTFILES="$(dirname $dir)"
 fi
 
 # Specify default terminal for i3wm
@@ -35,7 +35,7 @@ export LESS_TERMCAP_so=$(printf '\e[1;44;1m')
 export GTK_PATH=:/usr/lib/gtk-2.0
 export PROJECTS=~/projects
 
-export WALLPAPER=$DOTFILES/wallpapers/wallpaper.jpg
+PATH=$DOTFILES/bin:$PATH
 
 # OTHER
 export REDSHIFT_LOCATION=56.946285:24.105078

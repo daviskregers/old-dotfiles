@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euxo pipefail
+
 if [ -z ${SSH_ENABLED+x} ]; then
         echo "SSH_ENABLED not set!"
         exit 1
@@ -8,8 +11,8 @@ if [ ! -f $HOME/.ssh/id_rsa.pub ]; then
 	ssh-keygen -t rsa -b 4096
 fi
 
-sudo cp -v $DOTFILES/ssh/sshd_config /etc/ssh/sshd_config || exit 1
-sudo cp -v $DOTFILES/ssh/motd /etc/ssh/motd || exit 1
+sudo cp -v $DOTFILES/ssh/sshd_config /etc/ssh/sshd_config
+sudo cp -v $DOTFILES/ssh/motd /etc/ssh/motd
 
 if [ $SSH_ENABLED == 1 ]; then
         sudo systemctl enable sshd

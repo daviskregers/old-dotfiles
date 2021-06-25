@@ -16,6 +16,7 @@ appendpath () {
 appendpath '/usr/local/sbin'
 appendpath '/usr/local/bin'
 appendpath '/usr/bin'
+appendpath "/home/$USER/.dotfiles/bin"
 unset -f appendpath
 
 export PATH

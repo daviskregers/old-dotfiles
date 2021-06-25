@@ -1,0 +1,9 @@
+#!/bin/bash
+# https://github.com/Maeda1/My-Xmonad-Xmobar-Trayer-configuration-files/blob/a772df2ec59fedca62e3d2a3a6c7d400799eba5c/saisons
+
+if [ "$(pidof trayer)" != "" ];then
+	kill $(pidof trayer)
+fi
+
+trayer --edge top --align right --widthtype request --expand true --SetDockType true --SetPartialStrut true \
+       --transparent true --alpha 1000 --heighttype request --height 15 --padding 3 &

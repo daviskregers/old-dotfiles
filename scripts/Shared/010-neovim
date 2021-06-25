@@ -1,0 +1,44 @@
+#!/bin/bash
+source "$DOTFILES/.bash_helpers"
+set -euxo pipefail
+
+require_variable INCLUDE_PHP
+require_variable INCLUDE_NODEJS
+
+ln -sfv $DOTFILES/nvim ~/.config/nvim
+
+# install paq
+PAQ_DIRECTORY="${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/opt/paq-nvim
+if [[ ! -d $PAQ_DIRECTORY ]]; then
+	git clone https://github.com/savq/paq-nvim.git $PAQ_DIRECTORY
+else
+	echo "PAQ already installed!"
+fi
+
+if [ $INCLUDE_PHP == 1 ]; then
+	INI_FILE=$(php --ini | grep 'Loaded Configuration File:' | awk -F: '{ print $NF }' | xargs)
+	sudo grep ";extension=iconv" $INI_FILE &&
+	sudo sed -i -e 's/;extension=iconv/extension=iconv/g' $INI_FILE &&
+	sudo grep "extension=iconv" $INI_FILE
+
+	composer global config minimum-stability dev
+	composer global require phpdocumentor/phpdocumentor phpmd/phpmd \
+				squizlabs/php_codesniffer phpactor/phpactor
+	composer global update
+else
+	echo "Composer installations skipped"
+fi
+
+if [ $INCLUDE_NODEJS == 1 ]; then
+	sudo npm install -g eslint lynt pug-lint-vue instant-markdown-d npm neovim \
+	    pyright bash-language-server vscode-css-languageserver-bin \
+        dockerfile-language-server-nodejs graphql-language-service-cli \
+        vscode-html-languageserver-bin intelephense vscode-json-languageserver \
+        typescript typescript-language-server vim-language-server vls \
+        yaml-language-server
+else
+	echo "NodeJS packages skipped"
+fi
+
+python -m pip install --user --upgrade pynvim
+python2.7 -m pip install --user --upgrade pynvim neovim

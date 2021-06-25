@@ -1,0 +1,6 @@
+#!/bin/bash
+set -euxo pipefail
+
+sudo pacman -S --needed --noconfirm ntp
+sudo systemctl enable ntpd
+update-ntpd
