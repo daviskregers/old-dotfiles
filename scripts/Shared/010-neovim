@@ -35,7 +35,7 @@ if [ $INCLUDE_NODEJS == 1 ]; then
         dockerfile-language-server-nodejs graphql-language-service-cli \
         vscode-html-languageserver-bin intelephense vscode-json-languageserver \
         typescript typescript-language-server vim-language-server vls \
-        yaml-language-server
+        yaml-language-server livedown
 else
 	echo "NodeJS packages skipped"
 fi

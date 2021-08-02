@@ -67,5 +67,9 @@ paq {'phpactor/phpactor', branch = 'develop', run = 'composer install --no-dev -
 paq { 'honza/vim-snippets' }
 paq { 'SirVer/ultisnips' }
 
+-- markdown
+paq 'ferrine/md-img-paste.vim'
+paq 'shime/vim-livedown'
+
 -- tagbar
 paq { 'preservim/tagbar' }

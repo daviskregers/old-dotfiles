@@ -123,3 +123,7 @@ map('n', '<leader>Q', ':PhpactorContextMenu<CR>', options)
 
 -- tagbar
 map('n', '<leader>tb', ':TagbarToggle<CR>', {})
+
+-- markdown
+map('n', 'gm', ':LivedownToggle<CR>', {})
+map('n', 'gM', ':LivedownPreview<CR>', {})

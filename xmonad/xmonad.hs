@@ -60,13 +60,14 @@ myModMask       = mod4Mask
 scratchpads :: [NamedScratchpad]
 scratchpads =
   [
-    NS "spotify" "spotify" (className =? "Spotify") (customFloating $ center 0.6 0.6),
-    NS "terminal" "konsole -name terminal" (resource =? "terminal") (customFloating $ center 0.6 0.6),
     NS "authy" "authy" (className =? "Authy Desktop") (customFloating $ center 0.3 0.3),
     NS "blueberry" "blueberry" (className =? "Blueberry.py") (customFloating $ center 0.6 0.6),
-    NS "slack" "slack" (className =? "Slacllk") (customFloating $ center 0.6 0.6),
-    NS "todo" "todoist" (className =? "Todoist") (customFloating $ center 0.6 0.6),
-    NS "htop" "konsole -name htop -e htop" (resource =? "htop") (customFloating $ center 0.6 0.6)
+    NS "htop" "konsole -name htop -e htop" (resource =? "htop") (customFloating $ center 0.6 0.6),
+    NS "notion" "notion-app" (className =? "Notion") (customFloating $ center 0.9 0.9),
+    NS "slack" "slack" (className =? "Slack") (customFloating $ center 0.6 0.6),
+    NS "spotify" "spotify" (className =? "Spotify") (customFloating $ center 0.6 0.6),
+    NS "terminal" "konsole -name terminal" (resource =? "terminal") (customFloating $ center 0.6 0.6),
+    NS "todo" "todoist" (className =? "Todoist") (customFloating $ center 0.6 0.6)
   ]
   where center w h = W.RationalRect ((1 - w) / 2) ((1 - h) / 2) w h
 
@@ -76,21 +77,26 @@ scratchpads =
 -- myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 myKeys = \conf -> mkKeymap conf $
     [
+        ("<Print>",                spawn "deepin-screen-recorder"),
         ("<XF86AudioLowerVolume>", spawn "amixer -D pulse sset Master 1%- unmute"),
         ("<XF86AudioMute>",        spawn "amixer -D pulse sset Master toggle"),
+        ("<XF86AudioNext>",        spawn "playerctl next"),
+        ("<XF86AudioPlay>",        spawn "playerctl play-pause"),
+        ("<XF86AudioPrev>",        spawn "playerctl previous"),
         ("<XF86AudioRaiseVolume>", spawn "amixer -D pulse sset Master 1%+ unmute"),
+        ("<XF86AudioStop>",        spawn "playerctl stop"),
         ("M-,",                    sendMessage (IncMasterN 1)),
         ("M-.",                    sendMessage (IncMasterN (-1))),
         ("M-<F10>",                spawn "launch_redshift --manual 2000"),
         ("M-<F11>",                spawn "launch_redshift --auto 6500:2500"),
         ("M-<F12>",                spawn "launch_redshift --kill"),
-        ("<Print>",                spawn "deepin-screenshot"),
         ("M-<Print>",              spawn "peek"),
         ("M-<Return>",             windows W.swapMaster),
         ("M-<Space>",              sendMessage NextLayout),
         ("M-<Tab>",                windows W.focusDown),
         ("M-S-<Return>",           spawn $ XMonad.terminal conf),
         ("M-S-<Space>",            setLayout $ XMonad.layoutHook conf), -- reset layout
+        ("M-S-M1-q",                io (exitWith ExitSuccess)), -- quit xmonad
         ("M-S-a",                  namedScratchpadAction scratchpads "authy"),
         ("M-S-b",                  namedScratchpadAction scratchpads "blueberry"),
         ("M-S-c",                  kill),
@@ -100,8 +106,9 @@ myKeys = \conf -> mkKeymap conf $
         ("M-S-j",                  windows W.swapUp),
         ("M-S-k",                  windows W.swapDown),
         ("M-S-m",                  namedScratchpadAction scratchpads "spotify"),
+        ("M-S-n",                  namedScratchpadAction scratchpads "notion"),
         ("M-S-p",                  spawn "gmrun"),
-        ("M-S-q",                  io (exitWith ExitSuccess)), -- quit xmonad
+        ("M-S-q",                  kill),
         ("M-S-s",                  namedScratchpadAction scratchpads "slack"),
         ("M-S-t",                  namedScratchpadAction scratchpads "todo"),
         ("M-S-x",                  spawn "dm-tool lock"), -- lockscreen
@@ -189,16 +196,19 @@ myStartupHook = return ()
 main :: IO ()
 main = do
   nitroproniroprocc <- spawnPipe "nitrogen --restore"
-  xmobarproc        <- spawnPipe "xmobar -d"
+  xmobarproc0        <- spawnPipe "xmobar -x 0 -d"
+  xmobarproc1        <- spawnPipe "xmobar -x 1 -d"
   comptonproc       <- spawnPipe "compton"
   redproc           <- spawnPipe "launch_redshift --auto 6500:2500"
   volumeproc        <- spawnPipe "launch_volumecontrol"
   albertproc        <- spawnPipe "albert"
   trayproc          <- spawnPipe "launch_trayer"
   ov                <- spawnPipe "launch_overrides"
-  xmonad $ mkConfig xmobarproc
+  kbd               <- spawnPipe "setxkbmap lv -variant apostrophe"
+  num               <- spawnPipe "enable-numlock-if-var"
+  xmonad $ mkConfig xmobarproc0 xmobarproc1
 
-mkConfig xmobarHandle = docks def {
+mkConfig xmobarHandle0 xmobarHandle1 = docks def {
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
         clickJustFocuses   = myClickJustFocuses,
@@ -212,7 +222,7 @@ mkConfig xmobarHandle = docks def {
         layoutHook         = myLayout,
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
-        logHook            = mkLogHook xmobarHandle,
+        logHook            = mkLogHook xmobarHandle0 <+> mkLogHook xmobarHandle1,
         startupHook        = myStartupHook
     }
 

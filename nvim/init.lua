@@ -10,6 +10,8 @@ require('statusline')
 require('tree-file-explorer')
 require('treesitter')
 require('indent-guide-lines')
+require('md-img-paste')
+require('md-preview')
 
 require('settings')
 -- TODO: debugger

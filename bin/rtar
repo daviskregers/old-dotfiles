@@ -1,0 +1,8 @@
+#!/bin/bash
+set -euxo pipefail
+
+for dir in */
+do
+  base=$(basename "$dir")
+  tar -czf "${base}.tar.gz" "$dir"
+done

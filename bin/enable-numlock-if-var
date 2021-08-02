@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ "${STARTUP_NUMLOCK_ENABLED}" == "1" ]]; then
+    numlockx on
+    echo "keypad enabled."
+else
+    echo "STARTUP_NUMLOCK_ENABLED not set to \"1\""
+fi

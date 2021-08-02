@@ -1,5 +1,5 @@
 #!/bin/bash
 set -euxo pipefail
 
-sudo pacman -S --needed --noconfirm ufw
+sudo pacman -S --needed --noconfirm ufw iptables
 source $DOTFILES/scripts/Shared/003-ufw
