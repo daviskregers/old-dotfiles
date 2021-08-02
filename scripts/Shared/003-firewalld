@@ -1,0 +1,29 @@
+#!/bin/bash
+set -euxo pipefail
+
+sudo systemctl enable nftables
+sudo systemctl start nftables
+sudo nft flush ruleset
+
+# https://www.datapacket.com/blog/securing-your-server-with-nftables
+sudo nft add table inet firewall
+sudo nft add chain inet firewall input { type filter hook input priority 0 \; policy drop\; }
+# Allow Established/Related
+sudo nft add rule inet firewall input ct state established,related accept
+# Drop Invalid Connections
+sudo nft add rule inet firewall input ct state invalid drop
+# allow ping
+sudo nft add rule inet firewall input ip protocol icmp limit rate 4/second accept
+# allow ssh and http(s)
+sudo nft add rule inet firewall input tcp dport { http, https } drop
+sudo nft add rule inet firewall input udp dport { 22, http, https } drop
+# don't forward anything, you're not a router!
+sudo nft add chain inet firewall forward { type filter hook forward priority 0 \; policy drop\; }
+# allow all outgoing traffic
+sudo nft add chain inet firewall output { type filter hook output priority 0 \; policy accept\; }
+
+if [ $SSH_ENABLED == 1 ]; then
+    sudo nft add rule inet firewall input tcp dport 22 accept
+else
+    sudo nft add rule inet firewall input tcp dport 22 drop
+fi

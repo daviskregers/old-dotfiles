@@ -1,0 +1,22 @@
+#!/bin/bash
+set -euxo pipefail
+
+cd $DOTFILES
+source .bash_helpers
+git remote update
+
+include ~/.overrides
+
+if [[ $(git status | grep "up to date") = "" ]]; then
+    echo -e $SEPARATOR
+    echo -e "${RED}Dotfiles have been changed, make sure to commit & push!$END"
+    echo -e $SEPARATOR
+    git status
+    CONTINUE=$(confirmation)
+    if [[ $CONTINUE != 1 ]]; then
+        exit 1;
+    fi
+fi
+
+git pull
+source $DOTFILES/update.sh
