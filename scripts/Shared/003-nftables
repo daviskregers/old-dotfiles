@@ -12,8 +12,6 @@ sudo nft add chain inet firewall input { type filter hook input priority 0 \; po
 sudo nft add rule inet firewall input ct state established,related accept
 # Drop Invalid Connections
 sudo nft add rule inet firewall input ct state invalid drop
-# allow ping
-sudo nft add rule inet firewall input ip protocol icmp limit rate 4/second accept
 # allow ssh and http(s)
 sudo nft add rule inet firewall input tcp dport { http, https } drop
 sudo nft add rule inet firewall input udp dport { 22, http, https } drop
@@ -26,6 +24,12 @@ if [ $SSH_ENABLED == 1 ]; then
     sudo nft add rule inet firewall input tcp dport 22 accept
 else
     sudo nft add rule inet firewall input tcp dport 22 drop
+fi
+
+if [ $ALLOW_PINGING == 1 ]; then
+    sudo nft add rule inet firewall input ip protocol icmp limit rate 4/second accept
+else
+    sudo nft add rule inet firewall input ip protocol icmp limit rate 4/second drop
 fi
 
 sudo nft list ruleset | sudo tee /etc/nftables.conf
