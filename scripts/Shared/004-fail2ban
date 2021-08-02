@@ -1,7 +1,11 @@
 #!/bin/bash
 set -euxo pipefail
 
+sudo cp $DOTFILES/fail2ban/nftables-common.local /etc/fail2ban/action.d/nftables-common.local
+sudo mkdir -p /etc/systemd/systemd/fail2ban
+sudo cp -r $DOTFILES/fail2ban/override.conf /etc/systemd/systemd/fail2ban/override.conf
 sudo cp -r $DOTFILES/fail2ban/jail.local /etc/fail2ban/jail.local
 
+sudo systemctl daemon-reload
 sudo systemctl enable fail2ban
 sudo systemctl restart fail2ban

@@ -1,0 +1,7 @@
+[Init]
+nftables_family = inet
+nftables_table  = fail2ban
+
+blocktype       = drop
+
+nftables_set_prefix =

@@ -27,3 +27,5 @@ if [ $SSH_ENABLED == 1 ]; then
 else
     sudo nft add rule inet firewall input tcp dport 22 drop
 fi
+
+sudo nft list ruleset | sudo tee /etc/nftables.conf

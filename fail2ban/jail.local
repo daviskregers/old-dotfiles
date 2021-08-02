@@ -1,6 +1,7 @@
 [DEFAULT]
 bantime = 1d
-banaction = ufw
+banaction = nftables-multiport
+banaction_allports = nftables-allports
 
 [sshd]
 enabled   = true

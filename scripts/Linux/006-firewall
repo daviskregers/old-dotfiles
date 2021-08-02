@@ -2,4 +2,4 @@
 set -euxo pipefail
 
 sudo pacman -S --needed --noconfirm nftables
-source $DOTFILES/scripts/Shared/003-firewalld
+source $DOTFILES/scripts/Shared/003-nftables
