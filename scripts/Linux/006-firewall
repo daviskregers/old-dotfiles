@@ -1,5 +1,5 @@
 #!/bin/bash
 set -euxo pipefail
 
-sudo pacman -S --needed --noconfirm nftables
+sudo pacman -S --needed --noconfirm nftables iptables-nft
 source $DOTFILES/scripts/Shared/003-nftables

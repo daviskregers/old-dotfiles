@@ -6,31 +6,44 @@ sudo systemctl start nftables
 sudo nft flush ruleset
 
 # https://www.datapacket.com/blog/securing-your-server-with-nftables
+
 sudo nft add table inet firewall
 sudo nft add chain inet firewall input { type filter hook input priority 0 \; policy drop\; }
-sudo nft add rule inet firewall input ip daddr 127.0.0.1 accept
+sudo nft add rule inet firewall input iif lo accept
+
 # Allow Established/Related
 sudo nft add rule inet firewall input ct state established,related accept
+
 # Drop Invalid Connections
 sudo nft add rule inet firewall input ct state invalid drop
-# allow ssh and http(s)
-sudo nft add rule inet firewall input tcp dport { http, https } drop
-sudo nft add rule inet firewall input udp dport { 22, http, https } drop
-# don't forward anything, you're not a router!
+
+# don't forward anything, you're not a router! except for docker, I guess.
 sudo nft add chain inet firewall forward { type filter hook forward priority 0 \; policy drop\; }
+sudo nft add rule inet firewall forward oif docker0 accept
+sudo nft add rule inet firewall forward iif docker0 accept
+
 # allow all outgoing traffic
 sudo nft add chain inet firewall output { type filter hook output priority 0 \; policy accept\; }
 
+# allow/dissalow ssh connections
 if [ $SSH_ENABLED == 1 ]; then
     sudo nft add rule inet firewall input tcp dport 22 accept
 else
     sudo nft add rule inet firewall input tcp dport 22 drop
 fi
 
+# allow/disallow pinging
 if [ $ALLOW_PINGING == 1 ]; then
     sudo nft add rule inet firewall input ip protocol icmp limit rate 4/second accept
 else
-    sudo nft add rule inet firewall input ip protocol icmp limit rate 4/second drop
+    sudo nft add rule inet firewall input ip protocol icmp drop
+fi
+
+# restart docker for it to apply it's routes
+if [ $INCLUDE_DOCKER == 1 ]; then
+    sudo systemctl restart docker
 fi
 
 sudo nft list ruleset | sudo tee /etc/nftables.conf
+
+exit 1
