@@ -5,7 +5,33 @@ source "$DOTFILES/.bash_helpers"
 require_variable INCLUDE_LAPTOP_SUPPORT
 
 if [ $INCLUDE_LAPTOP_SUPPORT == 1 ]; then
-    echo "LAPTOP SUPPORT INCOMING!"
+
+    # https://austingwalters.com/increasing-battery-life-on-an-arch-linux-laptop-thinkpad-t14s/
+    BATTERY=/sys/class/power_supply/BAT0
+
+    if [ -d "$BATTERY" ]; then
+        if ! command -v powertop &> /dev/null
+        then
+           sudo pacman -S --noconfirm --needed powertop
+           sudo powertop --calibrate
+           sudo powertop --auto-tune
+        else
+            echo "powertop already installed"
+        fi
+
+        sudo cp $DOTFILES/powertop/powertop.service /etc/systemd/system/powertop.service
+        sudo systemctl enable powertop.service
+    else
+        echo "No battery present, skipping..."
+    fi
+
+    sudo pacman -S --noconfirm --needed brightnessctl
+
+    echo "blacklist rtw_pci\nblacklist rtwpci\nblacklist rtw_8822b\nblacklist rtw_core" | sudo tee /etc/modprobe.d/rtl8822be.conf
+    yay -S --needed --noconfirm rtw88-dkms-git
+
+    echo "options rtw_pci disable_aspm=y disable_msi=y" | sudo tee /etc/modprobe.d/50-rtw_pci.conf
+
 else
     echo "Laptop support installation skipped!"
 fi
