@@ -1,6 +1,6 @@
 # Dotfiles
 
-## Useful to rembmer
+## Useful to remember
 
 - You can use the `install/` scripts when doing a clean install.
 - When runing the `update.sh`, make sure to copy the `.overrides.example` to `.overrides` and set the desired configuration.
