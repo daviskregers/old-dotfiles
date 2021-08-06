@@ -19,6 +19,7 @@ sudo nft add rule inet firewall input ct state invalid drop
 
 # don't forward anything, you're not a router!
 sudo nft add chain inet firewall forward { type filter hook forward priority 0 \; policy drop\; }
+#sudo nft add rule inet firewall forward meta nftrace set 1
 
 # allow all outgoing traffic
 sudo nft add chain inet firewall output { type filter hook output priority 0 \; policy accept\; }
@@ -41,6 +42,8 @@ fi
 if [ $INCLUDE_DOCKER == 1 ]; then
     sudo nft add rule inet firewall forward oif docker0 accept
     sudo nft add rule inet firewall forward iif docker0 accept
+    sudo nft add rule inet firewall forward ct state established, related accept
+    sudo nft add rule inet firewall forward ip saddr 172.22.0.0/16 accept
     sudo systemctl restart docker
 fi
 
