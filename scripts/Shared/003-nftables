@@ -45,5 +45,3 @@ if [ $INCLUDE_DOCKER == 1 ]; then
 fi
 
 sudo nft list ruleset | sudo tee /etc/nftables.conf
-
-exit 1
