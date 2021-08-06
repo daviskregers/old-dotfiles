@@ -30,7 +30,7 @@ else
 fi
 
 if [ $INCLUDE_NODEJS == 1 ]; then
-	sudo npm install -g eslint lynt pug-lint-vue instant-markdown-d npm neovim \
+	yarn global add eslint lynt pug-lint-vue instant-markdown-d npm neovim \
 	    pyright bash-language-server vscode-css-languageserver-bin \
         dockerfile-language-server-nodejs graphql-language-service-cli \
         vscode-html-languageserver-bin intelephense vscode-json-languageserver \
