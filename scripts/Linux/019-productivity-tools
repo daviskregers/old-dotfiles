@@ -57,6 +57,17 @@ else
     echo "Discord installation skipped!"
 fi
 
+if [ $INCLUDE_ZOOM == 1 ]; then
+    if ! command -v zoom &> /dev/null
+    then
+        yay -S --needed --noconfirm zoom
+    else
+        echo "Zoom already installed"
+    fi
+else
+    echo "Zoom installation skipped!"
+fi
+
 if [ $INCLUDE_MAILSPRING == 1 ]; then
     if ! command -v mailspring &> /dev/null
     then
