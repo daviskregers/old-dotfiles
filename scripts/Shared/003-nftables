@@ -17,10 +17,8 @@ sudo nft add rule inet firewall input ct state established,related accept
 # Drop Invalid Connections
 sudo nft add rule inet firewall input ct state invalid drop
 
-# don't forward anything, you're not a router! except for docker, I guess.
+# don't forward anything, you're not a router!
 sudo nft add chain inet firewall forward { type filter hook forward priority 0 \; policy drop\; }
-sudo nft add rule inet firewall forward oif docker0 accept
-sudo nft add rule inet firewall forward iif docker0 accept
 
 # allow all outgoing traffic
 sudo nft add chain inet firewall output { type filter hook output priority 0 \; policy accept\; }
@@ -39,8 +37,10 @@ else
     sudo nft add rule inet firewall input ip protocol icmp drop
 fi
 
-# restart docker for it to apply it's routes
+# restart docker for it to apply it's routes, allow forwarding to docker.
 if [ $INCLUDE_DOCKER == 1 ]; then
+    sudo nft add rule inet firewall forward oif docker0 accept
+    sudo nft add rule inet firewall forward iif docker0 accept
     sudo systemctl restart docker
 fi
 
