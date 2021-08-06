@@ -66,8 +66,9 @@ scratchpads =
     NS "authy" "authy" (className =? "Authy Desktop") (customFloating $ center 0.3 0.3),
     NS "blueberry" "blueberry" (className =? "Blueberry.py") (customFloating $ center 0.6 0.6),
     NS "htop" "konsole -name htop -e htop" (resource =? "htop") (customFloating $ center 0.6 0.6),
+    NS "mailspring" "mailspring" (className =? "Mailspring") (customFloating $ center 0.9 0.9),
     NS "notion" "notion-app" (className =? "Notion") (customFloating $ center 0.9 0.9),
-    NS "slack" "slack" (className =? "Slack") (customFloating $ center 0.6 0.6),
+    NS "slack" "slack" (className =? "Slack") (customFloating $ center 0.9 0.9),
     NS "spotify" "spotify" (className =? "Spotify") (customFloating $ center 0.6 0.6),
     NS "terminal" "konsole -name terminal" (resource =? "terminal") (customFloating $ center 0.6 0.6),
     NS "todo" "todoist" (className =? "Todoist") (customFloating $ center 0.6 0.6)
@@ -80,7 +81,7 @@ scratchpads =
 -- myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 myKeys = \conf -> mkKeymap conf $
     [
-        ("<Print>",                spawn "deepin-screen-recorder"),
+        ("<Print>",                spawn "flameshot gui"),
         ("<XF86AudioLowerVolume>", spawn "amixer -D pulse sset Master 1%- unmute"),
         ("<XF86AudioMute>",        spawn "amixer -D pulse sset Master toggle"),
         ("<XF86AudioNext>",        spawn "playerctl next"),
@@ -88,6 +89,8 @@ myKeys = \conf -> mkKeymap conf $
         ("<XF86AudioPrev>",        spawn "playerctl previous"),
         ("<XF86AudioRaiseVolume>", spawn "amixer -D pulse sset Master 1%+ unmute"),
         ("<XF86AudioStop>",        spawn "playerctl stop"),
+        ("<XF86MonBrightnessUp>",  spawn "change-brightness 5%+"),
+        ("<XF86MonBrightnessDown>",  spawn "change-brightness 5%-"),
         ("M-,",                    sendMessage (IncMasterN 1)),
         ("M-.",                    sendMessage (IncMasterN (-1))),
         ("M-<F10>",                spawn "launch_redshift --manual 2000"),
@@ -109,6 +112,7 @@ myKeys = \conf -> mkKeymap conf $
         ("M-S-j",                  windows W.swapUp),
         ("M-S-k",                  windows W.swapDown),
         ("M-S-m",                  namedScratchpadAction scratchpads "spotify"),
+        ("M-S-,",                  namedScratchpadAction scratchpads "mailspring"),
         ("M-S-n",                  namedScratchpadAction scratchpads "notion"),
         ("M-S-p",                  spawn "gmrun"),
         ("M-S-q",                  kill),
