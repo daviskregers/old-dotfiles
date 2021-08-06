@@ -39,7 +39,7 @@ luks_path=/dev/mapper/$luks_root
 
 DESCRIPTION_FORMAT="This will format the $device drive, partitions $efipartition, $systempartition"
 
-echo "Boot partition: $bootpartition"
+echo "Boot partition: $efipartition"
 echo "System partition: $systempartition"
 
 dialog --backtitle "$BACKTITLE_PARTITION" --title "$TITLE_FORMAT" --yesno "$DESCRIPTION_FORMAT" 10 40
