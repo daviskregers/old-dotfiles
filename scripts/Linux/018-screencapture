@@ -6,14 +6,7 @@ require_variable INCLUDE_SCREEN_CAPTURE
 
 if [ $INCLUDE_SCREEN_CAPTURE == 1 ]; then
 
-    sudo pacman -S --needed --noconfirm obs-studio peek deepin-screenshot
-
-    if ! command -v deepin-screen-recorder &> /dev/null
-    then
-        yay -S --needed --noconfirm deepin-screenshot-copy-patch
-    else
-        echo "deepin-screen-recorder already installed"
-    fi
+    sudo pacman -S --needed --noconfirm obs-studio peek flameshot
 
     ln -sfv $DOTFILES/deepin ~/.config
 
@@ -23,4 +16,4 @@ if [ $INCLUDE_SCREEN_CAPTURE == 1 ]; then
 
 else
     echo "Screen capture tool installation skipped!"
-    fi
+fi
