@@ -5,5 +5,16 @@ if [ "$(pidof trayer)" != "" ];then
 	kill $(pidof trayer)
 fi
 
-trayer --edge top --align right --widthtype request --expand true --SetDockType true --SetPartialStrut true \
-       --transparent true --alpha 1000 --heighttype request --height 15 --padding 3 &
+trayer --edge top \
+    --SetPartialStrut true \
+    --align right \
+    --alpha 10 \
+    --expand true --SetDockType true \
+    --height 15 \
+    --heighttype request \
+    --padding 3 \
+    --tint 0x000 \
+    --transparent true \
+    --widthtype 100 \
+    --widthtype pixel \
+    &
