@@ -2,6 +2,8 @@
 
 ## Useful to rembmer
 
+- You can use the `install/` scripts when doing a clean install.
+- When runing the `update.sh`, make sure to copy the `.overrides.example` to `.overrides` and set the desired configuration.
 - wallpapers can be seet with launching `nitrogen`
 
 ### Dualbooting systemd-boot
@@ -16,3 +18,9 @@ sudo cp -ax Microsoft /boot/EFI
 ```
 
 https://github.com/spxak1/weywot/blob/main/Pop_OS_Dual_Boot.md#22-how-to-add-an-option-for-windows-in-pop_os-boot-menu
+
+## TODO:
+
+- [x] Archlinux
+- [ ] Ubuntu / debian
+- [ ] OS X
