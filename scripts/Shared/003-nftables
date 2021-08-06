@@ -8,6 +8,7 @@ sudo nft flush ruleset
 # https://www.datapacket.com/blog/securing-your-server-with-nftables
 sudo nft add table inet firewall
 sudo nft add chain inet firewall input { type filter hook input priority 0 \; policy drop\; }
+sudo nft add rule inet firewall input ip daddr 127.0.0.1 accept
 # Allow Established/Related
 sudo nft add rule inet firewall input ct state established,related accept
 # Drop Invalid Connections
