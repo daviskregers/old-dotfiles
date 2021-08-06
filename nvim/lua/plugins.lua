@@ -46,7 +46,7 @@ paq 'kyazdani42/nvim-web-devicons'
 paq 'romgrk/barbar.nvim'
 
 -- indent guides
-paq {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
+paq {'lukas-reineke/indent-blankline.nvim'}
 
 -- blame line
 paq 'tveskag/nvim-blame-line'
