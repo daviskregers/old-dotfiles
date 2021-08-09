@@ -139,3 +139,9 @@ if [ $INCLUDE_QUICKREDIS == 1 ]; then
 else
     echo "Quickredis installation skipped!"
 fi
+
+if [ $INCLUDE_VIRTUALBOX == 1 ]; then
+    sudo pacman -S --needed --noconfirm virtualbox
+else
+    echo "Virtualbox installation skipped!"
+fi
