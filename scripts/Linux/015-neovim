@@ -43,6 +43,13 @@ fi
 
 if [ $INCLUDE_HASKELL == 1 ]; then
 	sudo pacman -S --needed --noconfirm haskell-language-server
+    if ! command -v stack &> /dev/null
+    then
+        curl -sSL https://get.haskellstack.org/ | sh
+        stack --version
+    else
+        echo "stack already installed"
+    fi
 else
 	echo "Haskell installation skipped..."
 fi
