@@ -25,6 +25,10 @@ if [ $INCLUDE_PHP == 1 ]; then
 	composer global require phpdocumentor/phpdocumentor phpmd/phpmd \
 				squizlabs/php_codesniffer phpactor/phpactor
 	composer global update
+
+    INI_PATH=$(php -i | grep "Loaded Configuration File" | awk '{ print $5 }')
+    sudo sed -i 's/memory_limit = 128M/memory_limit = 4G/g' $INI_PATH
+    php -i | grep 'memory_limit'
 else
 	echo "Composer installations skipped"
 fi
