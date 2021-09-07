@@ -37,6 +37,8 @@ export PROJECTS=~/projects
 
 PATH=$DOTFILES/bin:$PATH
 PATH=~/.local/bin:$PATH
+PATH=/usr/local/sbin:$PATH
+PATH=~/.bin/:$PATH
 
 # OTHER
 export REDSHIFT_LOCATION=56.946285:24.105078

@@ -12,6 +12,9 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 local nvim_lsp = require('lspconfig')
+local pid = vim.fn.getpid()
+local omnisharp_bin = "~/.helpers/omnisharp/run"
+
 local lsp_plugins = {
     pyright = {
 
@@ -34,6 +37,9 @@ local lsp_plugins = {
     vimls = {},
     vuels = {},
     yamlls = {},
+    omnisharp = {
+        cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
+    },
     jsonls = {},
     cssls = {},
     html = {},
@@ -41,7 +47,9 @@ local lsp_plugins = {
         filetypes = { "elixir", "eelixir", "ex", "exs"},
         cmd = { "~/.helpers/elixir-ls/language_server.sh" };
     },
-    hls = {}
+    hls = {},
+    terraformls = {},
+    ccls = {}
 }
 
 local on_attach = function(client, bufnr)

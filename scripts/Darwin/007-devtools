@@ -1,0 +1,67 @@
+#!/bin/bash
+set -euxo pipefail
+source "$DOTFILES/.bash_helpers"
+
+sudo easy_install pip
+
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python
+
+# docker
+require_variable INCLUDE_DOCKER
+if [ $INCLUDE_DOCKER == 1 ]; then
+	brew install --cask docker
+fi
+
+# fonts
+brew tap homebrew/cask-fonts
+brew install --cask font-fira-code
+brew install --cask font-jetbrains-mono-nerd-font
+brew install --cask font-fira-code-nerd-font
+
+# terminal
+brew install --cask iterm2
+brew install tmux
+brew install reattach-to-user-namespace
+
+source $DOTFILES/scripts/Shared/009-terminal
+
+# neovim
+brew install ctags
+brew install --HEAD luajit
+brew install --HEAD neovim
+brew install ripgrep
+
+gem install --user neovim vim-flavor
+
+# nodejs
+require_variable INCLUDE_NODEJS
+if [ $INCLUDE_NODEJS == 1 ]; then
+	brew install nodejs yarn
+fi
+
+# php
+require_variable INCLUDE_PHP
+if [ $INCLUDE_PHP == 1 ]; then
+	brew install php composer
+fi
+
+# python
+require_variable INCLUDE_PYTHON
+if [ $INCLUDE_PYTHON == 1 ]; then
+	brew install python3
+	pip3 install --user --upgrade neovim pynvim pylint pillow
+fi
+
+require_variable INCLUDE_TERRAFORM
+if [ $INCLUDE_TERRAFORM == 1 ]; then
+    brew install hashicorp/tap/terraform-ls
+fi
+
+brew install ccls
+
+# https://github.com/OmniSharp/homebrew-omnisharp-roslyn
+brew tap omnisharp/omnisharp-roslyn
+brew update
+brew install omnisharp
+
+source $DOTFILES/scripts/Shared/010-neovim

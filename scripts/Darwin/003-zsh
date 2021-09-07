@@ -1,0 +1,5 @@
+#!/bin/bash
+set -euxo pipefail
+
+source $DOTFILES/scripts/Shared/006-bash
+source $DOTFILES/scripts/Shared/007-zsh

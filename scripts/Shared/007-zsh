@@ -9,7 +9,13 @@ else
 fi
 
 ln -sfv $DOTFILES/.zshrc ~
-CURRENT_SHELL=$(getent passwd $USER | awk -F: '{print $NF }')
+
+if command -v getent &> /dev/null
+then
+	CURRENT_SHELL=$(getent passwd $USER | awk -F: '{print $NF }')
+else
+	CURRENT_SHELL=/bin/bash
+fi
 
 if [$CURRENT_SHELL != $(which zsh) ]; then
 	chsh -s $(which zsh)
