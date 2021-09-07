@@ -73,3 +73,7 @@ paq 'shime/vim-livedown'
 
 -- tagbar
 paq { 'preservim/tagbar' }
+paq 'ludovicchabant/vim-gutentags'
+
+-- which key
+paq 'folke/which-key.nvim'

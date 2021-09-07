@@ -77,3 +77,9 @@ vim.api.nvim_set_var('blameLineVirtualTextHighlight', 'BlameLine')
 cmd('au VimEnter * set tabstop=4 shiftwidth=4|au BufReadPost,BufNewFile * set tabstop=4 shiftwidth=4')
 cmd('au VimEnter *.yml set tabstop=2 shiftwidth=2|au BufReadPost,BufNewFile * set tabstop=2 shiftwidth=2')
 cmd('au VimEnter *.yaml set tabstop=2 shiftwidth=2|au BufReadPost,BufNewFile * set tabstop=2 shiftwidth=2')
+
+require("which-key").setup {
+  -- your configuration comes here
+  -- or leave it empty to use the default settings
+  -- refer to the configuration section below
+}
