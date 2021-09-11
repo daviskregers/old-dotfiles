@@ -2,6 +2,7 @@
 -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = {
@@ -76,7 +77,19 @@ local lsp_plugins = {
     },
     hls = {},
     terraformls = {},
-    ccls = {}
+    ccls = {},
+    efm = {
+        init_options = {documentFormatting = true},
+        settings = {
+            rootMarkers = {".git/"},
+            languages = {
+                lua = {
+                    {formatCommand = "lua-format -i", formatStdin = true}
+                },
+                terraform = {}
+            }
+        }
+    }
 }
 
 local on_attach = function(client, bufnr)
