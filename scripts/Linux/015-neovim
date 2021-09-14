@@ -8,6 +8,7 @@ require_variable INCLUDE_PHP
 require_variable INCLUDE_NODEJS
 require_variable INCLUDE_PYTHON
 require_variable INCLUDE_HASKELL
+require_variable INCLUDE_TERRAFORM
 
 if ! command -v neovim &> /dev/null
 then
@@ -56,4 +57,16 @@ fi
 
 sudo pacman -S --needed --noconfirm linux-headers gcc make python-pip ctags
 
+if [ $INCLUDE_TERRAFORM == 1 ]; then
+    if ! command -v terraform-ls &> /dev/null
+    then
+        yay -S --needed terraform-ls-bin
+    else
+        echo "TerraformLS already installed"
+    fi
+fi
+
 source $DOTFILES/scripts/Shared/010-neovim
+
+yay -S ccls
+yay -S efm-langserver

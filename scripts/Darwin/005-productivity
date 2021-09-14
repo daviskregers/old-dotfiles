@@ -1,0 +1,9 @@
+#!/bin/bash
+set -euxo pipefail
+
+brew install --cask authy
+mas install 585829637 # todoist
+brew install --cask protonmail-bridge
+brew install --cask notion
+brew install alfred
+brew install --cask amethyst
