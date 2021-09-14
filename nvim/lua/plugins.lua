@@ -15,8 +15,12 @@ paq 'alexaandru/nvim-lspupdate'
 paq 'onsails/lspkind-nvim'
 
 -- autocomplete
-paq 'hrsh7th/nvim-compe'
+-- paq 'hrsh7th/nvim-compe'
+paq 'hrsh7th/cmp-buffer'
+paq 'hrsh7th/cmp-nvim-lsp'
+paq 'hrsh7th/nvim-cmp'
 paq 'hrsh7th/vim-vsnip'
+
 
 -- colorscheme
 paq 'tjdevries/colorbuddy.vim'

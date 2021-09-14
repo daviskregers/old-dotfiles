@@ -69,3 +69,4 @@ fi
 source $DOTFILES/scripts/Shared/010-neovim
 
 yay -S ccls
+yay -S efm-langserver

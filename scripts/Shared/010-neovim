@@ -6,6 +6,7 @@ require_variable INCLUDE_PHP
 require_variable INCLUDE_NODEJS
 
 ln -sfv $DOTFILES/nvim ~/.config/nvim
+ln -sfv $DOTFILES/efm-langserver ~/.config/efm-langserver
 ln -sfv $DOTFILES/.ctags ~
 
 # install paq
