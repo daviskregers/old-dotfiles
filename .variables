@@ -41,6 +41,7 @@ PATH=/usr/local/sbin:$PATH
 PATH=~/.bin/:$PATH
 PATH=~/.config/composer/vendor/bin:$PATH
 PATH=~/.yarn/bin:$PATH
+PATH=~/bin:$PATH
 
 # OTHER
 export REDSHIFT_LOCATION=56.946285:24.105078

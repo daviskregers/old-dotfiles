@@ -46,6 +46,10 @@ function dipfix() {
     sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
 }
 
+# terraform
+alias tf="terraform"
+alias tfp="tf fmt && tf plan"
+
 # archiving
 alias dirgz="find * -maxdepth 0 -type d -exec tar czvf {}.tar.gz {} \;"
 alias dirzip="find * -maxdepth 0 -type d -exec zip -r {}.zip {} \;"
