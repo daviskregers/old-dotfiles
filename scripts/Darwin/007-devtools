@@ -56,6 +56,7 @@ fi
 require_variable INCLUDE_TERRAFORM
 if [ $INCLUDE_TERRAFORM == 1 ]; then
     brew install hashicorp/tap/terraform-ls
+    brew install warrensbox/tap/tfswitch
 fi
 
 brew install ccls

@@ -64,6 +64,12 @@ if [ $INCLUDE_TERRAFORM == 1 ]; then
     else
         echo "TerraformLS already installed"
     fi
+    if ! command -v tfswitch &> /dev/null
+    then
+        yay -S --needed tfswitch
+    else
+        echo "tfswitch already installed"
+    fi
 fi
 
 source $DOTFILES/scripts/Shared/010-neovim
