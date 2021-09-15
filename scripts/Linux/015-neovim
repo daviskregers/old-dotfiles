@@ -74,5 +74,16 @@ fi
 
 source $DOTFILES/scripts/Shared/010-neovim
 
-yay -S ccls
-yay -S efm-langserver
+if ! command -v ccls &> /dev/null
+then
+    yay -S --needed ccls
+else
+    echo "ccls already installed"
+fi
+
+if ! command -v efm-langserver &> /dev/null
+then
+    yay -S --needed efm-langserver
+else
+    echo "efm-langserver already installed"
+fi

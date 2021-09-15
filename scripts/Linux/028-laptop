@@ -27,10 +27,16 @@ if [ $INCLUDE_LAPTOP_SUPPORT == 1 ]; then
 
     sudo pacman -S --noconfirm --needed brightnessctl
 
-    echo "blacklist rtw_pci\nblacklist rtwpci\nblacklist rtw_8822b\nblacklist rtw_core" | sudo tee /etc/modprobe.d/rtl8822be.conf
-    yay -S --needed --noconfirm rtw88-dkms-git
-
+    echo "
+    blacklist rtw_pci
+    blacklist rtwpci
+    blacklist rtw_8822b
+    blacklist rtw_core" | sudo tee /etc/modprobe.d/rtl8822be.conf
     echo "options rtw_pci disable_aspm=y disable_msi=y" | sudo tee /etc/modprobe.d/50-rtw_pci.conf
+
+    # yay -S --needed --noconfirm rtw88-dkms-git
+    # yay -S --needed --noconfirm rtl8822bu-dkms
+    sudo mkinitcpio -p linux
 
 else
     echo "Laptop support installation skipped!"
