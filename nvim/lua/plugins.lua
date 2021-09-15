@@ -35,6 +35,7 @@ paq 'rafamadriz/neon'
 -- misc
 paq 'nvim-lua/plenary.nvim'
 paq 'famiu/nvim-reload'
+paq 'jakelinnzy/autocmd-lua'
 
 -- file explorer
 paq 'kyazdani42/nvim-web-devicons' -- for file icons

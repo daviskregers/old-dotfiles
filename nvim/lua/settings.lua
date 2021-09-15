@@ -73,10 +73,17 @@ cmd('au Filetype * setlocal omnifunc=v:lua.vim.lsp.omnifunc')
 cmd('au BufEnter * EnableBlameLine')
 vim.api.nvim_set_var('blameLineVirtualTextHighlight', 'BlameLine')
 
-
-cmd('au VimEnter * set tabstop=4 shiftwidth=4|au BufReadPost,BufNewFile * set tabstop=4 shiftwidth=4')
-cmd('au VimEnter *.yml set tabstop=2 shiftwidth=2|au BufReadPost,BufNewFile * set tabstop=2 shiftwidth=2')
-cmd('au VimEnter *.yaml set tabstop=2 shiftwidth=2|au BufReadPost,BufNewFile * set tabstop=2 shiftwidth=2')
+require('autocmd-lua').augroup {
+  -- the keys `group` and `autocmds` are also optional
+  'filetype_commands',
+  {{
+    'FileType', {
+      yaml = 'set tabstop=2 shiftwidth=2',
+      yml = 'set tabstop=2 shiftwidth=2',
+      tf = 'set tabstop=2 shiftwidth=2',
+    }
+  }}
+}
 
 require("which-key").setup {
   -- your configuration comes here
