@@ -71,7 +71,7 @@ scratchpads =
     NS "slack" "slack" (className =? "Slack") (customFloating $ center 0.9 0.9),
     NS "spotify" "spotify" (className =? "Spotify") (customFloating $ center 0.6 0.6),
     NS "terminal" "konsole -name terminal" (resource =? "terminal") (customFloating $ center 0.6 0.6),
-    NS "todo" "todoist" (className =? "Todoist") (customFloating $ center 0.6 0.6)
+    NS "todo" "todoist" (className =? "Todoist") (customFloating $ center 0.6 0.9)
   ]
   where center w h = W.RationalRect ((1 - w) / 2) ((1 - h) / 2) w h
 
