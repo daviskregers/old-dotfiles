@@ -67,7 +67,7 @@ scratchpads =
     NS "blueberry" "blueberry" (className =? "Blueberry.py") (customFloating $ center 0.6 0.6),
     NS "htop" "konsole -name htop -e htop" (resource =? "htop") (customFloating $ center 0.6 0.6),
     NS "mailspring" "mailspring" (className =? "Mailspring") (customFloating $ center 0.9 0.9),
-    NS "notion" "notion-app" (className =? "Notion") (customFloating $ center 0.9 0.9),
+    NS "notion" "notion-app" (className == "Notion" || className =? "notion-app") (customFloating $ center 0.9 0.9),
     NS "slack" "slack" (className =? "Slack") (customFloating $ center 0.9 0.9),
     NS "spotify" "spotify" (className =? "Spotify") (customFloating $ center 0.6 0.6),
     NS "terminal" "konsole -name terminal" (resource =? "terminal") (customFloating $ center 0.6 0.6),

@@ -40,6 +40,7 @@ PATH=~/.local/bin:$PATH
 PATH=/usr/local/sbin:$PATH
 PATH=~/.bin/:$PATH
 PATH=~/.composer/vendor/bin:$PATH
+PATH=~/.config/composer/vendor/bin:$PATH
 PATH=~/.yarn/bin:$PATH
 PATH=~/bin:$PATH
 

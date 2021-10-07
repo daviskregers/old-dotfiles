@@ -23,10 +23,13 @@ if [ $INCLUDE_PHP == 1 ]; then
 	sudo sed -i -e 's/;extension=iconv/extension=iconv/g' $INI_FILE &&
 	sudo grep "extension=iconv" $INI_FILE
 
-	composer global config minimum-stability dev
-	composer global require phpdocumentor/phpdocumentor phpmd/phpmd \
-				squizlabs/php_codesniffer phpactor/phpactor
-	composer global update
+	#     which composer
+	#     composer --version
+	#     exit
+	# composer global config minimum-stability dev
+	#     composer global update
+	# composer global require phpdocumentor/phpdocumentor phpmd/phpmd \
+	# 			squizlabs/php_codesniffer phpactor/phpactor
 
     INI_PATH=$(php -i | grep "Loaded Configuration File" | awk '{ print $5 }')
     # FIXME: sudo sed -i 's/memory_limit = 128M/memory_limit = 4G/g' $INI_PATH

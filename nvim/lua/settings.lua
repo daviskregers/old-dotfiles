@@ -48,21 +48,15 @@ window.cursorline = true
 window.colorcolumn = '120'
 window.foldmethod = 'indent'
 
-buffer.expandtab = true
+buffer.expandtab = false
 buffer.syntax = 'ON'
---buffer.iskeyword+=-
 buffer.tabstop = 4
-buffer.shiftwidth = 3
+buffer.shiftwidth = 4
 buffer.autoread = true
 buffer.softtabstop = 4
---buffer.formatoptions -= cro
---
 
--- auto commands
--- u.create_augroup({
---    { 'BufRead,BufNewFile', '/tmp/nail-*', 'setlocal', 'ft=mail' },
---    { 'BufRead,BufNewFile', '*s-nail-*', 'setlocal', 'ft=mail' },
---}, 'ftmail')
+vim.opt.sw = 4
+vim.opt.ts = 4
 
 cmd('au CursorHold * checktime')
 --cmd('au! BufWritePost $MYVIMRC source %')

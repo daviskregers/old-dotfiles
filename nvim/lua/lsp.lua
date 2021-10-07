@@ -89,7 +89,8 @@ local lsp_plugins = {
                 terraform = {}
             }
         }
-    }
+    },
+    sqlls = {},
 }
 
 local on_attach = function(client, bufnr)
