@@ -1,0 +1,6 @@
+#!/bin/bash
+set -euxo pipefail
+
+find . -iname "*.png" -exec optipng -o7 {} \;
+find . -iname "*.jpg" -exec jpegoptim -m80 -o -p {} \;
+find . -iname "*.gif" -exec gifsicle --batch -V -O2 {} \;

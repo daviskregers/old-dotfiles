@@ -7,3 +7,7 @@ brew install --cask protonmail-bridge
 brew install --cask notion
 brew install alfred
 brew install --cask amethyst
+
+brew install jpegoptim
+brew install optipng
+brew install gifsicle

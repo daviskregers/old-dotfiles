@@ -15,7 +15,7 @@ require_variable INCLUDE_TODOIST
 require_variable INCLUDE_HEIDISQL
 require_variable INCLUDE_QUICKREDIS
 
-sudo pacman -S --needed --noconfirm zip unzip xarchiver libsecret gnome-keyring htop networkmanager-openvpn
+sudo pacman -S --needed --noconfirm zip unzip xarchiver libsecret gnome-keyring htop networkmanager-openvpn optipng jpegoptim gifsicle
 
 if [ $INCLUDE_OFFICE == 1 ]; then
     sudo pacman -S --needed --noconfirm libreoffice-still
