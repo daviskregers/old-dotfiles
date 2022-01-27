@@ -72,7 +72,7 @@ else
 echo "Installing GRUB"
 
 pacman –S grub os-prober
-grub-install /dev/${device}${prefix}
+grub-install ${device}${prefix}
 grub-mkconfig -o /boot/grub/grub.cfg
 
 fi
