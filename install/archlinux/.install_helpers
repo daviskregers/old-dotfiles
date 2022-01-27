@@ -67,10 +67,18 @@ cleanup_inside() {
 
 setup_mirrors() {
         echo -e "${RED}Syncing pacman mirrors$END"
-
         pacman -S --noconfirm reflector
         cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-        reflector -c "LV" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
+
+        if [[ -v ARCHLINUX_PROXY ]]; then
+            echo "Setting up a PROXY provided: $ARCHLINUX_PROXY"
+
+            echo "Server = $ARCHLINUX_PROXY" > /etc/pacman.d/mirrorlist
+        else
+            echo "Setting up reflector mirrorlist"
+
+            reflector -c "LV" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
+        fi
 
         cat /etc/pacman.d/mirrorlist
 }
