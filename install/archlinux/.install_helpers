@@ -69,7 +69,7 @@ setup_mirrors() {
         echo -e "${RED}Syncing pacman mirrors$END"
         pacman -S --noconfirm reflector
 
-        echo "ParallelDownloads = 5" >> /etc/pacman.conf
+        sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/g' /etc/pacman.conf
 
         cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 
