@@ -75,7 +75,7 @@ setup_mirrors() {
 
         if [[ -v ARCHLINUX_PROXY_HOST ]]; then
             echo "Proxy host provided $ARCHLINUX_PROXY_HOST"
-            ARCHLINUX_PROXY="$ARCHLINUX_PROXY/\$repo/os/\$arch"
+            ARCHLINUX_PROXY="$ARCHLINUX_PROXY_HOST/\$repo/os/\$arch"
         fi
 
         if [[ -v ARCHLINUX_PROXY ]]; then
