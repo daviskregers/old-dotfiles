@@ -55,7 +55,13 @@ cryptsetup luksFormat -v -s 512 -h sha512 $systempartition;
 cryptsetup open $systempartition $luks_root;
 
 echo "Formatting $TPE parition: $efipartition"
-mkfs.fat -F32 $efipartition
+
+if [ $TPE == "EFI" ]; then
+    mkfs.fat -F32 $efipartition
+else
+    mkfs.ext4 $efipartition
+fi
+
 echo "Formatting System partition: $luks_path"
 mkfs.ext4 -L root $luks_path
 
