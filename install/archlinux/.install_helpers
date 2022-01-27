@@ -73,6 +73,11 @@ setup_mirrors() {
 
         cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 
+        if [[ -v ARCHLINUX_PROXY_HOST ]]; then
+            echo "Proxy host provided $ARCHLINUX_PROXY"
+            ARCHLINUX_PROXY="$ARCHLINUX_PROXY/\$repo/os/\$arch"
+        fi
+
         if [[ -v ARCHLINUX_PROXY ]]; then
             echo "Setting up a PROXY provided: $ARCHLINUX_PROXY"
 
