@@ -11,7 +11,7 @@ setup_mirrors
 PWD=$(pwd)
 DOTFILES=$(dirname $(dirname $PWD))
 BACKTITLE_PARTITION="Paritioning"
-DESCRIPTION_PARTITIONS="Have you created paritions? \$TPE(512M), SYSTEM. \nUse cfdisk, fdisk or cgdisk."
+DESCRIPTION_PARTITIONS="Have you created paritions? $TPE(512M), SYSTEM. \nUse cfdisk, fdisk or cgdisk."
 DIALOG_CANCEL=1
 DIALOG_ESC=255
 SEPARATOR="------------------------------------------"
