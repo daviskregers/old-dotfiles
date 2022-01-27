@@ -7,10 +7,11 @@ source .install_helpers
 pacman -Sy --noconfirm dialog
 setup_mirrors
 
+[ -d /sys/firmware/efi ] && TPE="EFI" || TPE="BIOS"
 PWD=$(pwd)
 DOTFILES=$(dirname $(dirname $PWD))
 BACKTITLE_PARTITION="Paritioning"
-DESCRIPTION_PARTITIONS="Have you created paritions? \nEFI(512M), SYSTEM. \nUse cfdisk, fdisk or cgdisk."
+DESCRIPTION_PARTITIONS="Have you created paritions? \$TPE(512M), SYSTEM. \nUse cfdisk, fdisk or cgdisk."
 DIALOG_CANCEL=1
 DIALOG_ESC=255
 SEPARATOR="------------------------------------------"
@@ -53,7 +54,7 @@ modprobe dm-mod;
 cryptsetup luksFormat -v -s 512 -h sha512 $systempartition;
 cryptsetup open $systempartition $luks_root;
 
-echo "Formatting efi parition: $efipartition"
+echo "Formatting $TPE parition: $efipartition"
 mkfs.fat -F32 $efipartition
 echo "Formatting System partition: $luks_path"
 mkfs.ext4 -L root $luks_path

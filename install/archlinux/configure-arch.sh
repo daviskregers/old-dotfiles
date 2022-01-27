@@ -4,6 +4,7 @@ source .install_helpers
 
 PWD=$(pwd)
 DOTFILES=$(dirname $(dirname $PWD))
+[ -d /sys/firmware/efi ] && TPE="EFI" || TPE="BIOS"
 
 if [ $(uname -n ) != "archiso" ]; then
 	echo -e "${BLINK}This isn't an arch installation, exiting...$END"
@@ -43,6 +44,9 @@ prefix=$(partition_prefix $device)
 systempartition=${device}${prefix}2
 efipartition=${device}${prefix}1
 
+if [ $TPE == "EFI" ]; then
+echo "EFI bootloader"
+
 pacman -S --noconfirm efibootmgr
 sed -i 's/HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)/HOOKS=(base udev autodetect modconf block encrypt filesystems keyboard fsck)/g' /etc/mkinitcpio.conf
 
@@ -63,6 +67,15 @@ cat <<EOF >/boot/loader/loader.conf
 default arch
 timeout 3
 EOF
+
+else
+echo "Installing GRUB"
+
+pacman –S grub os-prober
+grub-install /dev/${device}${prefix}
+grub-mkconfig -o /boot/grub/grub.cfg
+
+fi
 
 echo -e "${RED}Generating new user$END"
 
