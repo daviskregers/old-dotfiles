@@ -68,6 +68,11 @@ cleanup_inside() {
 setup_mirrors() {
         echo -e "${RED}Syncing pacman mirrors$END"
         pacman -S --noconfirm reflector
+
+        cat <<EOF >/etc/pacman.conf
+        ParallelDownloads = 3
+        EOF
+
         cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 
         if [[ -v ARCHLINUX_PROXY ]]; then
