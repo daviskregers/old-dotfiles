@@ -77,7 +77,7 @@ cat <<EOF >/etc/default/grub.conf
 GRUB_CMDLINE_LINUX="cryptdevice=UUID=$UUID:system root=/dev/mapper/system"
 GRUB_DISABLE_OS_PROBER=false
 EOF
-grub-install ${device}${prefix}
+grub-install $device
 grub-mkconfig -o /boot/grub/grub.cfg
 
 fi
