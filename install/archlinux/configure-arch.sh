@@ -75,7 +75,6 @@ echo "Installing GRUB"
 pacman –S grub os-prober
 cat <<EOF >/etc/default/grub.conf
 GRUB_CMDLINE_LINUX="cryptdevice=UUID=${uuid}:system root=/dev/mapper/system"
-GRUB_DISABLE_OS_PROBER=false
 EOF
 cat <<EOF >/etc/default/grub
 GRUB_DISABLE_OS_PROBER=false
