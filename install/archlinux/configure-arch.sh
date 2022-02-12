@@ -46,7 +46,7 @@ efipartition=${device}${prefix}1
 
 mkinitcpio -P
 systemd-machine-id-setup
-uuid=$(blkid --match-tag UUID -o value $systempartition)
+uuid=$(blkid --match-tag PARTUUID -o value $systempartition)
 echo "GOT UUID: $uuid from $systempartition"
 
 if [ $TPE == "EFI" ]; then
@@ -55,13 +55,14 @@ echo "EFI bootloader"
 pacman -S --noconfirm efibootmgr
 sed -i 's/HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)/HOOKS=(base udev autodetect modconf block encrypt filesystems keyboard fsck)/g' /etc/mkinitcpio.conf
 
+mkinitcpio -p linux
 bootctl --path=/boot install
 
 cat <<EOF >/boot/loader/entries/arch.conf
 title Arch Linux
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
-options cryptdevice=UUID=${uuid}:system root=/dev/mapper/system
+options cryptdevice=PARTUUID=${uuid}:system root=/dev/mapper/system rw
 EOF
 
 cat <<EOF >/boot/loader/loader.conf
@@ -74,7 +75,7 @@ echo "Installing GRUB"
 
 pacman –S grub os-prober
 cat <<EOF >/etc/default/grub
-GRUB_CMDLINE_LINUX="cryptdevice=UUID=${uuid}:system root=/dev/mapper/system"
+GRUB_CMDLINE_LINUX="cryptdevice=PARTUUID=${uuid}:system root=/dev/mapper/system"
 GRUB_ENABLE_CRYPTODISK=y
 GRUB_PRELOAD_MODULES="luks cryptodisk lvm ext2"
 GRUB_DISABLE_OS_PROBER=false
