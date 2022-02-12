@@ -1,6 +1,6 @@
 # Dotfiles
 
-** This is no longer maintained. I found that I was trying to do things that ansible does better. Probably once I'll have a proper setup there I'll publish the actual dotfiles here. **
+**This is no longer maintained. I found that I was trying to do things that ansible does better. The later version is available here: https://github.com/daviskregers/dotfiles**
 
 ## Useful to remember
 
