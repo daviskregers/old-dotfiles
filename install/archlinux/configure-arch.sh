@@ -75,8 +75,8 @@ echo "Installing GRUB"
 pacman –S grub os-prober
 cat <<EOF >/etc/default/grub
 GRUB_CMDLINE_LINUX="cryptdevice=UUID=${uuid}:system root=/dev/mapper/system"
-EOF
-cat <<EOF >/etc/default/grub.conf
+GRUB_ENABLE_CRYPTODISK=y
+GRUB_PRELOAD_MODULES="luks cryptodisk lvm ext2"
 GRUB_DISABLE_OS_PROBER=false
 EOF
 grub-install $device
